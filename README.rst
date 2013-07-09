@@ -1,5 +1,14 @@
-README
 =========
+spartan
+=========
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+A spartan bioinformatics package, providing only the essentials and nothing fancy or luxurious. Enough to get the job done quickly without flourish.
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+README
+=======
 
 This is ``spartan``.  ``spartan`` is a central place that I have decided to store/develop
 many of the bioinformatics classes/functions/scripts that I have written and find I use a lot.
