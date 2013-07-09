@@ -1,15 +1,15 @@
-This file requires editing
-==========================
+README
+=========
 
-Note to the author: Please add something informative to this README *before*
-releasing your software, as `a little documentation goes a long way`_.  Both
-README.rst (this file) and NEWS.txt (release notes) will be included in your
-package metadata which gets displayed in the PyPI page for your project.
+This is ``spartan``.  ``spartan`` is a central place that I have decided to store/develop
+many of the bioinformatics classes/functions/scripts that I have written and find I use a lot.
 
-You can take a look at the README.txt of other projects, such as repoze.bfg
-(http://bfg.repoze.org/trac/browser/trunk/README.txt) for some ideas.
+As the name implies, this is pretty functional code, but I have only done MINIMAL user-proofing.
+For the most part if a function/method expects a gff file you should do your due diligence that that
+file is indeed formatted correctly.  If someone wants to add more, I welcome it.  However if I am going
+to add code it will be to add functionality.
 
-.. _`a little documentation goes a long way`: http://www.martinaspeli.net/articles/a-little-documentation-goes-a-long-way
+After all, this is ``spartan``.
 
 Credits
 -------

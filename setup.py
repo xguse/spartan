@@ -17,12 +17,12 @@ install_requires = [
 
 setup(name='spartan',
     version=version,
-    description="A spartan bioinformatics package, providing only the essentials and nothing fancy or luxurious. Enough to do the job done quikly without flourish.",
+    description="A spartan bioinformatics package, providing only the essentials and nothing fancy or luxurious. Enough to get the job done quickly without flourish.",
     long_description=README + '\n\n' + NEWS,
     classifiers=[
       # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
     ],
-    keywords='bioinformatics basic parsers functions',
+    keywords='bioinformatics basic parsers functions fasta fastq PSSM PWM utilities',
     author='Augustine Dunn',
     author_email='wadunn83@gmail.com',
     url='https://github.com/xguse',

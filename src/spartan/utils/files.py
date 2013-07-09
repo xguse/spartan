@@ -8,7 +8,7 @@ import tempfile
 
 
 from spartan.utils.errors import *
-from spartan.utils.misc import Bag,fold_seq
+from spartan.utils.misc import Bunch,fold_seq
 from spartan.utils.externals import runExternalApp
 
 
@@ -161,7 +161,7 @@ def filter_PEfastQs(filterFunc,fwdMatePath,revMatePath,matchedPassPath1,matchedP
                 sPass_file,
                 nPass_file]
     
-    counts = Bag({'pairs_passed':0,
+    counts = Bunch({'pairs_passed':0,
                   'fwd_passed_as_single':0,
                   'rev_passed_as_single':0,
                   'fwd_failed':0,
