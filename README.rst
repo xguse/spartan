@@ -22,6 +22,28 @@ to add code it will be to add functionality.
 
 After all, this is ``spartan``.
 
+
+INSTALL
+==========
+
+By cloning the repo: ::
+
+	git clone https://github.com/xguse/spartan.git 
+	[sudo] pip install spartan/
+
+If you don't use ``pip`` (but you **should** be using ``pip``): ::
+
+	git clone https://github.com/xguse/spartan.git 
+	cd spartan/
+	[sudo] python setup.py install
+
+With ``pip`` without cloning the repo: ::
+	
+	pip install https://github.com/xguse/spartan.git
+	
+	
+	
+
 Credits
 -------
 
