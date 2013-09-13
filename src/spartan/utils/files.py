@@ -5,7 +5,7 @@ import collections
 import gzip
 import shutil
 import tempfile
-
+import csv
 
 from spartan.utils.errors import *
 from spartan.utils.misc import Bunch,fold_seq
