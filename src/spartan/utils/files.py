@@ -1,3 +1,32 @@
+#*****************************************************************************
+#  files.py (part of the  package)
+#
+#  (c) 2013 - Augustine Dunn
+#  James Laboratory
+#  Department of Biochemistry and Molecular Biology
+#  University of California Irvine
+#  wadunn83@gmail.com
+#
+#
+#******************************************************************************
+
+"""
+####################
+files.py
+####################
+
+"""
+
+
+
+
+
+
+
+
+
+
+
 import os
 import sys
 import csv
@@ -125,6 +154,13 @@ def filter_PEfastQs(filterFunc,fwdMatePath,revMatePath,matchedPassPath1,matchedP
     """
     Takes the paths to mated PE fastq files with coordinated read-ordering.
     Tests whether paired reads satisfy the provided filterFunc.
+    :param filterFunc:
+    :param fwdMatePath:
+    :param revMatePath:
+    :param matchedPassPath1:
+    :param matchedPassPath2:
+    :param singlePassPath:
+    :param nonPassPath:
     For example fastQs from hudsonAlpha should have either "Y" or "N" flag in their header:
     
     @HWI-ST619:70:B0BMTABXX:3:1102:9652:78621 1:N:0:TAGCTT

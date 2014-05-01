@@ -1,0 +1,269 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>spartan.utils.errors &mdash; spartan 0.0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="spartan 0.0.1 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../index.html" class="fa fa-home"> spartan</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../project.html">spartan</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../project.html#a-spartan-bioinformatics-package-providing-only-the-essentials-and-nothing-fancy-or-luxurious-enough-to-get-the-job-done-quickly-without-flourish">A spartan bioinformatics package, providing only the essentials and nothing fancy or luxurious. Enough to get the job done quickly without flourish.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../install.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../install.html#installing-the-latest-version-from-the-git-repository">Installing the latest version from the git repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../install.html#use-pip-to-obtain-the-package-from-pypi">Use <tt class="docutils literal"><span class="pre">pip</span></tt> to obtain the package from PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../install.html#installing-without-using-git-or-pip-for-the-download">Installing without using <tt class="docutils literal"><span class="pre">git</span></tt> or <tt class="docutils literal"><span class="pre">pip</span></tt> for the download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../install.html#test-to-see-whether-the-install-worked">Test to see whether the install worked</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html#tutorial">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code.html">Spartan&#8217;s Auto-Generated Code Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../code.html#errors-py">errors.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../code.html#externals-py">externals.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../code.html#files-py">files.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../code.html#misc-py">misc.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../code.html#coord-conversions-py">coord_conversions.py</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">spartan</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>spartan.utils.errors</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <h1>Source code for spartan.utils.errors</h1><div class="highlight"><pre>
+<span class="c">#*****************************************************************************</span>
+<span class="c">#  errors.py (part of the  package)</span>
+<span class="c">#</span>
+<span class="c">#  (c) 2013 - Augustine Dunn</span>
+<span class="c">#  James Laboratory</span>
+<span class="c">#  Department of Biochemistry and Molecular Biology</span>
+<span class="c">#  University of California Irvine</span>
+<span class="c">#  wadunn83@gmail.com</span>
+<span class="c">#</span>
+<span class="c">#  Licensed under the GNU General Public License 3.0 license.</span>
+<span class="c">#******************************************************************************</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">####################</span>
+<span class="sd">errors.py</span>
+<span class="sd">####################</span>
+<span class="sd">Code defining custom base error classes to provide a foundation for graceful error handling.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+
+<div class="viewcode-block" id="SpartanError"><a class="viewcode-back" href="../../../code.html#spartan.utils.errors.SpartanError">[docs]</a><span class="k">class</span> <span class="nc">SpartanError</span><span class="p">(</span><span class="ne">StandardError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for exceptions in the blacktie package.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="SystemCallError"><a class="viewcode-back" href="../../../code.html#spartan.utils.errors.SystemCallError">[docs]</a><span class="k">class</span> <span class="nc">SystemCallError</span><span class="p">(</span><span class="n">SpartanError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Error raised when a problem occurs while attempting to run an external system call.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | ``errno`` -- return code from system call</span>
+<span class="sd">        | ``filename`` -- file involved if any</span>
+<span class="sd">        | ``strerror`` -- error msg &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SystemCallError.__init__"><a class="viewcode-back" href="../../../code.html#spartan.utils.errors.SystemCallError.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">errno</span><span class="p">,</span> <span class="n">strerror</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">errno</span> <span class="o">=</span> <span class="n">errno</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">strerror</span> <span class="o">=</span> <span class="n">strerror</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+</div>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;&quot;&quot;ERROR:</span><span class="se">\n</span><span class="s"> </span><span class="si">%s</span><span class="s">.</span><span class="se">\n</span><span class="s">RETURN_STATE: </span><span class="si">%s</span><span class="s">.&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">strerror</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">),</span>
+                                                            <span class="bp">self</span><span class="o">.</span><span class="n">errno</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;&quot;&quot;ERROR in </span><span class="si">%s</span><span class="s">:</span><span class="se">\n</span><span class="s"> </span><span class="si">%s</span><span class="s">.</span><span class="se">\n</span><span class="s">RETURN_STATE: </span><span class="si">%s</span><span class="s">.&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span>
+                                                                  <span class="bp">self</span><span class="o">.</span><span class="n">strerror</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">),</span>
+                                                                  <span class="bp">self</span><span class="o">.</span><span class="n">errno</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="SanityCheckError"><a class="viewcode-back" href="../../../code.html#spartan.utils.errors.SanityCheckError">[docs]</a><span class="k">class</span> <span class="nc">SanityCheckError</span><span class="p">(</span><span class="n">SpartanError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;When a &#39;state check&#39; comes back as conflicting or nonsensical.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="UnexpectedValueError"><a class="viewcode-back" href="../../../code.html#spartan.utils.errors.UnexpectedValueError">[docs]</a><span class="k">class</span> <span class="nc">UnexpectedValueError</span><span class="p">(</span><span class="n">SpartanError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;When values that &quot;should&quot; not be possible happen; like if a variable was changed unexpectedly.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="InvalidFileFormatError"><a class="viewcode-back" href="../../../code.html#spartan.utils.errors.InvalidFileFormatError">[docs]</a><span class="k">class</span> <span class="nc">InvalidFileFormatError</span><span class="p">(</span><span class="n">SpartanError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;When errors occur due to malformed file formats.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="MissingArgumentError"><a class="viewcode-back" href="../../../code.html#spartan.utils.errors.MissingArgumentError">[docs]</a><span class="k">class</span> <span class="nc">MissingArgumentError</span><span class="p">(</span><span class="n">SpartanError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;When a required argument is missing from the parsed command line options.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="MissingArgumentError.__init__"><a class="viewcode-back" href="../../../code.html#spartan.utils.errors.MissingArgumentError.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">errMsg</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="n">errMsg</span>
+</div>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&quot;&quot;&quot;ERROR: </span><span class="si">%s</span><span class="s">&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span>
+
+</div>
+<span class="k">class</span> <span class="nc">InvalidOptionError</span><span class="p">(</span><span class="n">SpartanError</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optVal</span><span class="p">,</span> <span class="n">optName</span><span class="p">,</span> <span class="n">validVals</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optVal</span> <span class="o">=</span> <span class="n">optVal</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optName</span> <span class="o">=</span> <span class="n">optName</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validVals</span> <span class="o">=</span> <span class="n">validVals</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">validVals</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;&quot;&quot;ERROR: </span><span class="si">%s</span><span class="s"> is not a valid value for arg:</span><span class="si">%s</span><span class="s">.</span><span class="se">\n\t</span><span class="s">Valid values are: </span><span class="si">%s</span><span class="s">&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">optVal</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">optName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">validVals</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;&quot;&quot;ERROR: </span><span class="si">%s</span><span class="s"> is not a valid value for arg:</span><span class="si">%s</span><span class="s">.&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">optVal</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">optName</span><span class="p">)</span>
+
+
+
+
+    
+    
+
+    
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Gus Dunn.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
