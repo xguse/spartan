@@ -1,7 +1,7 @@
-from pandas import pd
+import pandas as pd
 import numpy as np
 
-
+pd.DataFrame
 
 def stddf(df,axis=0,center='a'):
     """
@@ -10,7 +10,7 @@ def stddf(df,axis=0,center='a'):
     
     center is in ['a','m'] # a is mean; m is median
     """
-    DF = pd.Dataframe
+    DF = pd.DataFrame
     if center == 'a':
         c_func = DF.mean
     elif center == 'm':
