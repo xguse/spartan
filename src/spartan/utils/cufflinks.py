@@ -2,7 +2,7 @@ import csv
 
 from collections import defaultdict
 
-from spartan.utils import gtf
+from spartan.utils.annotations.ensembl import gtf
 
 
 def get_ensembl_from_gene_name(gene_names_path,cuffmerge_gtf_path,out_file_path):

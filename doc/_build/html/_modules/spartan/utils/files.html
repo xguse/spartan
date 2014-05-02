@@ -1,0 +1,880 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>spartan.utils.files &mdash; spartan 0.0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="spartan 0.0.1 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../index.html" class="fa fa-home"> spartan</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../project.html">spartan</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../project.html#a-spartan-bioinformatics-package-providing-only-the-essentials-and-nothing-fancy-or-luxurious-enough-to-get-the-job-done-quickly-without-flourish">A spartan bioinformatics package, providing only the essentials and nothing fancy or luxurious. Enough to get the job done quickly without flourish.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../install.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../install.html#installing-the-latest-version-from-the-git-repository">Installing the latest version from the git repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../install.html#use-pip-to-obtain-the-package-from-pypi">Use <tt class="docutils literal"><span class="pre">pip</span></tt> to obtain the package from PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../install.html#installing-without-using-git-or-pip-for-the-download">Installing without using <tt class="docutils literal"><span class="pre">git</span></tt> or <tt class="docutils literal"><span class="pre">pip</span></tt> for the download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../install.html#test-to-see-whether-the-install-worked">Test to see whether the install worked</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html#tutorial">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code.html">Spartan&#8217;s Auto-Generated Code Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../code.html#errors-py">errors.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../code.html#externals-py">externals.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../code.html#files-py">files.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../code.html#misc-py">misc.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../code.html#coord-conversions-py">coord_conversions.py</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">spartan</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>spartan.utils.files</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <h1>Source code for spartan.utils.files</h1><div class="highlight"><pre>
+<span class="c">#*****************************************************************************</span>
+<span class="c">#  files.py (part of the  package)</span>
+<span class="c">#</span>
+<span class="c">#  (c) 2013 - Augustine Dunn</span>
+<span class="c">#  James Laboratory</span>
+<span class="c">#  Department of Biochemistry and Molecular Biology</span>
+<span class="c">#  University of California Irvine</span>
+<span class="c">#  wadunn83@gmail.com</span>
+<span class="c">#</span>
+<span class="c">#</span>
+<span class="c">#******************************************************************************</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">####################</span>
+<span class="sd">files.py</span>
+<span class="sd">####################</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+
+
+
+
+
+
+
+
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">gzip</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="kn">from</span> <span class="nn">spartan.utils.errors</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">spartan.utils.misc</span> <span class="kn">import</span> <span class="n">Bunch</span><span class="p">,</span><span class="n">fold_seq</span>
+<span class="kn">from</span> <span class="nn">spartan.utils.externals</span> <span class="kn">import</span> <span class="n">runExternalApp</span>
+
+
+<div class="viewcode-block" id="mv_file_obj"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.mv_file_obj">[docs]</a><span class="k">def</span> <span class="nf">mv_file_obj</span><span class="p">(</span><span class="n">fileObj</span><span class="p">,</span><span class="n">newPath</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="n">chmod</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GIVEN:</span>
+<span class="sd">    1) fileObj: file object to be moved </span>
+<span class="sd">    2) newPath: new path (if not abs path, current working dir is used)</span>
+<span class="sd">       MUST at LEAST include a name for new file.</span>
+<span class="sd">    3) chmod: string to use for new file permissions (if False: no change).</span>
+<span class="sd">    </span>
+<span class="sd">    DO:</span>
+<span class="sd">    1) fileObj.flush()</span>
+<span class="sd">    2) use shutil.move(src,dest) to move file location.</span>
+<span class="sd">    3) change fileObj.name to the new name.</span>
+<span class="sd">    4) if file is tmpFile, make sure fileObj.delete == False</span>
+<span class="sd">       (I assume that if you care enough to move the file, you want to keep it)</span>
+<span class="sd">    5) chmod on new file to set permissions (remember to use octal: 0755 NOT 755)</span>
+<span class="sd">    </span>
+<span class="sd">    RETURN:</span>
+<span class="sd">    1) fileObj</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="s">&#39;file&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">fileObj</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">SanityCheckError</span><span class="p">(</span><span class="s">&quot;fileObj does not seem to be a file-like object: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">fileObj</span><span class="p">)))</span>
+
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">fileObj</span><span class="o">.</span><span class="n">delete</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">fileObj</span><span class="o">.</span><span class="n">closed</span><span class="p">:</span>
+        <span class="n">fileObj</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="n">newPath</span> <span class="o">==</span> <span class="s">&#39;&#39;</span><span class="p">:</span>
+        <span class="n">newPath</span> <span class="o">=</span> <span class="n">fileObj</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">newPath</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">newPath</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;./&#39;</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">newPath</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;../&#39;</span><span class="p">)):</span>
+        <span class="n">newPath</span> <span class="o">=</span> <span class="s">&#39;./</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">newPath</span><span class="p">)</span>
+        
+    <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">fileObj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="n">newPath</span><span class="p">)</span>
+    
+    <span class="n">fileObj</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">newPath</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">chmod</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="n">fileObj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="n">chmod</span><span class="p">))</span>
+        
+    <span class="k">return</span> <span class="n">fileObj</span>
+    </div>
+<div class="viewcode-block" id="fastaRec_length_indexer"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.fastaRec_length_indexer">[docs]</a><span class="k">def</span> <span class="nf">fastaRec_length_indexer</span><span class="p">(</span><span class="n">fastaFiles</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GIVEN:</span>
+<span class="sd">    1) fastaFiles: list of fasta files or dirs containing fasta files</span>
+<span class="sd">    </span>
+<span class="sd">    DO:</span>
+<span class="sd">    1) iterate through all fasta files recording recName and length to a dict</span>
+<span class="sd">    </span>
+<span class="sd">    RETURN:</span>
+<span class="sd">    1) dict with recName and lengths</span>
+<span class="sd">    </span>
+<span class="sd">    NOTES:</span>
+<span class="sd">    1) will complain if it sees more than one fastaRec with the same name ONLY</span>
+<span class="sd">       if one of the length values disagrees with those already seen.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">recDict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">seqDict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">tmpDict</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">fastaFiles</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c"># if each is a directory, measure all recs in all fasta files in that dir (ignore subdirs)</span>
+            <span class="n">paths</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">each</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">p</span> <span class="o">=</span> <span class="n">ParseFastA</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">name</span><span class="p">,</span><span class="n">seq</span> <span class="ow">in</span> <span class="n">p</span><span class="p">:</span>
+                        <span class="n">tmpDict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">))</span>
+                        <span class="n">seqDict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">seq</span>
+                <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+                    <span class="c"># most likely p was a dir, ignore</span>
+                    <span class="c">## TODO: logging code here to inform when this happens</span>
+                    <span class="k">pass</span>
+                <span class="k">except</span> <span class="n">InvalidFileFormatError</span><span class="p">:</span>
+                    <span class="c"># most likely p did not have valid fasta format, ignore</span>
+                    <span class="c">## TODO: logging code here to inform when this happens</span>
+                    <span class="k">pass</span>
+                        
+        <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">errTxt</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="s">&#39;Not a directory&#39;</span> <span class="ow">in</span> <span class="n">errTxt</span><span class="p">):</span>
+                <span class="k">raise</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c"># if each is a file, measure all recs in file</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">p</span> <span class="o">=</span> <span class="n">ParseFastA</span><span class="p">(</span><span class="n">each</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">name</span><span class="p">,</span><span class="n">seq</span> <span class="ow">in</span> <span class="n">p</span><span class="p">:</span>
+                        <span class="n">tmpDict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">))</span>
+                        <span class="n">seqDict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">seq</span>
+                <span class="k">except</span> <span class="n">InvalidFileFormatError</span><span class="p">:</span>
+                    <span class="c"># most likely p did not have valid fasta format, ignore</span>
+                    <span class="c">## TODO: logging code here to inform when this happens</span>
+                    <span class="k">pass</span>
+    
+    
+    <span class="k">for</span> <span class="n">rec</span><span class="p">,</span><span class="n">lengths</span> <span class="ow">in</span> <span class="n">tmpDict</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">lengths</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="c"># SANITY_CHECK: make sure that any duplicate fastaRecs gave the same length, if not: complain and die</span>
+            <span class="k">raise</span> <span class="n">SanityCheckError</span><span class="p">(</span><span class="s">&quot;Encountered fastaRec with lengths that do not agree: </span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">rec</span><span class="p">,</span><span class="n">lengths</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># consolodate the lengths lists to a single number</span>
+            <span class="n">recDict</span><span class="p">[</span><span class="n">rec</span><span class="p">]</span> <span class="o">=</span> <span class="n">lengths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="p">(</span><span class="n">recDict</span><span class="p">,</span><span class="n">seqDict</span><span class="p">)</span>
+    
+    
+</div>
+<div class="viewcode-block" id="filter_PEfastQs"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.filter_PEfastQs">[docs]</a><span class="k">def</span> <span class="nf">filter_PEfastQs</span><span class="p">(</span><span class="n">filterFunc</span><span class="p">,</span><span class="n">fwdMatePath</span><span class="p">,</span><span class="n">revMatePath</span><span class="p">,</span><span class="n">matchedPassPath1</span><span class="p">,</span><span class="n">matchedPassPath2</span><span class="p">,</span><span class="n">singlePassPath</span><span class="p">,</span><span class="n">nonPassPath</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes the paths to mated PE fastq files with coordinated read-ordering.</span>
+<span class="sd">    Tests whether paired reads satisfy the provided filterFunc.</span>
+<span class="sd">    :param filterFunc:</span>
+<span class="sd">    :param fwdMatePath:</span>
+<span class="sd">    :param revMatePath:</span>
+<span class="sd">    :param matchedPassPath1:</span>
+<span class="sd">    :param matchedPassPath2:</span>
+<span class="sd">    :param singlePassPath:</span>
+<span class="sd">    :param nonPassPath:</span>
+<span class="sd">    For example fastQs from hudsonAlpha should have either &quot;Y&quot; or &quot;N&quot; flag in their header:</span>
+<span class="sd">    </span>
+<span class="sd">    @HWI-ST619:70:B0BMTABXX:3:1102:9652:78621 1:N:0:TAGCTT</span>
+<span class="sd">    GAATGCGATAGTCACAAGGCATGCCGTTGAATATTCGCAACTGAGCTTCG</span>
+<span class="sd">    +</span>
+<span class="sd">    @@@?DAD;DADAD:EGAGH=CFEEHB?GIEBFBGI@CFGD@FG&gt;&gt;@GGGH</span>
+<span class="sd">    </span>
+<span class="sd">    The fastQ parsers represent each read as a 4 member list with each line&#39;s data as an index.</span>
+
+<span class="sd">    </span>
+<span class="sd">    The filterFunc for this case might be:</span>
+<span class="sd">    lambda x: x[0].split(&#39; &#39;)[-1].split(&#39;:&#39;)[1] == &quot;N&quot;</span>
+<span class="sd">    </span>
+<span class="sd">    If both mates satisfy the filter, the fwd mate is written to matchedPassPath1 and rev mate to matchedPassPath2.</span>
+<span class="sd">    If only one mate satisfies the filter, it is written to singlePassPath regardles of fwd/rev.</span>
+<span class="sd">    All reads that do not satisfy the filter are written to nonPassPath.</span>
+<span class="sd">    </span>
+<span class="sd">    Notes:</span>
+<span class="sd">    * The filterFunc does not have to be a simple lambda, but even something like &quot;testMeanQualScore()&quot;,</span>
+<span class="sd">      as long as it returns a True/False with True meaning that the read should be KEPT.</span>
+<span class="sd">    * Write-files are overwritten if they exist, created otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    
+    <span class="n">fwdMates</span> <span class="o">=</span> <span class="n">ParseFastQ</span><span class="p">(</span><span class="n">fwdMatePath</span><span class="p">)</span>
+    <span class="n">revMates</span> <span class="o">=</span> <span class="n">ParseFastQ</span><span class="p">(</span><span class="n">revMatePath</span><span class="p">)</span>
+    <span class="n">mPassF_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">matchedPassPath1</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">mPassR_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">matchedPassPath2</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">sPass_file</span>  <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">singlePassPath</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">nPass_file</span>  <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">nonPassPath</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+    
+    <span class="n">outFiles</span> <span class="o">=</span> <span class="p">[</span><span class="n">mPassF_file</span><span class="p">,</span>
+                <span class="n">mPassR_file</span><span class="p">,</span>
+                <span class="n">sPass_file</span><span class="p">,</span>
+                <span class="n">nPass_file</span><span class="p">]</span>
+    
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">Bunch</span><span class="p">({</span><span class="s">&#39;pairs_passed&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                  <span class="s">&#39;fwd_passed_as_single&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                  <span class="s">&#39;rev_passed_as_single&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                  <span class="s">&#39;fwd_failed&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                  <span class="s">&#39;rev_failed&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                  <span class="s">&#39;total&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">})</span>
+    
+    <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c"># get next fastq Records or set mates to None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">fwdMate</span> <span class="o">=</span> <span class="n">fwdMates</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+            <span class="n">counts</span><span class="o">.</span><span class="n">total</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+            <span class="n">fwdMate</span> <span class="o">=</span> <span class="bp">None</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">revMate</span> <span class="o">=</span> <span class="n">revMates</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+            <span class="n">counts</span><span class="o">.</span><span class="n">total</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+            <span class="n">revMate</span> <span class="o">=</span> <span class="bp">None</span>
+        
+        <span class="c"># break out if both files are empty </span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">fwdMate</span> <span class="o">==</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">revMate</span> <span class="o">==</span> <span class="bp">None</span><span class="p">):</span>
+            <span class="k">break</span>
+
+        <span class="c"># set up logical switches to guide the outWriting/counting</span>
+        <span class="k">if</span> <span class="n">fwdMate</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">keepFwd</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">keepFwd</span> <span class="o">=</span> <span class="n">filterFunc</span><span class="p">(</span><span class="n">fwdMate</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">revMate</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">keepRev</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">keepRev</span> <span class="o">=</span> <span class="n">filterFunc</span><span class="p">(</span><span class="n">revMate</span><span class="p">)</span>
+            
+        <span class="c">#print &quot;fwdMate %s\nkeepFwd %s\nrevMate %s\nkeepRev %s&quot; % (fwdMate[0],keepFwd,revMate[0],keepRev)</span>
+        <span class="c">#break</span>
+            
+        <span class="c"># write fwd and rev to appropriate files and += respective counts</span>
+        <span class="k">if</span> <span class="n">keepFwd</span> <span class="ow">and</span> <span class="n">keepRev</span><span class="p">:</span>
+            <span class="n">mPassF_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fwdMate</span><span class="p">)))</span>
+            <span class="n">mPassR_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">revMate</span><span class="p">)))</span>
+            <span class="n">counts</span><span class="o">.</span><span class="n">pairs_passed</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">keepFwd</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">keepRev</span><span class="p">:</span>
+            <span class="n">sPass_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fwdMate</span><span class="p">)))</span>
+            <span class="n">nPass_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">revMate</span><span class="p">)))</span>
+            <span class="n">counts</span><span class="o">.</span><span class="n">fwd_passed_as_single</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">counts</span><span class="o">.</span><span class="n">rev_failed</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">keepFwd</span> <span class="ow">and</span> <span class="n">keepRev</span><span class="p">:</span>
+            <span class="n">nPass_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fwdMate</span><span class="p">)))</span>
+            <span class="n">sPass_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">revMate</span><span class="p">)))</span>
+            <span class="n">counts</span><span class="o">.</span><span class="n">fwd_failed</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">counts</span><span class="o">.</span><span class="n">rev_passed_as_single</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">keepFwd</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">keepRev</span><span class="p">:</span>
+            <span class="n">nPass_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fwdMate</span><span class="p">)))</span>
+            <span class="n">nPass_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">revMate</span><span class="p">)))</span>
+            <span class="n">counts</span><span class="o">.</span><span class="n">fwd_failed</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">counts</span><span class="o">.</span><span class="n">rev_failed</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">outFiles</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    
+    <span class="n">reportTxt</span> <span class="o">=</span> <span class="s">&#39;&#39;&#39;================</span>
+<span class="s">Filtered your files using the supplied filter function:</span>
+<span class="s">fwdMatePath:</span><span class="se">\t\t</span><span class="si">%s</span><span class="s"></span>
+<span class="s">revMatePath:</span><span class="se">\t\t</span><span class="si">%s</span><span class="s"></span>
+<span class="s">matchedPassPath1:</span><span class="se">\t</span><span class="si">%s</span><span class="s"></span>
+<span class="s">matchedPassPath2:</span><span class="se">\t</span><span class="si">%s</span><span class="s"></span>
+<span class="s">singlePassPath:</span><span class="se">\t\t</span><span class="si">%s</span><span class="s"></span>
+<span class="s">nonPassPath:</span><span class="se">\t\t</span><span class="si">%s</span><span class="se">\n</span><span class="s">----</span><span class="se">\n</span><span class="s">&#39;&#39;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">fwdMatePath</span><span class="p">,</span><span class="n">revMatePath</span><span class="p">,</span><span class="n">matchedPassPath1</span><span class="p">,</span><span class="n">matchedPassPath2</span><span class="p">,</span><span class="n">singlePassPath</span><span class="p">,</span><span class="n">nonPassPath</span><span class="p">)</span>
+    <span class="n">sanityCount</span> <span class="o">=</span> <span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">pairs_passed</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">counts</span><span class="o">.</span><span class="n">fwd_passed_as_single</span> <span class="o">+</span> <span class="n">counts</span><span class="o">.</span><span class="n">rev_passed_as_single</span> <span class="o">+</span> <span class="n">counts</span><span class="o">.</span><span class="n">fwd_failed</span> <span class="o">+</span> <span class="n">counts</span><span class="o">.</span><span class="n">rev_failed</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">sanityCount</span> <span class="o">==</span> <span class="n">counts</span><span class="o">.</span><span class="n">total</span><span class="p">:</span>
+        <span class="n">reportTxt</span> <span class="o">+=</span> <span class="s">&quot;WARNING: sanityCount (</span><span class="si">%s</span><span class="s">) does not equal counts.total (</span><span class="si">%s</span><span class="s">)</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">sanityCount</span><span class="p">,</span> <span class="n">counts</span><span class="o">.</span><span class="n">total</span><span class="p">)</span>
+    <span class="n">reportTxt</span> <span class="o">+=</span> <span class="s">&quot;PairsPassed:</span><span class="se">\t\t</span><span class="si">%s</span><span class="se">\n</span><span class="s">FwdSinglePassed:</span><span class="se">\t</span><span class="si">%s</span><span class="se">\n</span><span class="s">RevSinglePassed:</span><span class="se">\t</span><span class="si">%s</span><span class="se">\n</span><span class="s">FwdFailed:</span><span class="se">\t\t</span><span class="si">%s</span><span class="se">\n</span><span class="s">RevFailed:</span><span class="se">\t\t</span><span class="si">%s</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">pairs_passed</span><span class="p">,</span>
+                                                                                                                           <span class="n">counts</span><span class="o">.</span><span class="n">fwd_passed_as_single</span><span class="p">,</span>
+                                                                                                                           <span class="n">counts</span><span class="o">.</span><span class="n">rev_passed_as_single</span><span class="p">,</span>
+                                                                                                                           <span class="n">counts</span><span class="o">.</span><span class="n">fwd_failed</span><span class="p">,</span>
+                                                                                                                           <span class="n">counts</span><span class="o">.</span><span class="n">rev_failed</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">reportTxt</span><span class="p">))</span>
+    
+
+<span class="c">#def strip_str_of_comments(string,commentStr=&#39;#&#39;):</span>
+    <span class="c">#&quot;&quot;&quot;</span>
+    <span class="c">#Take string and return everything to the right of the first</span>
+    <span class="c">#comment string found, unless it is quoted or escaped: &#39;#&#39; or &quot;#&quot; or \#.</span>
+    <span class="c">#&quot;&quot;&quot;</span>
+    <span class="c">#qComStr = &quot;&quot;&quot;&#39;%s&#39;&quot;&quot;&quot; % (commentStr)</span>
+    <span class="c">#qqComStr = &#39;&#39;&#39;&quot;%s&quot;&#39;&#39;&#39; % (commentStr)</span>
+    <span class="c">#esqComStr = &#39;\%s&#39; % (commentStr)</span>
+    <span class="c">#if &quot;&quot;&quot;&#39;%s&#39;&quot;&quot;&quot; % (commentStr) in string:</span>
+        
+    <span class="c">#return string.rstrip(&#39;/n&#39;).split(commentStr)[0]</span>
+
+    </div>
+<div class="viewcode-block" id="open_wo_comments"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.open_wo_comments">[docs]</a><span class="k">def</span> <span class="nf">open_wo_comments</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span><span class="n">commentStr</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return a generator that acts like fileObj.next() but removes</span>
+<span class="sd">    both commented lines and in-line comments. </span>
+<span class="sd">    </span>
+<span class="sd">    Preserves line numbers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">inFile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span><span class="s">&#39;rU&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">inFile</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">strip_str_of_comments</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="c"># replace \n to preserve the behavior of fileObj.next()</span>
+
+
+</div>
+<div class="viewcode-block" id="unSoftMask"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.unSoftMask">[docs]</a><span class="k">def</span> <span class="nf">unSoftMask</span><span class="p">(</span><span class="n">inFastaPath</span><span class="p">,</span><span class="n">outFastaPath</span><span class="p">):</span>
+    <span class="c"># TODO: replace unSoftMask() with mask_converter() that provides multiple options for changing the masking of sequences</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    UPPERcases any lowercased nucs in the fasta recs.</span>
+<span class="sd">    Writes new file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">inFasta</span>  <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">inFastaPath</span><span class="p">,</span> <span class="s">&#39;rU&#39;</span><span class="p">)</span>
+    <span class="n">outFasta</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">outFastaPath</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">inFasta</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span><span class="p">):</span>
+            <span class="n">outFasta</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">outFasta</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+    <span class="n">inFasta</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">outFasta</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    
+    </div>
+<div class="viewcode-block" id="tableFile2namedTuple"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.tableFile2namedTuple">[docs]</a><span class="k">def</span> <span class="nf">tableFile2namedTuple</span><span class="p">(</span><span class="n">tablePath</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns namedTuple from table file using first row fields as</span>
+<span class="sd">    col headers or a list supplied by user.&quot;&quot;&quot;</span>
+
+    <span class="n">reader</span>  <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">tablePath</span><span class="p">,</span><span class="s">&#39;rU&#39;</span><span class="p">),</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">sep</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">headers</span><span class="p">:</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>   
+    <span class="n">Table</span>   <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s">&#39;Table&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+    <span class="c"># wrap Table.__getattribute__() for less typing</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">colName</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__getattribute__</span><span class="p">(</span><span class="n">colName</span><span class="p">)</span>
+    <span class="n">Table</span><span class="o">.</span><span class="n">get</span> <span class="o">=</span> <span class="n">get</span>
+    
+    <span class="n">data</span>    <span class="o">=</span> <span class="p">[</span><span class="n">Table</span><span class="o">.</span><span class="n">_make</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">reader</span> <span class="k">if</span> <span class="n">x</span><span class="o">!=</span><span class="p">[]]</span> <span class="c"># reader kept feeding an empty list at the end that botched everything!  wtf?!</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="ParseFastA"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.ParseFastA">[docs]</a><span class="k">class</span> <span class="nc">ParseFastA</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a record-by-record fastA parser analogous to file.readline().&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="ParseFastA.__init__"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.ParseFastA.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">filePath</span><span class="p">,</span><span class="n">joinWith</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a record-by-record fastA parser analogous to file.readline().</span>
+<span class="sd">        Exmpl: parser.next()</span>
+<span class="sd">        Its ALSO an iterator so &quot;for rec in parser&quot; works too!</span>
+<span class="sd">        </span>
+<span class="sd">        &lt;joinWith&gt; is string to use to join rec lines with.</span>
+<span class="sd">        joinWith=&#39;&#39; results in a single line with no breaks (usually what you want!)</span>
+<span class="sd">        </span>
+<span class="sd">        &lt;key&gt; is func used to parse the recName from HeaderInfo.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="n">filePath</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;.gz&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_file</span> <span class="o">=</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span> <span class="s">&#39;rU&#39;</span><span class="p">)</span>
+            
+        <span class="k">if</span> <span class="n">key</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_key</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bufferLine</span> <span class="o">=</span> <span class="bp">None</span>   <span class="c"># stores next headerLine between records.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">joinWith</span> <span class="o">=</span> <span class="n">joinWith</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span> <span class="o">=</span> <span class="bp">False</span>
+        
+    </div>
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+        
+<div class="viewcode-block" id="ParseFastA.next"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.ParseFastA.next">[docs]</a>    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reads in next element, parses, and does minimal verification.</span>
+<span class="sd">        Returns: tuple: (seqName,seqStr)&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span>
+        <span class="c"># ++++ Get A Record ++++</span>
+        <span class="n">recHead</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="n">recData</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c"># ++++ Check to see if we already have a headerLine ++++</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bufferLine</span><span class="p">:</span>
+            <span class="n">recHead</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bufferLine</span>
+        <span class="k">else</span><span class="p">:</span>
+        <span class="c"># ++++ If not, seek one ++++</span>
+            <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+                <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="k">break</span>
+                <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span><span class="p">):</span>
+                    <span class="n">recHead</span> <span class="o">=</span> <span class="n">line</span>
+                    <span class="k">break</span>
+                <span class="k">elif</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">InvalidFileFormatError</span><span class="p">,</span> <span class="s">&quot;CheckFastaFile: Encountered EOF before any data.&quot;</span>
+                <span class="k">elif</span> <span class="n">line</span> <span class="o">==</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">InvalidFileFormatError</span><span class="p">,</span> <span class="s">&#39;CheckFastaFile: The first line containing text does not start with &quot;&gt;&quot;.&#39;</span>
+        <span class="c"># ++++ Collect recData ++++</span>
+        <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="k">break</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bufferLine</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span><span class="p">):</span>
+                <span class="n">recData</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">))</span>
+
+        <span class="c"># ++++ Minor Seq Validation ++++</span>
+        <span class="c">## AddHere</span>
+        <span class="c"># ++++ Format Rec For Return ++++</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">recData</span><span class="p">:</span>
+            <span class="n">recHead</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_key</span><span class="p">(</span><span class="n">recHead</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">recHead</span><span class="p">,</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">recHead</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_key</span><span class="p">(</span><span class="n">recHead</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">recHead</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">joinWith</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">recData</span><span class="p">))</span>   
+    </div>
+<div class="viewcode-block" id="ParseFastA.to_dict"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.ParseFastA.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a single Dict populated with the fastaRecs</span>
+<span class="sd">        contained in self._file.&quot;&quot;&quot;</span>
+        <span class="n">fasDict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">fasRec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">if</span> <span class="n">fasRec</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">fasRec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">fasDict</span><span class="p">:</span>
+                    <span class="n">fasDict</span><span class="p">[</span><span class="n">fasRec</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">fasRec</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">InvalidFileFormatError</span><span class="p">,</span> <span class="s">&quot;DuplicateFastaRec: </span><span class="si">%s</span><span class="s"> occurs in your file more than once.&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">fasDict</span>
+    </div>
+<div class="viewcode-block" id="ParseFastA.rewrite_headers"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.ParseFastA.rewrite_headers">[docs]</a>    <span class="k">def</span> <span class="nf">rewrite_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">outPath</span><span class="p">,</span><span class="n">lineLen</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span><span class="n">delim</span><span class="o">=</span><span class="s">&#39; &#39;</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="p">[],</span><span class="n">ow</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">chmod</span><span class="o">=</span><span class="mi">755</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        PURPOSE</span>
+<span class="sd">        * reorganize the headers of a fasta file:</span>
+<span class="sd">          &gt;supercontig:CpipQ1:supercont3.1:1:3873040:1 supercontig supercont3.1</span>
+<span class="sd">          to </span>
+<span class="sd">          &gt;supercont3.1 supercontig:CpipQ1:supercont3.1:1:3873040:1 supercontig</span>
+<span class="sd">        </span>
+<span class="sd">        NOTES</span>
+<span class="sd">        1) If ow, ignores outPath</span>
+<span class="sd">        2) delim is what to spilt on</span>
+<span class="sd">        3) order is a list of index numbers from the original header, reorganized for the new header.</span>
+<span class="sd">           Exp: delim=&#39; &#39;,order=[2,0,1]  would produce what is seen above.</span>
+<span class="sd">        4) chmod= set new file with this mode (exp: 755)</span>
+<span class="sd">        5) lineLen sets fastaSeq line length in new file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="n">ow</span><span class="p">:</span>
+            <span class="n">outPath</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">suffix</span><span class="o">=</span><span class="s">&#39;.renamed.fas&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">outPath</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">outPath</span><span class="p">,</span><span class="s">&#39;w&#39;</span><span class="p">)</span>
+        
+        <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">fSplit</span>  <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">delim</span><span class="p">)</span>
+            <span class="n">newHead</span> <span class="o">=</span> <span class="n">delim</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">fSplit</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">order</span><span class="p">])</span>
+            <span class="n">outPath</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;&gt;</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">newHead</span><span class="p">,</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fold_seq</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">lineLen</span><span class="p">))))</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        
+        <span class="n">absPath</span>     <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span>
+        <span class="k">if</span> <span class="n">ow</span><span class="p">:</span>
+            <span class="n">outPath</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+            <span class="n">outPath</span><span class="o">.</span><span class="n">delete</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">absPath</span><span class="p">(</span><span class="n">outPath</span><span class="o">.</span><span class="n">name</span><span class="p">),</span><span class="n">absPath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_file</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+                
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">chmodResult</span> <span class="o">=</span> <span class="n">runExternalApp</span><span class="p">(</span><span class="s">&#39;chmod&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">chmod</span><span class="p">,</span><span class="n">absPath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_file</span><span class="o">.</span><span class="n">name</span><span class="p">)))</span>
+            <span class="k">except</span> <span class="n">ExternalError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">err</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">outPath</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="n">chmodResult</span> <span class="o">=</span> <span class="n">runExternalApp</span><span class="p">(</span><span class="s">&#39;chmod&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">chmod</span><span class="p">,</span><span class="n">absPath</span><span class="p">(</span><span class="n">outPath</span><span class="o">.</span><span class="n">name</span><span class="p">)))</span>
+            <span class="k">except</span> <span class="n">ExternalError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">err</span><span class="p">))</span>
+        
+    
+
+
+</div></div>
+<div class="viewcode-block" id="ParseFastQ"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.ParseFastQ">[docs]</a><span class="k">class</span> <span class="nc">ParseFastQ</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a read-by-read fastQ parser analogous to file.readline()&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="ParseFastQ.__init__"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.ParseFastQ.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">filePath</span><span class="p">,</span><span class="n">headerSymbols</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;@&#39;</span><span class="p">,</span><span class="s">&#39;+&#39;</span><span class="p">]):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a read-by-read fastQ parser analogous to file.readline().</span>
+<span class="sd">        Exmpl: parser.next()</span>
+<span class="sd">        -OR-</span>
+<span class="sd">        Its an iterator so you can do:</span>
+<span class="sd">        for rec in parser:</span>
+<span class="sd">            ... do something with rec ...</span>
+
+<span class="sd">        rec is tuple: (seqHeader,seqStr,qualHeader,qualStr)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">filePath</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;.gz&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_file</span> <span class="o">=</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span> <span class="s">&#39;rU&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_currentLineNumber</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hdSyms</span> <span class="o">=</span> <span class="n">headerSymbols</span>
+        </div>
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    
+<div class="viewcode-block" id="ParseFastQ.next"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.ParseFastQ.next">[docs]</a>    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reads in next element, parses, and does minimal verification.</span>
+<span class="sd">        Returns: tuple: (seqHeader,seqStr,qualHeader,qualStr)&quot;&quot;&quot;</span>
+        <span class="c"># ++++ Get Next Four Lines ++++</span>
+        <span class="n">elemList</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_currentLineNumber</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c">## increment file position</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">elemList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span> 
+                <span class="n">elemList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        
+        <span class="c"># ++++ Check Lines For Expected Form ++++</span>
+        <span class="n">trues</span> <span class="o">=</span> <span class="p">[</span><span class="nb">bool</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">elemList</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">nones</span> <span class="o">=</span> <span class="n">elemList</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        <span class="c"># -- Check for acceptable end of file --</span>
+        <span class="k">if</span> <span class="n">nones</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span>
+        <span class="c"># -- Make sure we got 4 full lines of data --</span>
+        <span class="k">assert</span> <span class="n">trues</span> <span class="o">==</span> <span class="mi">4</span><span class="p">,</span>\
+               <span class="s">&quot;** ERROR: It looks like I encountered a premature EOF or empty line.</span><span class="se">\n\</span>
+<span class="s">               Please check FastQ file near line number </span><span class="si">%s</span><span class="s"> (plus or minus ~4 lines) and try again**&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_currentLineNumber</span><span class="p">)</span>
+        <span class="c"># -- Make sure we are in the correct &quot;register&quot; --</span>
+        <span class="k">assert</span> <span class="n">elemList</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hdSyms</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>\
+               <span class="s">&quot;** ERROR: The 1st line in fastq element does not start with &#39;</span><span class="si">%s</span><span class="s">&#39;.</span><span class="se">\n\</span>
+<span class="s">               Please check FastQ file near line number </span><span class="si">%s</span><span class="s"> (plus or minus ~4 lines) and try again**&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hdSyms</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">_currentLineNumber</span><span class="p">)</span> 
+        <span class="k">assert</span> <span class="n">elemList</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hdSyms</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>\
+               <span class="s">&quot;** ERROR: The 3rd line in fastq element does not start with &#39;</span><span class="si">%s</span><span class="s">&#39;.</span><span class="se">\n\</span>
+<span class="s">               Please check FastQ file near line number </span><span class="si">%s</span><span class="s"> (plus or minus ~4 lines) and try again**&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hdSyms</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">_currentLineNumber</span><span class="p">)</span> 
+        <span class="c"># -- Make sure the seq line and qual line have equal lengths --</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">elemList</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">elemList</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span> <span class="s">&quot;** ERROR: The length of Sequence data and Quality data of the last record aren&#39;t equal.</span><span class="se">\n\</span>
+<span class="s">               Please check FastQ file near line number </span><span class="si">%s</span><span class="s"> (plus or minus ~4 lines) and try again**&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_currentLineNumber</span><span class="p">)</span> 
+        
+        <span class="c"># ++++ Return fatsQ data as tuple ++++</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">elemList</span><span class="p">)</span>
+    </div>
+<div class="viewcode-block" id="ParseFastQ.get_next_readSeq"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.ParseFastQ.get_next_readSeq">[docs]</a>    <span class="k">def</span> <span class="nf">get_next_readSeq</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convenience method: calls self.next and returns only the readSeq.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">record</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">record</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        </div>
+<div class="viewcode-block" id="ParseFastQ.filter_SEfastQ_headings"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.ParseFastQ.filter_SEfastQ_headings">[docs]</a>    <span class="k">def</span> <span class="nf">filter_SEfastQ_headings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">filteredPath</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Iterates through a single-end fastQ file and writes only those recs</span>
+<span class="sd">        that satisfy the &lt;key&gt; lambda func to &lt;filteredPath&gt;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fastqLen</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">filteredLen</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span>
+        <span class="n">filtered</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filteredPath</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+        
+        <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">qRec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+                <span class="n">fastqLen</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                <span class="k">break</span>
+            
+            <span class="k">if</span> <span class="n">key</span><span class="p">(</span><span class="n">qRec</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">qRec</span><span class="p">:</span>
+                    <span class="n">filtered</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">line</span><span class="p">))</span>
+                    <span class="n">filteredLen</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">key</span><span class="p">(</span><span class="n">qRec</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">UnexpectedValueError</span><span class="p">(</span><span class="s">&quot;ERROR: in ParseFastQ.filter_fastQ_headings() &#39;key&#39; returned a non-T/F value.&quot;</span><span class="p">)</span>
+        
+        <span class="n">filtered</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="n">filtered</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        
+        <span class="k">return</span> <span class="n">Bag</span><span class="p">({</span><span class="s">&quot;path&quot;</span><span class="p">:</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">filtered</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
+                <span class="s">&quot;original&quot;</span><span class="p">:</span><span class="n">fastqLen</span><span class="p">,</span>
+                <span class="s">&quot;filtered&quot;</span><span class="p">:</span><span class="n">filteredLen</span><span class="p">})</span>
+        </div></div>
+<div class="viewcode-block" id="onlyInA"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.onlyInA">[docs]</a><span class="k">def</span> <span class="nf">onlyInA</span><span class="p">(</span><span class="n">fileA</span><span class="p">,</span><span class="n">fileB</span><span class="p">,</span><span class="n">outFile</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Takes two files. Writes a third file with the lines that are unique to</span>
+<span class="sd">    fileA.  NOTE: Can be Memory intensive for large files.&quot;&quot;&quot;</span>
+    
+    <span class="n">fileA</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fileA</span><span class="p">,</span><span class="s">&#39;rU&#39;</span><span class="p">)</span>
+    <span class="n">fileB</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fileB</span><span class="p">,</span><span class="s">&#39;rU&#39;</span><span class="p">)</span>
+    
+    <span class="n">lineDict</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="c"># Get line info</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileA</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lineDict</span><span class="p">:</span>
+            <span class="n">lineDict</span><span class="p">[</span><span class="n">line</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lineDict</span><span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileB</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lineDict</span><span class="p">:</span>
+            <span class="n">lineDict</span><span class="p">[</span><span class="n">line</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lineDict</span><span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="c"># write lines unique to fileA</span>
+    <span class="n">outFile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">outFile</span><span class="p">,</span><span class="s">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">rLines</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">lineDict</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="n">line</span>   <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">counts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">counts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">outFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">line</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">counts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">rLines</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">outFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">line</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">counts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">UnexpectedValueError</span><span class="p">(</span><span class="s">&#39;It looks like line &quot;</span><span class="si">%s</span><span class="s">&quot; does not occur in either file!!</span><span class="se">\n</span><span class="s">&quot;lineDict&quot; may have been corrupted.&#39;</span> <span class="o">%</span> \
+                                           <span class="p">(</span><span class="n">line</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">continue</span>    
+    <span class="k">if</span> <span class="n">rLines</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;WARNING: </span><span class="si">%s</span><span class="s"> lines written to </span><span class="si">%s</span><span class="s"> occured more than once in </span><span class="si">%s</span><span class="s">, but </span><span class="si">%s</span><span class="s"> is now non-redundant.&#39;</span> <span class="o">%</span>\
+                         <span class="p">(</span><span class="n">rLines</span><span class="p">,</span><span class="n">outFile</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="n">fileA</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="n">outFile</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="n">outFile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        
+
+
+    </div>
+<div class="viewcode-block" id="renameChrom_in_SAM"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.renameChrom_in_SAM">[docs]</a><span class="k">def</span> <span class="nf">renameChrom_in_SAM</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">fileinput</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">bkExt</span> <span class="o">=</span> <span class="s">&quot;.zap_me.backup&quot;</span>
+    <span class="n">bkPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="n">bkExt</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileinput</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">files</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">backup</span><span class="o">=</span><span class="n">bkExt</span><span class="p">,</span>
+                                    <span class="n">bufsize</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s">&quot;r&quot;</span><span class="p">,</span> <span class="n">openhook</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;@SQ&#39;</span><span class="p">):</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">)</span>
+                <span class="n">chrm</span> <span class="o">=</span> <span class="s">&quot;SN:</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;:&#39;</span><span class="p">)[</span><span class="mi">3</span><span class="p">])</span>
+                <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">chrm</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;HWI&#39;</span><span class="p">):</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">)</span>
+                <span class="n">chrm</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;:&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">chrm</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">raise</span>
+
+</div>
+<div class="viewcode-block" id="rename_fasta_headers"><a class="viewcode-back" href="../../../code.html#spartan.utils.files.rename_fasta_headers">[docs]</a><span class="k">def</span> <span class="nf">rename_fasta_headers</span><span class="p">(</span><span class="n">in_path</span><span class="p">,</span><span class="n">out_path</span><span class="p">,</span><span class="n">header_func</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GIVEN:</span>
+<span class="sd">        - in_path = path to original fasta file</span>
+<span class="sd">        - out_path = path to future altered fasta file</span>
+<span class="sd">        - header_func = function to take a header line and return an altered string version of it</span>
+<span class="sd">    DOES:</span>
+<span class="sd">        - Reads in in_path file one line at a time</span>
+<span class="sd">        - If the line is a fasta header (starts with &#39;&gt;&#39;)</span>
+<span class="sd">          uses header_func logic to rearrange the header and</span>
+<span class="sd">          writes out the changed line to out_path.</span>
+<span class="sd">        - If not a header, writes same line out to out_path.</span>
+<span class="sd">        - Closes both file objects.</span>
+<span class="sd">    RETURNS:</span>
+<span class="sd">        - None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">in_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">in_path</span><span class="p">,</span><span class="s">&#39;rU&#39;</span><span class="p">)</span>
+    <span class="n">out_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">out_path</span><span class="p">,</span><span class="s">&#39;w&#39;</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">in_file</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span><span class="p">):</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">header_func</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="c"># Handle and ensure that each modified line has one and only one \n</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span>
+        
+        <span class="n">out_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    
+    <span class="n">in_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">out_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Gus Dunn.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,695 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Spartan’s Auto-Generated Code Documentation &mdash; spartan 0.0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="spartan 0.0.1 documentation" href="index.html"/>
+        <link rel="prev" title="Getting started" href="tutorial.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> spartan</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="project.html">spartan</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="project.html#a-spartan-bioinformatics-package-providing-only-the-essentials-and-nothing-fancy-or-luxurious-enough-to-get-the-job-done-quickly-without-flourish">A spartan bioinformatics package, providing only the essentials and nothing fancy or luxurious. Enough to get the job done quickly without flourish.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#installing-the-latest-version-from-the-git-repository">Installing the latest version from the git repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#use-pip-to-obtain-the-package-from-pypi">Use <tt class="docutils literal"><span class="pre">pip</span></tt> to obtain the package from PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#installing-without-using-git-or-pip-for-the-download">Installing without using <tt class="docutils literal"><span class="pre">git</span></tt> or <tt class="docutils literal"><span class="pre">pip</span></tt> for the download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#test-to-see-whether-the-install-worked">Test to see whether the install worked</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html#tutorial">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Spartan&#8217;s Auto-Generated Code Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#errors-py">errors.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#externals-py">externals.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#files-py">files.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#misc-py">misc.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#coord-conversions-py">coord_conversions.py</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">spartan</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Spartan&#8217;s Auto-Generated Code Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/code.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="module-spartan.utils.cufflinks">
+<span id="spartan-s-auto-generated-code-documentation"></span><h1>Spartan&#8217;s Auto-Generated Code Documentation<a class="headerlink" href="#module-spartan.utils.cufflinks" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="spartan.utils.cufflinks.XLOCmapping">
+<em class="property">class </em><tt class="descclassname">spartan.utils.cufflinks.</tt><tt class="descname">XLOCmapping</tt><big>(</big><em>arg={}</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/cufflinks.html#XLOCmapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.cufflinks.XLOCmapping" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="spartan.utils.cufflinks.XLOCmapping.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>arg={}</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/cufflinks.html#XLOCmapping.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.cufflinks.XLOCmapping.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.cufflinks.get_XLOC_to_nearest_ref_map">
+<tt class="descclassname">spartan.utils.cufflinks.</tt><tt class="descname">get_XLOC_to_nearest_ref_map</tt><big>(</big><em>merged_gtf</em>, <em>kind='gene'</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/cufflinks.html#get_XLOC_to_nearest_ref_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.cufflinks.get_XLOC_to_nearest_ref_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>kind ~ [&#8216;gene&#8217;,&#8217;full&#8217;]</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.cufflinks.get_ensembl_from_gene_name">
+<tt class="descclassname">spartan.utils.cufflinks.</tt><tt class="descname">get_ensembl_from_gene_name</tt><big>(</big><em>gene_names_path</em>, <em>cuffmerge_gtf_path</em>, <em>out_file_path</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/cufflinks.html#get_ensembl_from_gene_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.cufflinks.get_ensembl_from_gene_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>See also: the gtf.py</p>
+</dd></dl>
+
+<span class="target" id="module-spartan.utils.errors"></span><div class="section" id="errors-py">
+<h2>errors.py<a class="headerlink" href="#errors-py" title="Permalink to this headline">¶</a></h2>
+<p>Code defining custom base error classes to provide a foundation for graceful error handling.</p>
+<dl class="exception">
+<dt id="spartan.utils.errors.InvalidFileFormatError">
+<em class="property">exception </em><tt class="descclassname">spartan.utils.errors.</tt><tt class="descname">InvalidFileFormatError</tt><a class="reference internal" href="_modules/spartan/utils/errors.html#InvalidFileFormatError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.errors.InvalidFileFormatError" title="Permalink to this definition">¶</a></dt>
+<dd><p>When errors occur due to malformed file formats.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="spartan.utils.errors.MissingArgumentError">
+<em class="property">exception </em><tt class="descclassname">spartan.utils.errors.</tt><tt class="descname">MissingArgumentError</tt><big>(</big><em>errMsg</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/errors.html#MissingArgumentError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.errors.MissingArgumentError" title="Permalink to this definition">¶</a></dt>
+<dd><p>When a required argument is missing from the parsed command line options.</p>
+<dl class="method">
+<dt id="spartan.utils.errors.MissingArgumentError.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>errMsg</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/errors.html#MissingArgumentError.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.errors.MissingArgumentError.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="spartan.utils.errors.SanityCheckError">
+<em class="property">exception </em><tt class="descclassname">spartan.utils.errors.</tt><tt class="descname">SanityCheckError</tt><a class="reference internal" href="_modules/spartan/utils/errors.html#SanityCheckError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.errors.SanityCheckError" title="Permalink to this definition">¶</a></dt>
+<dd><p>When a &#8216;state check&#8217; comes back as conflicting or nonsensical.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="spartan.utils.errors.SpartanError">
+<em class="property">exception </em><tt class="descclassname">spartan.utils.errors.</tt><tt class="descname">SpartanError</tt><a class="reference internal" href="_modules/spartan/utils/errors.html#SpartanError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.errors.SpartanError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for exceptions in the blacktie package.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="spartan.utils.errors.SystemCallError">
+<em class="property">exception </em><tt class="descclassname">spartan.utils.errors.</tt><tt class="descname">SystemCallError</tt><big>(</big><em>errno</em>, <em>strerror</em>, <em>filename=None</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/errors.html#SystemCallError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.errors.SystemCallError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Error raised when a problem occurs while attempting to run an external system call.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">errno</span></tt> &#8211; return code from system call</div>
+<div class="line"><tt class="docutils literal"><span class="pre">filename</span></tt> &#8211; file involved if any</div>
+<div class="line"><tt class="docutils literal"><span class="pre">strerror</span></tt> &#8211; error msg </div>
+</div>
+</dd>
+</dl>
+<dl class="method">
+<dt id="spartan.utils.errors.SystemCallError.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>errno</em>, <em>strerror</em>, <em>filename=None</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/errors.html#SystemCallError.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.errors.SystemCallError.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="spartan.utils.errors.UnexpectedValueError">
+<em class="property">exception </em><tt class="descclassname">spartan.utils.errors.</tt><tt class="descname">UnexpectedValueError</tt><a class="reference internal" href="_modules/spartan/utils/errors.html#UnexpectedValueError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.errors.UnexpectedValueError" title="Permalink to this definition">¶</a></dt>
+<dd><p>When values that &#8220;should&#8221; not be possible happen; like if a variable was changed unexpectedly.</p>
+</dd></dl>
+
+</div>
+<span class="target" id="module-spartan.utils.externals"></span><div class="section" id="externals-py">
+<h2>externals.py<a class="headerlink" href="#externals-py" title="Permalink to this headline">¶</a></h2>
+<p>Code facilitating the execution of external system calls.</p>
+<dl class="function">
+<dt id="spartan.utils.externals.mkdirp">
+<tt class="descclassname">spartan.utils.externals.</tt><tt class="descname">mkdirp</tt><big>(</big><em>path</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/externals.html#mkdirp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.externals.mkdirp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create new dir while creating any parent dirs in the path as needed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.externals.runExternalApp">
+<tt class="descclassname">spartan.utils.externals.</tt><tt class="descname">runExternalApp</tt><big>(</big><em>progName</em>, <em>argStr</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/externals.html#runExternalApp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.externals.runExternalApp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience func to handle calling and monitoring output of external programs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>progName</strong> &#8211; name of system program command</li>
+<li><strong>argStr</strong> &#8211; string containing command line options for <tt class="docutils literal"><span class="pre">progName</span></tt></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">subprocess.communicate object</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.externals.whereis">
+<tt class="descclassname">spartan.utils.externals.</tt><tt class="descname">whereis</tt><big>(</big><em>program</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/externals.html#whereis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.externals.whereis" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns path of program if it exists in your <tt class="docutils literal"><span class="pre">$PATH</span></tt> variable or <tt class="docutils literal"><span class="pre">None</span></tt> otherwise</p>
+</dd></dl>
+
+</div>
+<span class="target" id="module-spartan.utils.files"></span><div class="section" id="files-py">
+<h2>files.py<a class="headerlink" href="#files-py" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spartan.utils.files.ParseFastA">
+<em class="property">class </em><tt class="descclassname">spartan.utils.files.</tt><tt class="descname">ParseFastA</tt><big>(</big><em>filePath</em>, <em>joinWith=''</em>, <em>key=None</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#ParseFastA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.ParseFastA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a record-by-record fastA parser analogous to file.readline().</p>
+<dl class="method">
+<dt id="spartan.utils.files.ParseFastA.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>filePath</em>, <em>joinWith=''</em>, <em>key=None</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#ParseFastA.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.ParseFastA.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a record-by-record fastA parser analogous to file.readline().
+Exmpl: parser.next()
+Its ALSO an iterator so &#8220;for rec in parser&#8221; works too!</p>
+<p>&lt;joinWith&gt; is string to use to join rec lines with.
+joinWith=&#8217;&#8217; results in a single line with no breaks (usually what you want!)</p>
+<p>&lt;key&gt; is func used to parse the recName from HeaderInfo.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spartan.utils.files.ParseFastA.next">
+<tt class="descname">next</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#ParseFastA.next"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.ParseFastA.next" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads in next element, parses, and does minimal verification.
+Returns: tuple: (seqName,seqStr)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spartan.utils.files.ParseFastA.rewrite_headers">
+<tt class="descname">rewrite_headers</tt><big>(</big><em>outPath</em>, <em>lineLen=70</em>, <em>delim=' '</em>, <em>order=</em>, <span class="optional">[</span><span class="optional">]</span><em>ow=False</em>, <em>chmod=755</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#ParseFastA.rewrite_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.ParseFastA.rewrite_headers" title="Permalink to this definition">¶</a></dt>
+<dd><p>PURPOSE
+* reorganize the headers of a fasta file:</p>
+<blockquote>
+<div>&gt;supercontig:CpipQ1:supercont3.1:1:3873040:1 supercontig supercont3.1
+to 
+&gt;supercont3.1 supercontig:CpipQ1:supercont3.1:1:3873040:1 supercontig</div></blockquote>
+<p>NOTES
+1) If ow, ignores outPath
+2) delim is what to spilt on
+3) order is a list of index numbers from the original header, reorganized for the new header.</p>
+<blockquote>
+<div>Exp: delim=&#8217; &#8216;,order=[2,0,1]  would produce what is seen above.</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>chmod= set new file with this mode (exp: 755)</li>
+<li>lineLen sets fastaSeq line length in new file.</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="spartan.utils.files.ParseFastA.to_dict">
+<tt class="descname">to_dict</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#ParseFastA.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.ParseFastA.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a single Dict populated with the fastaRecs
+contained in self._file.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="spartan.utils.files.ParseFastQ">
+<em class="property">class </em><tt class="descclassname">spartan.utils.files.</tt><tt class="descname">ParseFastQ</tt><big>(</big><em>filePath, headerSymbols=['&#64;', '+']</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#ParseFastQ"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.ParseFastQ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a read-by-read fastQ parser analogous to file.readline()</p>
+<dl class="method">
+<dt id="spartan.utils.files.ParseFastQ.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>filePath, headerSymbols=['&#64;', '+']</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#ParseFastQ.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.ParseFastQ.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a read-by-read fastQ parser analogous to file.readline().
+Exmpl: parser.next()
+-OR-
+Its an iterator so you can do:
+for rec in parser:</p>
+<blockquote>
+<div>... do something with rec ...</div></blockquote>
+<p>rec is tuple: (seqHeader,seqStr,qualHeader,qualStr)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spartan.utils.files.ParseFastQ.filter_SEfastQ_headings">
+<tt class="descname">filter_SEfastQ_headings</tt><big>(</big><em>filteredPath</em>, <em>key=None</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#ParseFastQ.filter_SEfastQ_headings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.ParseFastQ.filter_SEfastQ_headings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterates through a single-end fastQ file and writes only those recs
+that satisfy the &lt;key&gt; lambda func to &lt;filteredPath&gt;.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spartan.utils.files.ParseFastQ.get_next_readSeq">
+<tt class="descname">get_next_readSeq</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#ParseFastQ.get_next_readSeq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.ParseFastQ.get_next_readSeq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience method: calls self.next and returns only the readSeq.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spartan.utils.files.ParseFastQ.next">
+<tt class="descname">next</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#ParseFastQ.next"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.ParseFastQ.next" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads in next element, parses, and does minimal verification.
+Returns: tuple: (seqHeader,seqStr,qualHeader,qualStr)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.files.fastaRec_length_indexer">
+<tt class="descclassname">spartan.utils.files.</tt><tt class="descname">fastaRec_length_indexer</tt><big>(</big><em>fastaFiles</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#fastaRec_length_indexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.fastaRec_length_indexer" title="Permalink to this definition">¶</a></dt>
+<dd><p>GIVEN:
+1) fastaFiles: list of fasta files or dirs containing fasta files</p>
+<p>DO:
+1) iterate through all fasta files recording recName and length to a dict</p>
+<p>RETURN:
+1) dict with recName and lengths</p>
+<p>NOTES:
+1) will complain if it sees more than one fastaRec with the same name ONLY</p>
+<blockquote>
+<div>if one of the length values disagrees with those already seen.</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.files.filter_PEfastQs">
+<tt class="descclassname">spartan.utils.files.</tt><tt class="descname">filter_PEfastQs</tt><big>(</big><em>filterFunc</em>, <em>fwdMatePath</em>, <em>revMatePath</em>, <em>matchedPassPath1</em>, <em>matchedPassPath2</em>, <em>singlePassPath</em>, <em>nonPassPath</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#filter_PEfastQs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.filter_PEfastQs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes the paths to mated PE fastq files with coordinated read-ordering.
+Tests whether paired reads satisfy the provided filterFunc.
+:param filterFunc:
+:param fwdMatePath:
+:param revMatePath:
+:param matchedPassPath1:
+:param matchedPassPath2:
+:param singlePassPath:
+:param nonPassPath:
+For example fastQs from hudsonAlpha should have either &#8220;Y&#8221; or &#8220;N&#8221; flag in their header:</p>
+<p>&#64;HWI-ST619:70:B0BMTABXX:3:1102:9652:78621 1:N:0:TAGCTT
+GAATGCGATAGTCACAAGGCATGCCGTTGAATATTCGCAACTGAGCTTCG
++
+&#64;&#64;&#64;?DAD;DADAD:EGAGH=CFEEHB?GIEBFBGI&#64;CFGD&#64;FG&gt;&gt;&#64;GGGH</p>
+<p>The fastQ parsers represent each read as a 4 member list with each line&#8217;s data as an index.</p>
+<p>The filterFunc for this case might be:
+lambda x: x[0].split(&#8216; &#8216;)[-1].split(&#8216;:&#8217;)[1] == &#8220;N&#8221;</p>
+<p>If both mates satisfy the filter, the fwd mate is written to matchedPassPath1 and rev mate to matchedPassPath2.
+If only one mate satisfies the filter, it is written to singlePassPath regardles of fwd/rev.
+All reads that do not satisfy the filter are written to nonPassPath.</p>
+<p>Notes:
+* The filterFunc does not have to be a simple lambda, but even something like &#8220;testMeanQualScore()&#8221;,</p>
+<blockquote>
+<div>as long as it returns a True/False with True meaning that the read should be KEPT.</div></blockquote>
+<ul class="simple">
+<li>Write-files are overwritten if they exist, created otherwise.</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.files.mv_file_obj">
+<tt class="descclassname">spartan.utils.files.</tt><tt class="descname">mv_file_obj</tt><big>(</big><em>fileObj</em>, <em>newPath=''</em>, <em>chmod=False</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#mv_file_obj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.mv_file_obj" title="Permalink to this definition">¶</a></dt>
+<dd><p>GIVEN:
+1) fileObj: file object to be moved 
+2) newPath: new path (if not abs path, current working dir is used)</p>
+<blockquote>
+<div>MUST at LEAST include a name for new file.</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>chmod: string to use for new file permissions (if False: no change).</li>
+</ol>
+<p>DO:
+1) fileObj.flush()
+2) use shutil.move(src,dest) to move file location.
+3) change fileObj.name to the new name.
+4) if file is tmpFile, make sure fileObj.delete == False</p>
+<blockquote>
+<div>(I assume that if you care enough to move the file, you want to keep it)</div></blockquote>
+<ol class="arabic simple" start="5">
+<li>chmod on new file to set permissions (remember to use octal: 0755 NOT 755)</li>
+</ol>
+<p>RETURN:
+1) fileObj</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.files.onlyInA">
+<tt class="descclassname">spartan.utils.files.</tt><tt class="descname">onlyInA</tt><big>(</big><em>fileA</em>, <em>fileB</em>, <em>outFile</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#onlyInA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.onlyInA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes two files. Writes a third file with the lines that are unique to
+fileA.  NOTE: Can be Memory intensive for large files.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.files.open_wo_comments">
+<tt class="descclassname">spartan.utils.files.</tt><tt class="descname">open_wo_comments</tt><big>(</big><em>filePath</em>, <em>commentStr</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#open_wo_comments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.open_wo_comments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a generator that acts like fileObj.next() but removes
+both commented lines and in-line comments.</p>
+<p>Preserves line numbers.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.files.renameChrom_in_SAM">
+<tt class="descclassname">spartan.utils.files.</tt><tt class="descname">renameChrom_in_SAM</tt><big>(</big><em>path</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#renameChrom_in_SAM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.renameChrom_in_SAM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.files.rename_fasta_headers">
+<tt class="descclassname">spartan.utils.files.</tt><tt class="descname">rename_fasta_headers</tt><big>(</big><em>in_path</em>, <em>out_path</em>, <em>header_func</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#rename_fasta_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.rename_fasta_headers" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>GIVEN:</dt>
+<dd><ul class="first last simple">
+<li>in_path = path to original fasta file</li>
+<li>out_path = path to future altered fasta file</li>
+<li>header_func = function to take a header line and return an altered string version of it</li>
+</ul>
+</dd>
+<dt>DOES:</dt>
+<dd><ul class="first last simple">
+<li>Reads in in_path file one line at a time</li>
+<li>If the line is a fasta header (starts with &#8216;&gt;&#8217;)
+uses header_func logic to rearrange the header and
+writes out the changed line to out_path.</li>
+<li>If not a header, writes same line out to out_path.</li>
+<li>Closes both file objects.</li>
+</ul>
+</dd>
+<dt>RETURNS:</dt>
+<dd><ul class="first last simple">
+<li>None</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.files.tableFile2namedTuple">
+<tt class="descclassname">spartan.utils.files.</tt><tt class="descname">tableFile2namedTuple</tt><big>(</big><em>tablePath</em>, <em>sep='\t'</em>, <em>headers=None</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#tableFile2namedTuple"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.tableFile2namedTuple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns namedTuple from table file using first row fields as
+col headers or a list supplied by user.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.files.unSoftMask">
+<tt class="descclassname">spartan.utils.files.</tt><tt class="descname">unSoftMask</tt><big>(</big><em>inFastaPath</em>, <em>outFastaPath</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#unSoftMask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.unSoftMask" title="Permalink to this definition">¶</a></dt>
+<dd><p>UPPERcases any lowercased nucs in the fasta recs.
+Writes new file.</p>
+</dd></dl>
+
+</div>
+<span class="target" id="module-spartan.utils.misc"></span><div class="section" id="misc-py">
+<h2>misc.py<a class="headerlink" href="#misc-py" title="Permalink to this headline">¶</a></h2>
+<p>Code facilitating random aspects of this package.</p>
+<dl class="class">
+<dt id="spartan.utils.misc.Bunch">
+<em class="property">class </em><tt class="descclassname">spartan.utils.misc.</tt><tt class="descname">Bunch</tt><big>(</big><em>*args</em>, <em>**kwds</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/misc.html#Bunch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.misc.Bunch" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dict like class to facilitate setting and access to tree-like data.  Allows access to dictionary keys through &#8216;dot&#8217; notation: &#8220;yourDict.key = value&#8221;.</p>
+<dl class="method">
+<dt id="spartan.utils.misc.Bunch.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwds</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/misc.html#Bunch.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.misc.Bunch.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.misc.bunchify">
+<tt class="descclassname">spartan.utils.misc.</tt><tt class="descname">bunchify</tt><big>(</big><em>dict_tree</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/misc.html#bunchify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.misc.bunchify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Traverses a dictionary tree and converts all sub-dictionaries to Bunch() objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.misc.get_time">
+<tt class="descclassname">spartan.utils.misc.</tt><tt class="descname">get_time</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/spartan/utils/misc.html#get_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.misc.get_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return system time formatted as &#8216;YYYY:MM:DD-hh:mm:ss&#8217;.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.misc.get_version_number">
+<tt class="descclassname">spartan.utils.misc.</tt><tt class="descname">get_version_number</tt><big>(</big><em>path_to_setup</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/misc.html#get_version_number"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.misc.get_version_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides access to current version info contained in setup.py</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.misc.slidingWindow">
+<tt class="descclassname">spartan.utils.misc.</tt><tt class="descname">slidingWindow</tt><big>(</big><em>sequence</em>, <em>winSize</em>, <em>step=1</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/misc.html#slidingWindow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.misc.slidingWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a generator that will iterate through
+the defined chunks of input sequence.  Input sequence
+must be iterable.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.misc.whoami">
+<tt class="descclassname">spartan.utils.misc.</tt><tt class="descname">whoami</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/spartan/utils/misc.html#whoami"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.misc.whoami" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the currently active function.</p>
+</dd></dl>
+
+</div>
+<span class="target" id="module-spartan.utils.orthoDB"></span><dl class="function">
+<dt id="spartan.utils.orthoDB.get_gene2uniprot_map">
+<tt class="descclassname">spartan.utils.orthoDB.</tt><tt class="descname">get_gene2uniprot_map</tt><big>(</big><em>dataframe</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/orthoDB.html#get_gene2uniprot_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.orthoDB.get_gene2uniprot_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>assumes: dataframe = dataframe.fillna(&#8216;empty&#8217;)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.orthoDB.get_uniprot2gene_map">
+<tt class="descclassname">spartan.utils.orthoDB.</tt><tt class="descname">get_uniprot2gene_map</tt><big>(</big><em>dataframe</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/orthoDB.html#get_uniprot2gene_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.orthoDB.get_uniprot2gene_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>assumes: dataframe = dataframe.fillna(&#8216;empty&#8217;)</p>
+</dd></dl>
+
+<span class="target" id="module-spartan.utils.parsers"></span><span class="target" id="module-spartan.utils.sandbox"></span><dl class="function">
+<dt id="spartan.utils.sandbox.meme_minimal2transfac">
+<tt class="descclassname">spartan.utils.sandbox.</tt><tt class="descname">meme_minimal2transfac</tt><big>(</big><em>meme_path</em>, <em>out_path</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/sandbox.html#meme_minimal2transfac"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.sandbox.meme_minimal2transfac" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.sandbox.write_next_transfac_motif">
+<tt class="descclassname">spartan.utils.sandbox.</tt><tt class="descname">write_next_transfac_motif</tt><big>(</big><em>motif</em>, <em>transfac_out</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/sandbox.html#write_next_transfac_motif"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.sandbox.write_next_transfac_motif" title="Permalink to this definition">¶</a></dt>
+<dd><p>AC accession number
+ID any_old_name_for_motif_1
+BF species_name_for_motif_1
+P0      A      C      G      T
+01      1      2      2      0      S
+02      2      1      2      0      R
+03      3      0      1      1      A
+04      0      5      0      0      C
+05      5      0      0      0      A
+06      0      0      4      1      G
+07      0      1      4      0      G
+08      0      0      0      5      T
+09      0      0      5      0      G
+10      0      1      2      2      K
+11      0      2      0      3      Y
+12      1      0      3      1      G
+XX
+//</p>
+</dd></dl>
+
+<span class="target" id="module-spartan.utils.seqs"></span><span class="target" id="module-spartan.utils.spandas"></span><dl class="function">
+<dt id="spartan.utils.spandas.get_correlation_matrix">
+<tt class="descclassname">spartan.utils.spandas.</tt><tt class="descname">get_correlation_matrix</tt><big>(</big><em>dataframe</em>, <em>transpose=True</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/spandas.html#get_correlation_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.spandas.get_correlation_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>simple help func. returns corr_mat</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.spandas.get_ranked_corrs_against_item">
+<tt class="descclassname">spartan.utils.spandas.</tt><tt class="descname">get_ranked_corrs_against_item</tt><big>(</big><em>item_name</em>, <em>correlation_matrix</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/spandas.html#get_ranked_corrs_against_item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.spandas.get_ranked_corrs_against_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a Series of correlation coeffs against <tt class="docutils literal"><span class="pre">item_name</span></tt> sorted so
+<tt class="docutils literal"><span class="pre">item_name</span></tt> is at the top</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.spandas.stddf">
+<tt class="descclassname">spartan.utils.spandas.</tt><tt class="descname">stddf</tt><big>(</big><em>df</em>, <em>axis=0</em>, <em>center='a'</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/spandas.html#stddf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.spandas.stddf" title="Permalink to this definition">¶</a></dt>
+<dd><p>helper to unify an interface returning a standardized
+version of a dataframe along either axis.</p>
+<p>center is in [&#8216;a&#8217;,&#8217;m&#8217;] # a is mean; m is median</p>
+</dd></dl>
+
+<span class="target" id="module-spartan.utils.stats"></span><dl class="function">
+<dt id="spartan.utils.stats.benjHochFDR">
+<tt class="descclassname">spartan.utils.stats.</tt><tt class="descname">benjHochFDR</tt><big>(</big><em>pVals</em>, <em>pValColumn=1</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/stats.html#benjHochFDR"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.stats.benjHochFDR" title="Permalink to this definition">¶</a></dt>
+<dd><p>pVals      = 2D list(hypothesis,p-value) hypothesis could = geneName tested for enrichment
+pValColumn = integer of column index containing the p-value.</p>
+<p>returns _ALL_ items passed to it with no filtering at the moment.</p>
+</dd></dl>
+
+<span class="target" id="module-spartan.utils.annotations.coord_conversions"></span><div class="section" id="coord-conversions-py">
+<h2>coord_conversions.py<a class="headerlink" href="#coord-conversions-py" title="Permalink to this headline">¶</a></h2>
+<p>Mission:
+Provide code to convert start/stop coordinate pairs to and from specific conventions such as BED or GTF.</p>
+<dl class="function">
+<dt id="spartan.utils.annotations.coord_conversions.human_to_bed_chrom_start_stop">
+<tt class="descclassname">spartan.utils.annotations.coord_conversions.</tt><tt class="descname">human_to_bed_chrom_start_stop</tt><big>(</big><em>start</em>, <em>stop</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/annotations/coord_conversions.html#human_to_bed_chrom_start_stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.annotations.coord_conversions.human_to_bed_chrom_start_stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a tuple containing chromosome coords in BED convention.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>start</strong> &#8211; first bp coordinate of subsequence (chromosome starts with 1 not 0).</li>
+<li><strong>stop</strong> &#8211; last bp coordinate of subsequence (chromosome starts with 1 not 0).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">bed_coords = (bed_start, bed_stop)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<span class="target" id="module-spartan.utils.annotations.ensembl.gff3"></span><p>gff3.py is part of the &#8216;spartan&#8217; package.
+It was written by Gus Dunn
+and was created on 5/1/14</p>
+<p>Please see the license info in the root folder of this package.</p>
+<span class="target" id="module-spartan.utils.annotations.ensembl.gtf"></span><dl class="function">
+<dt id="spartan.utils.annotations.ensembl.gtf.no_common_names_in_ensembl_gtf">
+<tt class="descclassname">spartan.utils.annotations.ensembl.gtf.</tt><tt class="descname">no_common_names_in_ensembl_gtf</tt><big>(</big><em>gtf_in</em>, <em>gtf_out</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/annotations/ensembl/gtf.html#no_common_names_in_ensembl_gtf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.annotations.ensembl.gtf.no_common_names_in_ensembl_gtf" title="Permalink to this definition">¶</a></dt>
+<dd><p>replace &#8216;gene_id&#8217; value with &#8216;nearest_ref&#8217; (wo the isoform tags) in the GTF file
+so that we can only have to know the AAEL, AGAP, CPIJ IDs to get our genes.
+Writes new file.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.annotations.ensembl.gtf.parse_ensembl_gtf_attributes_string">
+<tt class="descclassname">spartan.utils.annotations.ensembl.gtf.</tt><tt class="descname">parse_ensembl_gtf_attributes_string</tt><big>(</big><em>attribute_string</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/annotations/ensembl/gtf.html#parse_ensembl_gtf_attributes_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.annotations.ensembl.gtf.parse_ensembl_gtf_attributes_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.annotations.ensembl.gtf.write_ensembl_gtf_attributes_string">
+<tt class="descclassname">spartan.utils.annotations.ensembl.gtf.</tt><tt class="descname">write_ensembl_gtf_attributes_string</tt><big>(</big><em>attrib_dict</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/annotations/ensembl/gtf.html#write_ensembl_gtf_attributes_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.annotations.ensembl.gtf.write_ensembl_gtf_attributes_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="tutorial.html" class="btn btn-neutral" title="Getting started"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Gus Dunn.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
