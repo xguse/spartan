@@ -238,16 +238,13 @@
 <span class="target" id="module-spartan.utils.fastas"></span><div class="section" id="fastas-py">
 <h2>fastas.py<a class="headerlink" href="#fastas-py" title="Permalink to this headline">¶</a></h2>
 <p>Purpose:</p>
-</div>
-<span class="target" id="module-spartan.utils.files"></span><div class="section" id="files-py">
-<h2>files.py<a class="headerlink" href="#files-py" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="spartan.utils.files.ParseFastA">
-<em class="property">class </em><tt class="descclassname">spartan.utils.files.</tt><tt class="descname">ParseFastA</tt><big>(</big><em>filePath</em>, <em>joinWith=''</em>, <em>key=None</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#ParseFastA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.ParseFastA" title="Permalink to this definition">¶</a></dt>
+<dt id="spartan.utils.fastas.ParseFastA">
+<em class="property">class </em><tt class="descclassname">spartan.utils.fastas.</tt><tt class="descname">ParseFastA</tt><big>(</big><em>filePath</em>, <em>joinWith=''</em>, <em>key=None</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/fastas.html#ParseFastA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.fastas.ParseFastA" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a record-by-record fastA parser analogous to file.readline().</p>
 <dl class="method">
-<dt id="spartan.utils.files.ParseFastA.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>filePath</em>, <em>joinWith=''</em>, <em>key=None</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#ParseFastA.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.ParseFastA.__init__" title="Permalink to this definition">¶</a></dt>
+<dt id="spartan.utils.fastas.ParseFastA.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>filePath</em>, <em>joinWith=''</em>, <em>key=None</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/fastas.html#ParseFastA.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.fastas.ParseFastA.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a record-by-record fastA parser analogous to file.readline().
 Exmpl: parser.next()
 Its ALSO an iterator so &#8220;for rec in parser&#8221; works too!</p>
@@ -257,20 +254,20 @@ joinWith=&#8217;&#8217; results in a single line with no breaks (usually what yo
 </dd></dl>
 
 <dl class="method">
-<dt id="spartan.utils.files.ParseFastA.next">
-<tt class="descname">next</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#ParseFastA.next"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.ParseFastA.next" title="Permalink to this definition">¶</a></dt>
+<dt id="spartan.utils.fastas.ParseFastA.next">
+<tt class="descname">next</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/spartan/utils/fastas.html#ParseFastA.next"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.fastas.ParseFastA.next" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads in next element, parses, and does minimal verification.
 Returns: tuple: (seqName,seqStr)</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="spartan.utils.files.ParseFastA.rewrite_headers">
-<tt class="descname">rewrite_headers</tt><big>(</big><em>outPath</em>, <em>lineLen=70</em>, <em>delim=' '</em>, <em>order=</em>, <span class="optional">[</span><span class="optional">]</span><em>ow=False</em>, <em>chmod=755</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#ParseFastA.rewrite_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.ParseFastA.rewrite_headers" title="Permalink to this definition">¶</a></dt>
+<dt id="spartan.utils.fastas.ParseFastA.rewrite_headers">
+<tt class="descname">rewrite_headers</tt><big>(</big><em>outPath</em>, <em>lineLen=70</em>, <em>delim=' '</em>, <em>order=</em>, <span class="optional">[</span><span class="optional">]</span><em>ow=False</em>, <em>chmod=755</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/fastas.html#ParseFastA.rewrite_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.fastas.ParseFastA.rewrite_headers" title="Permalink to this definition">¶</a></dt>
 <dd><p>PURPOSE
 * reorganize the headers of a fasta file:</p>
 <blockquote>
 <div>&gt;supercontig:CpipQ1:supercont3.1:1:3873040:1 supercontig supercont3.1
-to 
+to
 &gt;supercont3.1 supercontig:CpipQ1:supercont3.1:1:3873040:1 supercontig</div></blockquote>
 <p>NOTES
 1) If ow, ignores outPath
@@ -285,14 +282,77 @@ to
 </dd></dl>
 
 <dl class="method">
-<dt id="spartan.utils.files.ParseFastA.to_dict">
-<tt class="descname">to_dict</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#ParseFastA.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.ParseFastA.to_dict" title="Permalink to this definition">¶</a></dt>
+<dt id="spartan.utils.fastas.ParseFastA.to_dict">
+<tt class="descname">to_dict</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/spartan/utils/fastas.html#ParseFastA.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.fastas.ParseFastA.to_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a single Dict populated with the fastaRecs
 contained in self._file.</p>
 </dd></dl>
 
 </dd></dl>
 
+<dl class="function">
+<dt id="spartan.utils.fastas.fastaRec_length_indexer">
+<tt class="descclassname">spartan.utils.fastas.</tt><tt class="descname">fastaRec_length_indexer</tt><big>(</big><em>fastaFiles</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/fastas.html#fastaRec_length_indexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.fastas.fastaRec_length_indexer" title="Permalink to this definition">¶</a></dt>
+<dd><p>GIVEN:
+1) fastaFiles: list of fasta files or dirs containing fasta files</p>
+<p>DO:
+1) iterate through all fasta files recording recName and length to a dict</p>
+<p>RETURN:
+1) dict with recName and lengths</p>
+<p>NOTES:
+1) will complain if it sees more than one fastaRec with the same name ONLY</p>
+<blockquote>
+<div>if one of the length values disagrees with those already seen.</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="spartan.utils.fastas.rename_fasta_headers">
+<tt class="descclassname">spartan.utils.fastas.</tt><tt class="descname">rename_fasta_headers</tt><big>(</big><em>in_path</em>, <em>out_path</em>, <em>header_func</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/fastas.html#rename_fasta_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.fastas.rename_fasta_headers" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>in_path</strong> &#8211; path to original fasta file</li>
+<li><strong>out_path</strong> &#8211; path to future altered fasta file</li>
+<li><strong>header_func</strong> &#8211; function to take a header line and return an altered string version of it</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><cite>None</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>GIVEN:</dt>
+<dd><ul class="first last simple">
+<li>in_path</li>
+<li>out_path</li>
+<li>header_func</li>
+</ul>
+</dd>
+<dt>DOES:</dt>
+<dd><ul class="first last simple">
+<li>Reads in in_path file one line at a time</li>
+<li>If the line is a fasta header (starts with &#8216;&gt;&#8217;)
+uses header_func logic to rearrange the header and
+writes out the changed line to out_path.</li>
+<li>If not a header, writes same line out to out_path.</li>
+<li>Closes both file objects.</li>
+</ul>
+</dd>
+<dt>RETURNS:</dt>
+<dd><ul class="first last simple">
+<li>None</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<span class="target" id="module-spartan.utils.files"></span><div class="section" id="files-py">
+<h2>files.py<a class="headerlink" href="#files-py" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="spartan.utils.files.ParseFastQ">
 <em class="property">class </em><tt class="descclassname">spartan.utils.files.</tt><tt class="descname">ParseFastQ</tt><big>(</big><em>filePath, headerSymbols=['&#64;', '+']</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#ParseFastQ"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.ParseFastQ" title="Permalink to this definition">¶</a></dt>
@@ -330,21 +390,6 @@ that satisfy the &lt;key&gt; lambda func to &lt;filteredPath&gt;.</p>
 Returns: tuple: (seqHeader,seqStr,qualHeader,qualStr)</p>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="function">
-<dt id="spartan.utils.files.fastaRec_length_indexer">
-<tt class="descclassname">spartan.utils.files.</tt><tt class="descname">fastaRec_length_indexer</tt><big>(</big><em>fastaFiles</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#fastaRec_length_indexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.fastaRec_length_indexer" title="Permalink to this definition">¶</a></dt>
-<dd><p>GIVEN:
-1) fastaFiles: list of fasta files or dirs containing fasta files</p>
-<p>DO:
-1) iterate through all fasta files recording recName and length to a dict</p>
-<p>RETURN:
-1) dict with recName and lengths</p>
-<p>NOTES:
-1) will complain if it sees more than one fastaRec with the same name ONLY</p>
-<blockquote>
-<div>if one of the length values disagrees with those already seen.</div></blockquote>
 </dd></dl>
 
 <dl class="function">
@@ -423,35 +468,6 @@ both commented lines and in-line comments.</p>
 <dt id="spartan.utils.files.renameChrom_in_SAM">
 <tt class="descclassname">spartan.utils.files.</tt><tt class="descname">renameChrom_in_SAM</tt><big>(</big><em>path</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#renameChrom_in_SAM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.renameChrom_in_SAM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<dl class="function">
-<dt id="spartan.utils.files.rename_fasta_headers">
-<tt class="descclassname">spartan.utils.files.</tt><tt class="descname">rename_fasta_headers</tt><big>(</big><em>in_path</em>, <em>out_path</em>, <em>header_func</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/files.html#rename_fasta_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.files.rename_fasta_headers" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>GIVEN:</dt>
-<dd><ul class="first last simple">
-<li>in_path = path to original fasta file</li>
-<li>out_path = path to future altered fasta file</li>
-<li>header_func = function to take a header line and return an altered string version of it</li>
-</ul>
-</dd>
-<dt>DOES:</dt>
-<dd><ul class="first last simple">
-<li>Reads in in_path file one line at a time</li>
-<li>If the line is a fasta header (starts with &#8216;&gt;&#8217;)
-uses header_func logic to rearrange the header and
-writes out the changed line to out_path.</li>
-<li>If not a header, writes same line out to out_path.</li>
-<li>Closes both file objects.</li>
-</ul>
-</dd>
-<dt>RETURNS:</dt>
-<dd><ul class="first last simple">
-<li>None</li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
 
 <dl class="function">
 <dt id="spartan.utils.files.tableFile2namedTuple">

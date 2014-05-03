@@ -174,12 +174,22 @@ class ParseFastA(object):
                 sys.stderr.write('%s\n' % (err))
 
 
-def rename_fasta_headers(in_path,out_path,header_func):
+def rename_fasta_headers(in_path, out_path, header_func):
     """
+
+
+
+    :param in_path: path to original fasta file
+    :param out_path: path to future altered fasta file
+    :param header_func: function to take a header line and return an altered string version of it
+
+    :returns: `None`
+
+
     GIVEN:
-        - in_path = path to original fasta file
-        - out_path = path to future altered fasta file
-        - header_func = function to take a header line and return an altered string version of it
+        - in_path
+        - out_path
+        - header_func
     DOES:
         - Reads in in_path file one line at a time
         - If the line is a fasta header (starts with '>')
