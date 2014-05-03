@@ -19,7 +19,7 @@ class SimpleFeatureGFF3(intervals.SimpleFeature):
 
     def __init__(self, start, end, seqid=None, source=None, type=None,
                  score=None, strand=None, phase=None, attributes=None):
-
+        # TODO: SimpleFeatureGFF3.__init__
         """
         Initializes `SimpleFeatureGFF3` object with the fields from a single GFF3 line.
 
@@ -36,6 +36,7 @@ class SimpleFeatureGFF3(intervals.SimpleFeature):
         pass
 
     def _parse_attributes(self, attributes):
+        # TODO: SimpleFeatureGFF3._parse_attributes
         """
         Returns a `dict`-like object from the key/value data encoded in the attributes string.
 
