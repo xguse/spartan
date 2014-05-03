@@ -12,6 +12,8 @@ install_requires = [
     # List your project dependencies here.
     # For more details, see:
     # http://packages.python.org/distribute/setuptools.html#declaring-dependencies
+    'gffutils',
+    'pyfasta',
 ]
 
 
@@ -31,8 +33,8 @@ setup(name='spartan',
     package_dir = {'': 'src'},include_package_data=True,
     zip_safe=False,
     install_requires=install_requires,
-    entry_points={
-        'console_scripts':
-            ['spartan=spartan:main']
-    }
+    # entry_points={
+    #     'console_scripts':
+    #         ['spartan=spartan:main']
+    # }
 )
