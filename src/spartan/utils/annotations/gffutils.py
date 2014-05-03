@@ -1,4 +1,4 @@
-# gff3.py is part of the 'spartan' package.
+# gffutils.py is part of the 'spartan' package.
 # It was written by Gus Dunn
 # and was created on 5/1/14
 #
@@ -7,7 +7,7 @@
 
 """
 ##############################################
-gff3.py
+gffutils.py
 ##############################################
 
 """
@@ -20,7 +20,7 @@ import gffutils
 __author__ = 'Gus Dunn'
 
 
-def load_genes_gffutils(gff3_path):
+def load_genes(gff3_path):
 
     """
     Tries to load a gffutils database file first,
@@ -34,6 +34,7 @@ def load_genes_gffutils(gff3_path):
 
     try:
         db = gffutils.FeatureDB(gff3_db_path)
+        return db
     except OperationalError:
         db = gffutils.create_db(gff3_path, dbfn=gff3_db_path, force=True, keep_order=False, merge_strategy='merge')
 
@@ -43,3 +44,5 @@ def load_genes_gffutils(gff3_path):
 
         if fstat.st_size == 0:
             os.remove(gff3_db_path)
+        else:
+            pass
