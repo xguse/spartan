@@ -20,7 +20,7 @@ import gffutils
 __author__ = 'Gus Dunn'
 
 
-def load_genes(gff3_path):
+def load_gff3(gff3_path):
 
     """
     Tries to load a gffutils database file first,
