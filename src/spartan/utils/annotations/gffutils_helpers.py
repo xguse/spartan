@@ -46,3 +46,4 @@ def load_gff3(gff3_path):
             os.remove(gff3_db_path)
         else:
             pass
+

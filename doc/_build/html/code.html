@@ -74,9 +74,11 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Spartan&#8217;s Auto-Generated Code Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#errors-py">errors.py</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#externals-py">externals.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fastas-py">fastas.py</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#files-py">files.py</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#misc-py">misc.py</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#coord-conversions-py">coord_conversions.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gffutils-helpers-py">gffutils_helpers.py</a></li>
 </ul>
 </li>
 </ul>
@@ -232,6 +234,10 @@
 <dd><p>returns path of program if it exists in your <tt class="docutils literal"><span class="pre">$PATH</span></tt> variable or <tt class="docutils literal"><span class="pre">None</span></tt> otherwise</p>
 </dd></dl>
 
+</div>
+<span class="target" id="module-spartan.utils.fastas"></span><div class="section" id="fastas-py">
+<h2>fastas.py<a class="headerlink" href="#fastas-py" title="Permalink to this headline">¶</a></h2>
+<p>Purpose:</p>
 </div>
 <span class="target" id="module-spartan.utils.files"></span><div class="section" id="files-py">
 <h2>files.py<a class="headerlink" href="#files-py" title="Permalink to this headline">¶</a></h2>
@@ -604,10 +610,27 @@ Provide code to convert start/stop coordinate pairs to and from specific convent
 </dd></dl>
 
 </div>
-<span class="target" id="module-spartan.utils.annotations.ensembl.gff3"></span><p>gff3.py is part of the &#8216;spartan&#8217; package.
-It was written by Gus Dunn
-and was created on 5/1/14</p>
-<p>Please see the license info in the root folder of this package.</p>
+<span class="target" id="module-spartan.utils.annotations.gffutils_helpers"></span><div class="section" id="gffutils-helpers-py">
+<h2>gffutils_helpers.py<a class="headerlink" href="#gffutils-helpers-py" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spartan.utils.annotations.gffutils_helpers.load_gff3">
+<tt class="descclassname">spartan.utils.annotations.gffutils_helpers.</tt><tt class="descname">load_gff3</tt><big>(</big><em>gff3_path</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/annotations/gffutils_helpers.html#load_gff3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.annotations.gffutils_helpers.load_gff3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tries to load a gffutils database file first,
+if this fails, tries to create one,
+finally if the file is empty after it all, deletes the file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>gff3_path</strong> &#8211; path to a gff3 file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">gffutils database connection</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
 <span class="target" id="module-spartan.utils.annotations.ensembl.gtf"></span><dl class="function">
 <dt id="spartan.utils.annotations.ensembl.gtf.no_common_names_in_ensembl_gtf">
 <tt class="descclassname">spartan.utils.annotations.ensembl.gtf.</tt><tt class="descname">no_common_names_in_ensembl_gtf</tt><big>(</big><em>gtf_in</em>, <em>gtf_out</em><big>)</big><a class="reference internal" href="_modules/spartan/utils/annotations/ensembl/gtf.html#no_common_names_in_ensembl_gtf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spartan.utils.annotations.ensembl.gtf.no_common_names_in_ensembl_gtf" title="Permalink to this definition">¶</a></dt>

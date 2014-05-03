@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>spartan.utils.annotations.coord_conversions &mdash; spartan 0.0.1 documentation</title>
+  <title>spartan.utils.annotations.gffutils_helpers &mdash; spartan 0.0.1 documentation</title>
   
 
   
@@ -106,7 +106,7 @@
       
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
       
-    <li>spartan.utils.annotations.coord_conversions</li>
+    <li>spartan.utils.annotations.gffutils_helpers</li>
       <li class="wy-breadcrumbs-aside">
         
       </li>
@@ -115,39 +115,56 @@
 </div>
           <div role="main">
             
-  <h1>Source code for spartan.utils.annotations.coord_conversions</h1><div class="highlight"><pre>
-<span class="c"># coord_conversions.py is part of the &#39;spartan&#39; package.</span>
-<span class="c"># It was written by Gus Dunn and was created on 5/1/14</span>
+  <h1>Source code for spartan.utils.annotations.gffutils_helpers</h1><div class="highlight"><pre>
+<span class="c"># gffutils.py is part of the &#39;spartan&#39; package.</span>
+<span class="c"># It was written by Gus Dunn</span>
+<span class="c"># and was created on 5/1/14</span>
 <span class="c">#</span>
 <span class="c"># Please see the license info in the root folder of this package.</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">###########################################</span>
-<span class="sd">coord_conversions.py</span>
-<span class="sd">###########################################</span>
-
-<span class="sd">Mission:</span>
-<span class="sd">Provide code to convert start/stop coordinate pairs to and from specific conventions such as BED or GTF.</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">##############################################</span>
+<span class="sd">gffutils_helpers.py</span>
+<span class="sd">##############################################</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">sqlite3</span> <span class="kn">import</span> <span class="n">OperationalError</span>
+
+<span class="kn">import</span> <span class="nn">gffutils</span>
+
 <span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Gus Dunn&#39;</span>
 
 
-<div class="viewcode-block" id="human_to_bed_chrom_start_stop"><a class="viewcode-back" href="../../../../code.html#spartan.utils.annotations.coord_conversions.human_to_bed_chrom_start_stop">[docs]</a><span class="k">def</span> <span class="nf">human_to_bed_chrom_start_stop</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
+<div class="viewcode-block" id="load_gff3"><a class="viewcode-back" href="../../../../code.html#spartan.utils.annotations.gffutils_helpers.load_gff3">[docs]</a><span class="k">def</span> <span class="nf">load_gff3</span><span class="p">(</span><span class="n">gff3_path</span><span class="p">):</span>
+
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns a tuple containing chromosome coords in BED convention.</span>
+<span class="sd">    Tries to load a gffutils database file first,</span>
+<span class="sd">    if this fails, tries to create one,</span>
+<span class="sd">    finally if the file is empty after it all, deletes the file.</span>
 
-<span class="sd">    :param start: first bp coordinate of subsequence (chromosome starts with 1 not 0).</span>
-<span class="sd">    :param stop: last bp coordinate of subsequence (chromosome starts with 1 not 0).</span>
-<span class="sd">    :return: bed_coords = (bed_start, bed_stop)</span>
+<span class="sd">    :param gff3_path: path to a gff3 file</span>
+<span class="sd">    :return: gffutils database connection</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">bed_start</span> <span class="o">=</span> <span class="n">start</span><span class="o">-</span><span class="mi">1</span>
-    <span class="n">bed_stop</span> <span class="o">=</span> <span class="n">stop</span>
+    <span class="n">gff3_db_path</span> <span class="o">=</span> <span class="n">gff3_path</span><span class="o">+</span><span class="s">&#39;.db&#39;</span>
 
-    <span class="n">bed_coords</span> <span class="o">=</span> <span class="p">(</span><span class="n">bed_start</span><span class="p">,</span> <span class="n">bed_stop</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="n">gffutils</span><span class="o">.</span><span class="n">FeatureDB</span><span class="p">(</span><span class="n">gff3_db_path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">db</span>
+    <span class="k">except</span> <span class="n">OperationalError</span><span class="p">:</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="n">gffutils</span><span class="o">.</span><span class="n">create_db</span><span class="p">(</span><span class="n">gff3_path</span><span class="p">,</span> <span class="n">dbfn</span><span class="o">=</span><span class="n">gff3_db_path</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">keep_order</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">merge_strategy</span><span class="o">=</span><span class="s">&#39;merge&#39;</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">bed_coords</span></div>
-</pre></div>
+        <span class="k">return</span> <span class="n">db</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">fstat</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">gff3_db_path</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">fstat</span><span class="o">.</span><span class="n">st_size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">gff3_db_path</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span>
+</pre></div></div>
 
           </div>
           <footer>
