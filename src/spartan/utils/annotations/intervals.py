@@ -18,6 +18,44 @@ __author__ = 'Gus Dunn'
 def interval_length(start, end):
     return end - start + 1
 
+def left_window_coords(win_size, original_left_bound):
+    """
+    Returns a `tuple` `(new_start, new_end)` left of original bound describing a window of length `win_size` (see
+    note).
+
+    Note: Converts any new value less than `1` to `1`.
+
+    :param win_size: size of window to the left.
+    :param original_left_bound:
+    :return: new_coords
+    """
+    new_start = original_left_bound - win_size
+    new_end = original_left_bound - 1
+
+    if new_start < 1:
+        new_start = 1
+    if new_end < 1:
+        new_end = 1
+
+    new_coords = (new_start, new_end)
+
+    return new_coords
+
+def right_window_coords(win_size, original_right_bound):
+    """
+    Returns a `tuple` `(new_start, new_end)` right of original bound describing a window of length `win_size`.
+
+    :param win_size: size of window to the right.
+    :param original_right_bound:
+    :return: new_coords
+    """
+    new_start = original_right_bound + 1
+    new_end = original_right_bound + win_size
+
+    new_coords = (new_start, new_end)
+
+    return new_coords
+
 def detect_1D_overlap(coords1,coords2):
     # TODO: understand and convert detect_1D_overlap() yo useful code
 
@@ -55,29 +93,26 @@ class CompoundFeature(object):
 
 class SimpleFeature(object):
 
-    def __init__(self, start, end, seqid=None):
+    def __init__(self, start, end):
 
         """
 
 
         :param start: left most coordinate.
         :param end: right most coordinate.
-        :param seqid: ID of the sequence that this interval is annotated on.
-        :param name:
         """
 
         assert isinstance(start, int)
         assert isinstance(end, int)
         self.start = min([start, end])
         self.end = max([start, end])
-        self.seqid = seqid
 
     def __len__(self):
         return interval_length(self.start, self.end)
 
     def __contains__(self, item):
         # TODO: SimpleFeature.__contains__(self, item)
-        pass
+        raise NotImplementedError()
 
     def __cmp__(self, other):
         # TODO: SimpleFeature.__cmp__
@@ -89,7 +124,7 @@ class SimpleFeature(object):
             * `1` if `other` should sort to the left of `self`
 
         """
-        pass
+        raise NotImplementedError()
 
     def __eq__(self, other):
         # TODO: SimpleFeature.__eq__
@@ -97,7 +132,7 @@ class SimpleFeature(object):
         Returns `True` if `other` perfectly overlaps this feature, `False` otherwise.
         :param other: an interval/feature
         """
-        pass
+        raise NotImplementedError()
 
     def __gt__(self, other):
         # TODO: SimpleFeature.__gt
@@ -105,7 +140,7 @@ class SimpleFeature(object):
         Returns `True` if `other` falls to the right and does not overlap this feature, `False` otherwise.
         :param other: an interval/feature
         """
-        pass
+        raise NotImplementedError()
 
     def __ge__(self, other):
         # TODO: SimpleFeature.__ge
@@ -114,7 +149,7 @@ class SimpleFeature(object):
         `False` otherwise.
         :param other: an interval/feature
         """
-        pass
+        raise NotImplementedError()
 
     def __lt__(self, other):
         # TODO: SimpleFeature.__lt
@@ -122,7 +157,7 @@ class SimpleFeature(object):
         Returns `True` if `other` falls to the left and does not overlap this feature, `False` otherwise.
         :param other: an interval/feature
         """
-        pass
+        raise NotImplementedError()
 
     def __le__(self, other):
         # TODO: SimpleFeature.__le
@@ -131,16 +166,21 @@ class SimpleFeature(object):
         `False` otherwise.
         :param other: an interval/feature
         """
-        pass
+        raise NotImplementedError()
 
-    def flank(self, length):
+    def get_flank(self, length):
         # TODO: SimpleFeature.flank
-        pass
+        raise NotImplementedError()
 
-    def rflank(self, length):
+    def get_rflank(self, length):
         # TODO: SimpleFeature.rflank
-        pass
 
-    def lflank(self, length):
+        raise NotImplementedError()
+
+
+
+        raise NotImplementedError()
+
+    def get_lflank(self, length):
         # TODO: SimpleFeature.lflank
-        pass
+        raise NotImplementedError()
