@@ -11,13 +11,16 @@ Purpose:
 Handle parsing and storage of gff3 data
 """
 from copy import deepcopy
+from collections import defaultdict
+
+import networkx as nx
 
 from spartan.utils.annotations import intervals
 from spartan.utils.misc import Bunch
 
 __author__ = 'Gus Dunn'
 
-
+##### helper functions #####
 def convert_strand(strand):
     """
 
@@ -31,17 +34,69 @@ def convert_strand(strand):
 
     return strand_dict[strand]
 
+def parse_gff3(gff3_path):
+    """
+
+    :param gff3_path:
+    """
+
+    gff3_lines = open(gff3_path, 'rU')
+
+    for line in gff3_lines:
+        if line.startswith('#'):
+            continue
+        else:
+            yield SimpleFeatureGFF3(line)
+
+#############################
+
+
+class GFF3(object):
+    def __init__(self, gff3_path):
+
+        self.gff3_path = gff3_path
+        self.parents_graph = nx.Graph()
+        self.feature_db = dict()
+        self.seqids = set()
+        self.types = set()
+        self.sources = set()
+
+        self.install_gff3_features_from_file(self.gff3_path)
+
+    def install_gff3_features_from_file(self, gff3_path):
+        features = parse_gff3(self.gff3_path)
+
+        for feature in features:
+            # add feature to feature_db
+            ID = feature.data.attributes.ID
+            self.feature_db[ID] = feature
+
+            # record the range of occurrences for certain fields
+            self.seqids.add(feature.data.seqid)
+            self.types.add(feature.data.type)
+            self.sources.add(feature.data.source)
+
+            # add parent child relationship to parent_graph
+            try:
+                p = feature.data.attributes.Parent
+            except AttributeError:
+                p = False
+                
+            if (p and ID):
+                self.parents_graph.add_edge(p, ID)
+            else:
+                pass
+
 
 class SimpleFeatureGFF3(intervals.SimpleFeature):
 
-    def __init__(self, gff3_data):
-        # TODO: SimpleFeatureGFF3.__init__
+    def __init__(self, gff3_data, start=None, end=None):
         """
-        Initializes `SimpleFeatureGFF3` object with the fields from a single GFF3 line.
+            Initializes `SimpleFeatureGFF3` object with the fields from a single GFF3 line.
 
-        :param gff3_data: either a single gff3 file line or a dict of proper information.
-        """
-        self.data = Bunch()
+            :param gff3_data: either a single gff3 file line or a dict of proper information.
+            """
+        super(SimpleFeatureGFF3, self).__init__(start, end)
         if isinstance(gff3_data, str):
             fields = gff3_data.rstrip('\n').split('\t')
 
@@ -59,7 +114,7 @@ class SimpleFeatureGFF3(intervals.SimpleFeature):
             for k, v in gff3_data.iteritems():
                 self.data.__setattr__(k, v)
 
-    @staticmethod
+    #@staticmethod # TODO: is this useful?
     def parse_attributes(self, attributes):
         # TODO: SimpleFeatureGFF3._parse_attributes
         """
@@ -77,11 +132,14 @@ class SimpleFeatureGFF3(intervals.SimpleFeature):
                 attrib_bunch[k] = v
             except ValueError:
                 try:
-                    attrib_bunch['unnamed'].append(key_val)
+                    attrib_bunch['unnamed_attributes'].append(key_val)
                 except KeyError:
-                    attrib_bunch['unnamed'] = [key_val]
+                    attrib_bunch['unnamed_attributes'] = [key_val]
 
         return attrib_bunch
+
+    def get_range(self):
+        return self.data.start, self.data.end
 
     def get_upstream(self, length):
         # TODO: !! TEST gff3.SimpleFeatureGFF3.get_upstream()
@@ -99,6 +157,8 @@ class SimpleFeatureGFF3(intervals.SimpleFeature):
 
         new_feature_data['start'] = new_coords[0]
         new_feature_data['end'] = new_coords[1]
+        new_feature_data['source'] = 'spartan_derived'
+        new_feature_data['type'] = 'upstream_region'
 
         new_feature_obj = SimpleFeatureGFF3(new_feature_data)
 
@@ -111,18 +171,30 @@ class SimpleFeatureGFF3(intervals.SimpleFeature):
         :param length:
         :return: SimpleFeatureGFF3
         """
-        raise NotImplementedError()
-
-def parse_gff3(gff3_path):
-    """
-
-    :param gff3_path:
-    """
-
-    gff3_lines = open(gff3_path, 'rU')
-
-    for line in gff3_lines:
-        if line.startswith('#'):
-            continue
+        if self.data.strand > 0:
+            new_coords = intervals.right_window_coords(length, self.data.end)
         else:
-            yield SimpleFeatureGFF3(line)
+            new_coords = intervals.left_window_coords(length, self.data.start)
+
+        new_feature_data = deepcopy(dict(self.data))
+
+        new_feature_data['start'] = new_coords[0]
+        new_feature_data['end'] = new_coords[1]
+        new_feature_data['source'] = 'spartan_derived'
+        new_feature_data['type'] = 'downstream_region'
+
+        new_feature_obj = SimpleFeatureGFF3(new_feature_data)
+
+        return new_feature_obj
+
+    def get_parent_ID(self):
+        """
+
+
+        :return: `ID` of parent feature
+        """
+        return self.data.attributes.Parent
+
+    def set_parent_ID(self, ID):
+        self.data.attributes.Parent = ID
+
