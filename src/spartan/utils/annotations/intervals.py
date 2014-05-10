@@ -11,7 +11,11 @@ Purpose:
 This code is intended to provide the "base" interval representation for `spartan`.
 
 """
+
+from spartan.utils.misc import Bunch
+
 __author__ = 'Gus Dunn'
+
 
 
 #### Helper functions ####
@@ -102,13 +106,13 @@ class SimpleFeature(object):
         :param end: right most coordinate.
         """
 
-        assert isinstance(start, int)
-        assert isinstance(end, int)
-        self.start = min([start, end])
-        self.end = max([start, end])
+        self.data = Bunch()
+
+        self.data.start = min([start, end])
+        self.data.end = max([start, end])
 
     def __len__(self):
-        return interval_length(self.start, self.end)
+        return interval_length(self.data.start, self.data.end)
 
     def __contains__(self, item):
         # TODO: SimpleFeature.__contains__(self, item)
