@@ -42,11 +42,13 @@ def parse_gff3(gff3_path):
 
     gff3_lines = open(gff3_path, 'rU')
 
-    for line in gff3_lines:
-        if line.startswith('#'):
+    for line_no, data in enumerate(gff3_lines):
+        if data.startswith('#'):
             continue
         else:
-            yield SimpleFeatureGFF3(line)
+            feature = SimpleFeatureGFF3(data)
+            feature.line_no = line_no + 1  # to correct for python vs file index
+            yield feature
 
 #############################
 
@@ -57,6 +59,8 @@ class GFF3(object):
         self.gff3_path = gff3_path
         self.parents_graph = nx.Graph()
         self.feature_db = dict()
+        self.common_to_uniq_id = dict()
+        self.uniq_to_common = dict()
         self.seqids = set()
         self.types = set()
         self.sources = set()
@@ -68,25 +72,41 @@ class GFF3(object):
 
         for feature in features:
             # add feature to feature_db
-            ID = feature.data.attributes.ID
-            self.feature_db[ID] = feature
+            self.set_feature_uniq_id(feature)
+            self.feature_db[feature.uniq_id] = feature
+
+            try:
+                self.common_to_uniq_id[feature.data.attributes.ID] = feature.uniq_id
+            except AttributeError:
+                pass
+
+            try:
+                self.uniq_to_common[feature.uniq_id] = feature.data.attributes.ID
+            except AttributeError:
+                pass
 
             # record the range of occurrences for certain fields
             self.seqids.add(feature.data.seqid)
             self.types.add(feature.data.type)
             self.sources.add(feature.data.source)
 
-            # add parent child relationship to parent_graph
+        # add parent:child relationships to parent_graph
+        for uid, feat in self.feature_db.iteritems():
             try:
-                p = feature.data.attributes.Parent
+                p = self.common_to_uniq_id[feat.data.attributes.Parent]
+                self.parents_graph.add_edge(uid, p)
             except AttributeError:
-                p = False
-                
-            if (p and ID):
-                self.parents_graph.add_edge(p, ID)
-            else:
                 pass
 
+    def set_feature_uniq_id(self, feature):
+        try:
+            u_id = '%s:%s:%s:%s:%s:%s:%s' % (feature.line_no, feature.data.seqid, feature.data.type,
+                                             feature.data.start, feature.data.end, feature.data.strand,
+                                             feature.data .attributes.ID)
+        except AttributeError:
+            u_id = '%s:%s:%s:%s:%s:%s' % (feature.line_no, feature.data.seqid, feature.data.type, feature.data.start,
+                                          feature.data.end, feature.data.strand)
+        feature.uniq_id = u_id
 
 class SimpleFeatureGFF3(intervals.SimpleFeature):
 
