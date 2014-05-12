@@ -107,6 +107,9 @@ class SimpleFeature(object):
         self.data.start = min([start, end])
         self.data.end = max([start, end])
 
+    def __str__(self):
+        return "%s-%s" % (self.data.start, self.data.end)
+
     def __len__(self):
         return interval_length(self.data.start, self.data.end)
 
@@ -160,16 +163,6 @@ class SimpleFeature(object):
 
     def __gt__(self, other):
         """
-        Returns `True` if `other` falls to the right and does not overlap this feature, `False` otherwise.
-        :param other: an interval/feature
-        """
-        if (not self.has_overlap(other)) and (self.data.end > other.data.end):
-            return True
-        else:
-            return False
-
-    def __ge__(self, other):
-        """
         Returns `True` if `other` falls to the right even if `other` overlaps this feature,
         `False` otherwise.
         :param other: an interval/feature
@@ -179,17 +172,8 @@ class SimpleFeature(object):
         else:
             return False
 
-    def __lt__(self, other):
-        """
-        Returns `True` if `other` falls to the left and does not overlap this feature, `False` otherwise.
-        :param other: an interval/feature
-        """
-        if (not self.has_overlap(other)) and (self.data.start < other.data.start):
-            return True
-        else:
-            return False
 
-    def __le__(self, other):
+    def __lt__(self, other):
         """
         Returns `True` if `other` falls to the left even if `other` overlaps this feature,
         `False` otherwise.
