@@ -60,7 +60,7 @@ def right_window_coords(win_size, original_right_bound):
 
     return new_coords
 
-def detect_1D_overlap(coords1,coords2):
+def detect_1D_overlap(coords1, coords2):
     # TODO: understand and convert detect_1D_overlap() yo useful code
 
     """Returns TRUE if coords1 overlaps with coords2.
@@ -119,7 +119,6 @@ class SimpleFeature(object):
         raise NotImplementedError()
 
     def __cmp__(self, other):
-        # TODO: SimpleFeature.__cmp__
         """
         :param other: an interval/feature
         :returns int:
@@ -128,15 +127,34 @@ class SimpleFeature(object):
             * `1` if `other` should sort to the left of `self`
 
         """
-        raise NotImplementedError()
+
+        s_start = self.data.start
+        o_start = other.data.start
+
+        if s_start < o_start:
+            return -1
+
+        if s_start == o_start:
+            return 0
+
+        if s_start > o_start:
+            return 1
 
     def __eq__(self, other):
-        # TODO: SimpleFeature.__eq__
         """
         Returns `True` if `other` perfectly overlaps this feature, `False` otherwise.
         :param other: an interval/feature
         """
-        raise NotImplementedError()
+        s_start = self.data.start
+        o_start = other.data.start
+        s_end = self.data.start
+        o_end = other.data.start
+
+        if (s_start == o_start) and (s_end == o_end):
+            return True
+        else:
+            return False
+
 
     def __gt__(self, other):
         # TODO: SimpleFeature.__gt
