@@ -11,9 +11,9 @@ Purpose:
 Handle parsing and storage of gff3 data
 """
 from copy import deepcopy
-from collections import defaultdict
 
 import networkx as nx
+import pyfasta
 
 from spartan.utils.annotations import intervals
 from spartan.utils.misc import Bunch
@@ -54,9 +54,10 @@ def parse_gff3(gff3_path):
 
 
 class GFF3(object):
-    def __init__(self, gff3_path):
+    def __init__(self, gff3_path, fasta_path=False):
 
         self.gff3_path = gff3_path
+        self.fasta_path = fasta_path
         self.parents_graph = nx.Graph()
         self.feature_db = dict()
         self.common_to_uniq_id = dict()
@@ -67,12 +68,16 @@ class GFF3(object):
 
         self.install_gff3_features_from_file(self.gff3_path)
 
+        if fasta_path:
+            self.install_fasta_access()
+
     def install_gff3_features_from_file(self, gff3_path):
         features = parse_gff3(self.gff3_path)
 
         for feature in features:
             # add feature to feature_db
             self.set_feature_uniq_id(feature)
+            feature.gff3_container = self  # provide access to the gff obj by the feature
             self.feature_db[feature.uniq_id] = feature
 
             try:
@@ -107,6 +112,9 @@ class GFF3(object):
             u_id = '%s:%s:%s:%s:%s:%s' % (feature.line_no, feature.data.seqid, feature.data.type, feature.data.start,
                                           feature.data.end, feature.data.strand)
         feature.uniq_id = u_id
+
+    def install_fasta_access(self):
+        self.fasta_db = pyfasta.Fasta(self.fasta_path, flatten_inplace=True)
 
 class SimpleFeatureGFF3(intervals.SimpleFeature):
 
@@ -218,3 +226,21 @@ class SimpleFeatureGFF3(intervals.SimpleFeature):
     def set_parent_ID(self, ID):
         self.data.attributes.Parent = ID
 
+    def get_dna_sequence(self):
+        try:
+            vitals = self.get_vitals()
+
+            return self.gff3_container.fasta_db.sequence({'chr': vitals.seqid,
+                                                          'start': vitals.start, 'stop': vitals.end,
+                                                          'strand': vitals.strand})
+        except:
+            raise
+
+    def get_vitals(self):
+
+        vitals = Bunch()
+        vitals.seqid = self.data.seqid
+        vitals.start = self.data.start
+        vitals.end = self.data.end
+        vitals.strand = self.data.strand
+        return vitals
