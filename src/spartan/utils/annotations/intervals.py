@@ -60,39 +60,33 @@ def right_window_coords(win_size, original_right_bound):
 
     return new_coords
 
-def detect_1D_overlap(coords1, coords2):
-    # TODO: understand and convert detect_1D_overlap() yo useful code
 
-    """Returns TRUE if coords1 overlaps with coords2.
+def detect_overlap(coords1, coords2):
     """
-    coords1[0],coords1[1] = int(coords1[0]),int(coords1[1])
-    coords2[0],coords2[1] = int(coords2[0]),int(coords2[1])
-    # +++ Validate Usr Input +++
-    assert (len(coords1)==2) and (len(coords2)==2), \
-           "** ERROR: coords1 and coords2 must be lists of length 2! **"
+    Returns `True` if `coords1` overlaps with `coords2`.
+    :param coords1: `list` of two `int` numbers representing **start**, **end** coordinates of a feature
+    :param coords2: `list` of two `int` numbers representing **start**, **end** coordinates of a feature
+    """
+    coords1[0], coords1[1] = int(coords1[0]), int(coords1[1])
+    coords2[0], coords2[1] = int(coords2[0]), int(coords2[1])
+
     # +++ Sort Coords +++
     coords1.sort()
     coords2.sort()
     # +++ Classify Coords +++
     if (coords1[1]-coords1[0]) <= (coords2[1]-coords2[0]):
         shorter = coords1
-        longer  = coords2
+        longer = coords2
     else:
         shorter = coords2
-        longer  = coords1
+        longer = coords1
     # +++  +++
-    lEdge = (shorter[0]-longer[0] >= 0) and (shorter[0]-longer[1] <= 0)
-    rEdge = (shorter[1]-longer[0] >= 0) and (shorter[1]-longer[1] <= 0)
+    left_edge = (shorter[0]-longer[0] >= 0) and (shorter[0]-longer[1] <= 0)
+    right_edge = (shorter[1]-longer[0] >= 0) and (shorter[1]-longer[1] <= 0)
     # -- did we get a hit? --
-    return (lEdge or rEdge)
+    return left_edge or right_edge
 
 ##########################
-
-class CompoundFeature(object):
-    def __init__(self):
-        pass
-
-
 
 
 class SimpleFeature(object):
@@ -105,8 +99,10 @@ class SimpleFeature(object):
         :param start: left most coordinate.
         :param end: right most coordinate.
         """
-
         self.data = Bunch()
+
+        start = int(start)
+        end = int(end)
 
         self.data.start = min([start, end])
         self.data.end = max([start, end])
@@ -114,9 +110,16 @@ class SimpleFeature(object):
     def __len__(self):
         return interval_length(self.data.start, self.data.end)
 
-    def __contains__(self, item):
-        # TODO: SimpleFeature.__contains__(self, item)
-        raise NotImplementedError()
+    def __contains__(self, other):
+        s_start = self.data.start
+        o_start = other.data.start
+        s_end = self.data.end
+        o_end = other.data.end
+
+        if (s_start <= o_start) and (s_end >= o_end):
+            return True
+        else:
+            return False
 
     def __cmp__(self, other):
         """
@@ -127,7 +130,6 @@ class SimpleFeature(object):
             * `1` if `other` should sort to the left of `self`
 
         """
-
         s_start = self.data.start
         o_start = other.data.start
 
@@ -147,8 +149,8 @@ class SimpleFeature(object):
         """
         s_start = self.data.start
         o_start = other.data.start
-        s_end = self.data.start
-        o_end = other.data.start
+        s_end = self.data.end
+        o_end = other.data.end
 
         if (s_start == o_start) and (s_end == o_end):
             return True
@@ -157,38 +159,50 @@ class SimpleFeature(object):
 
 
     def __gt__(self, other):
-        # TODO: SimpleFeature.__gt
         """
         Returns `True` if `other` falls to the right and does not overlap this feature, `False` otherwise.
         :param other: an interval/feature
         """
-        raise NotImplementedError()
+        if (not self.has_overlap(other)) and (self.data.end > other.data.end):
+            return True
+        else:
+            return False
 
     def __ge__(self, other):
-        # TODO: SimpleFeature.__ge
         """
         Returns `True` if `other` falls to the right even if `other` overlaps this feature,
         `False` otherwise.
         :param other: an interval/feature
         """
-        raise NotImplementedError()
+        if self.data.end > other.data.end:
+            return True
+        else:
+            return False
 
     def __lt__(self, other):
-        # TODO: SimpleFeature.__lt
         """
         Returns `True` if `other` falls to the left and does not overlap this feature, `False` otherwise.
         :param other: an interval/feature
         """
-        raise NotImplementedError()
+        if (not self.has_overlap(other)) and (self.data.start < other.data.start):
+            return True
+        else:
+            return False
 
     def __le__(self, other):
-        # TODO: SimpleFeature.__le
         """
         Returns `True` if `other` falls to the left even if `other` overlaps this feature,
         `False` otherwise.
         :param other: an interval/feature
         """
-        raise NotImplementedError()
+        if self.data.start < other.data.start:
+            return True
+        else:
+            return False
+
+    def has_overlap(self, other):
+        return detect_overlap(coords1=[self.data.start, self.data.end],
+                              coords2=[other.data.start, other.data.end])
 
     def get_flank(self, length):
         # TODO: SimpleFeature.flank
@@ -196,10 +210,6 @@ class SimpleFeature(object):
 
     def get_rflank(self, length):
         # TODO: SimpleFeature.rflank
-
-        raise NotImplementedError()
-
-
 
         raise NotImplementedError()
 
