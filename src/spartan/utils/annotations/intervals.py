@@ -160,7 +160,6 @@ class SimpleFeature(object):
         else:
             return False
 
-
     def __gt__(self, other):
         """
         Returns `True` if `other` falls to the right even if `other` overlaps this feature,
