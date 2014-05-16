@@ -147,8 +147,7 @@ class SimpleFeatureGFF3(intervals.SimpleFeature):
             for k, v in gff3_data.iteritems():
                 self.data.__setattr__(k, v)
 
-        self.parents = defaultdict(list)
-        self.children = defaultdict(list)
+        self.relatives = defaultdict(Bunch)
 
     #@staticmethod # TODO: is this useful?
     def parse_attributes(self, attributes):

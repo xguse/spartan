@@ -91,7 +91,7 @@ def detect_overlap(coords1, coords2):
 
 class SimpleFeature(object):
 
-    def __init__(self, start, end):
+    def __init__(self, start, end,):
 
         """
 
@@ -101,11 +101,14 @@ class SimpleFeature(object):
         """
         self.data = Bunch()
 
-        start = int(start)
-        end = int(end)
+        try:
+            start = int(start)
+            end = int(end)
 
-        self.data.start = min([start, end])
-        self.data.end = max([start, end])
+            self.data.start = min([start, end])
+            self.data.end = max([start, end])
+        except TypeError:
+            pass
 
     def __str__(self):
         return "%s-%s" % (self.data.start, self.data.end)
