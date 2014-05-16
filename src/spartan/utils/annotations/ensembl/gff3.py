@@ -11,6 +11,7 @@ Purpose:
 Handle parsing and storage of gff3 data
 """
 from copy import deepcopy
+from collections import defaultdict
 
 import networkx as nx
 import pyfasta
@@ -21,6 +22,8 @@ from spartan.utils.misc import Bunch
 __author__ = 'Gus Dunn'
 
 ##### helper functions #####
+
+
 def convert_strand(strand):
     """
 
@@ -33,6 +36,7 @@ def convert_strand(strand):
                    '.': 1}
 
     return strand_dict[strand]
+
 
 def parse_gff3(gff3_path):
     """
@@ -116,6 +120,7 @@ class GFF3(object):
     def install_fasta_access(self):
         self.fasta_db = pyfasta.Fasta(self.fasta_path, flatten_inplace=True)
 
+
 class SimpleFeatureGFF3(intervals.SimpleFeature):
 
     def __init__(self, gff3_data, start=None, end=None):
@@ -141,6 +146,9 @@ class SimpleFeatureGFF3(intervals.SimpleFeature):
             # NOTE: in this case you will need to have pre-parsed the `attributes` data if included.
             for k, v in gff3_data.iteritems():
                 self.data.__setattr__(k, v)
+
+        self.parents = defaultdict(list)
+        self.children = defaultdict(list)
 
     #@staticmethod # TODO: is this useful?
     def parse_attributes(self, attributes):
