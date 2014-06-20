@@ -37,7 +37,7 @@ setup(name='spartan',
     url='https://github.com/xguse',
     license='GPL3',
     packages=find_packages('src'),
-    package_dir mkd= {'': 'src'}, include_package_data=True,
+    package_dir={'': 'src'}, include_package_data=True,
     zip_safe=False,
     install_requires=install_requires,
     entry_points={
