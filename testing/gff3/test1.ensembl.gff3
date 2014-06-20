@@ -1,0 +1,295 @@
+##gff-version 3
+##feature-ontology so.obo
+##attribute-ontology gff3_attributes.obo
+#
+# Dumped from  database.
+# 
+# using SO:0000704 for VectorBase Gene
+# using SO:0000234 for VectorBase Transcript
+# using SO:0000147 for VectorBase Exon
+# using SO:0000316 for VectorBase CDS
+# using SO:0000204 for VectorBase 5'UTR 
+# using SO:0000205 for VectorBase 3'UTR
+# 
+##sequence-region chromosome:AgamP3:2L:1:49364325:1
+chromosome:AgamP3:2L:1:49364325:1	VectorBase	contig	1	49364325	.	.	.	ID=2L;molecule_type=dsDNA;GenBank:chromosome:AgamP3:2L:1:49364325:1;translation_table=1;topology=linear;localization=chromosomal;
+2L	VectorBase	gene	157348	186936	.	-	.	ID=AGAP004677;
+2L	VectorBase	mRNA	157348	186936	.	-	.	ID=AGAP004677-RB;Parent=AGAP004677;Dbxref=RefSeq_peptide:XP_314619,RefSeq_NA:XM_314619,RefSeq_NA:XM_314619,RefSeq_mRNA_predicted:XM_314619,RefSeq_Prot:XP_314619,RefSeq_rna_predicted:XM_314619,GenBank:AAAB01008942,UniProtKB:Q7PHT4,goslim_goa:GO:0003674,goslim_goa:GO:0008150,goslim_goa:GO:0009058,goslim_goa:GO:0016491,goslim_goa:GO:0016810,goslim_goa:GO:0034641,goslim_goa:GO:0051186,protein_id:EAA44412,UniParc:UPI000002004D;description=hypothetical protein;
+2L	VectorBase	exon	186860	186936	.	-	.	ID=E013802B;Parent=AGAP004677-RB;
+2L	VectorBase	exon	159192	159366	.	-	.	ID=E013803B;Parent=AGAP004677-RB;
+2L	VectorBase	exon	157679	158297	.	-	.	ID=E013804B;Parent=AGAP004677-RB;
+2L	VectorBase	exon	157348	157623	.	-	.	ID=E013805B;Parent=AGAP004677-RB;
+2L	VectorBase	five_prime_utr	186860	186936	.	-	.	Parent=AGAP004677-RB;
+2L	VectorBase	five_prime_utr	159357	159366	.	-	.	Parent=AGAP004677-RB
+2L	VectorBase	CDS	159192	159356	.	-	0	Parent=AGAP004677-RB;
+2L	VectorBase	CDS	157679	158297	.	-	0	Parent=AGAP004677-RB;
+2L	VectorBase	CDS	157496	157623	.	-	2	Parent=AGAP004677-RB;
+2L	VectorBase	three_prime_utr	157348	157495	.	-	.	Parent=AGAP004677-RB
+2L	VectorBase	mRNA	157348	181305	.	-	.	ID=AGAP004677-RA;Parent=AGAP004677;Dbxref=RefSeq_peptide:XP_001687783,RefSeq_peptide:XP_314619,RefSeq_NA:XM_001687731,RefSeq_NA:XM_001687731,RefSeq_mRNA_predicted:XM_001687731,RefSeq_Prot:XP_001687783,RefSeq_Prot:XP_314619,RefSeq_rna_predicted:XM_001687731,GenBank:AAAB01008942,UniProtKB:A7UTF7,UniProtKB:Q7PHT4,goslim_goa:GO:0003674,goslim_goa:GO:0008150,goslim_goa:GO:0009058,goslim_goa:GO:0016491,goslim_goa:GO:0016810,goslim_goa:GO:0034641,goslim_goa:GO:0051186,protein_id:EAA44412,protein_id:EDO64016,UniParc:UPI0000020060;description=hypothetical protein;
+2L	VectorBase	exon	180909	181305	.	-	.	ID=E013806A;Parent=AGAP004677-RA;
+2L	VectorBase	exon	159192	159366	.	-	.	ID=E013807A;Parent=AGAP004677-RA;
+2L	VectorBase	exon	157679	158297	.	-	.	ID=E013804A;Parent=AGAP004677-RA;
+2L	VectorBase	exon	157348	157623	.	-	.	ID=E013805A;Parent=AGAP004677-RA;
+2L	VectorBase	five_prime_utr	181214	181305	.	-	.	Parent=AGAP004677-RA
+2L	VectorBase	CDS	180909	181213	.	-	0	Parent=AGAP004677-RA;
+2L	VectorBase	CDS	159192	159366	.	-	1	Parent=AGAP004677-RA;
+2L	VectorBase	CDS	157679	158297	.	-	0	Parent=AGAP004677-RA;
+2L	VectorBase	CDS	157496	157623	.	-	2	Parent=AGAP004677-RA;
+2L	VectorBase	three_prime_utr	157348	157495	.	-	.	Parent=AGAP004677-RA
+2L	VectorBase	gene	203779	205293	.	+	.	ID=AGAP004678;
+2L	VectorBase	mRNA	203779	205293	.	+	.	ID=AGAP004678-RA;Parent=AGAP004678;Dbxref=RefSeq_peptide:XP_314623,RefSeq_NA:XM_314623,RefSeq_NA:XM_314623,RefSeq_mRNA_predicted:XM_314623,RefSeq_Prot:XP_314623,RefSeq_rna_predicted:XM_314623,GenBank:AAAB01008942,UniProtKB:Q7Q8P2,goslim_goa:GO:0003674,goslim_goa:GO:0005575,goslim_goa:GO:0005622,goslim_goa:GO:0005623,goslim_goa:GO:0043167,protein_id:EAA10029,UniParc:UPI00002432FD;description=hypothetical protein;
+2L	VectorBase	exon	203779	203924	.	+	.	ID=E013808A;Parent=AGAP004678-RA;
+2L	VectorBase	exon	203981	205293	.	+	.	ID=E013809A;Parent=AGAP004678-RA;
+2L	VectorBase	five_prime_utr	203779	203865	.	+	.	Parent=AGAP004678-RA
+2L	VectorBase	CDS	203866	203924	.	+	0	Parent=AGAP004678-RA;
+2L	VectorBase	CDS	203981	204956	.	+	1	Parent=AGAP004678-RA;
+2L	VectorBase	three_prime_utr	204957	205293	.	+	.	Parent=AGAP004678-RA
+2L	VectorBase	gene	207894	210460	.	+	.	ID=AGAP004679;
+2L	VectorBase	mRNA	207894	210460	.	+	.	ID=AGAP004679-RB;Parent=AGAP004679;Dbxref=RefSeq_peptide:XP_001688580,RefSeq_peptide:XP_558004,RefSeq_NA:XM_558004,RefSeq_NA:XM_558004,RefSeq_mRNA_predicted:XM_558004,RefSeq_Prot:XP_001688580,RefSeq_Prot:XP_558004,RefSeq_rna_predicted:XM_558004,UniProtKB:Q5TSB4,GenBank:AAAB01008942,goslim_goa:GO:0003674,goslim_goa:GO:0006520,goslim_goa:GO:0008150,goslim_goa:GO:0009058,goslim_goa:GO:0016874,goslim_goa:GO:0034641,goslim_goa:GO:0044281,goslim_goa:GO:0051186,protein_id:EAL40320,protein_id:EDO64017,UniParc:UPI0001538D68;description=hypothetical protein;
+2L	VectorBase	exon	207894	207953	.	+	.	ID=E013810B;Parent=AGAP004679-RB;
+2L	VectorBase	exon	208393	208581	.	+	.	ID=E013811B;Parent=AGAP004679-RB;
+2L	VectorBase	exon	208639	208824	.	+	.	ID=E013812B;Parent=AGAP004679-RB;
+2L	VectorBase	exon	208897	209394	.	+	.	ID=E013813B;Parent=AGAP004679-RB;
+2L	VectorBase	exon	209473	209816	.	+	.	ID=E013814B;Parent=AGAP004679-RB;
+2L	VectorBase	exon	209877	210460	.	+	.	ID=E013815B;Parent=AGAP004679-RB;
+2L	VectorBase	five_prime_utr	207894	207953	.	+	.	Parent=AGAP004679-RB;
+2L	VectorBase	five_prime_utr	208393	208416	.	+	.	Parent=AGAP004679-RB
+2L	VectorBase	CDS	208417	208581	.	+	0	Parent=AGAP004679-RB;
+2L	VectorBase	CDS	208639	208824	.	+	0	Parent=AGAP004679-RB;
+2L	VectorBase	CDS	208897	209394	.	+	0	Parent=AGAP004679-RB;
+2L	VectorBase	CDS	209473	209816	.	+	0	Parent=AGAP004679-RB;
+2L	VectorBase	CDS	209877	210276	.	+	1	Parent=AGAP004679-RB;
+2L	VectorBase	three_prime_utr	210277	210460	.	+	.	Parent=AGAP004679-RB
+2L	VectorBase	mRNA	208183	210460	.	+	.	ID=AGAP004679-RA;Parent=AGAP004679;Dbxref=RefSeq_peptide:XP_001688580,RefSeq_peptide:XP_558004,RefSeq_NA:XM_001688528,RefSeq_NA:XM_001688528,RefSeq_mRNA_predicted:XM_001688528,RefSeq_Prot:XP_001688580,RefSeq_Prot:XP_558004,RefSeq_rna_predicted:XM_001688528,UniProtKB:Q5TSB4,GenBank:AAAB01008942,goslim_goa:GO:0003674,goslim_goa:GO:0006520,goslim_goa:GO:0008150,goslim_goa:GO:0009058,goslim_goa:GO:0016874,goslim_goa:GO:0034641,goslim_goa:GO:0044281,goslim_goa:GO:0051186,protein_id:EAL40320,protein_id:EDO64017,UniParc:UPI0001538D68;description=hypothetical protein;
+2L	VectorBase	exon	208183	208581	.	+	.	ID=E013816A;Parent=AGAP004679-RA;
+2L	VectorBase	exon	208639	208824	.	+	.	ID=E013812A;Parent=AGAP004679-RA;
+2L	VectorBase	exon	208897	209394	.	+	.	ID=E013813A;Parent=AGAP004679-RA;
+2L	VectorBase	exon	209473	209816	.	+	.	ID=E013814A;Parent=AGAP004679-RA;
+2L	VectorBase	exon	209877	210460	.	+	.	ID=E013815A;Parent=AGAP004679-RA;
+2L	VectorBase	five_prime_utr	208183	208416	.	+	.	Parent=AGAP004679-RA
+2L	VectorBase	CDS	208417	208581	.	+	0	Parent=AGAP004679-RA;
+2L	VectorBase	CDS	208639	208824	.	+	0	Parent=AGAP004679-RA;
+2L	VectorBase	CDS	208897	209394	.	+	0	Parent=AGAP004679-RA;
+2L	VectorBase	CDS	209473	209816	.	+	0	Parent=AGAP004679-RA;
+2L	VectorBase	CDS	209877	210276	.	+	1	Parent=AGAP004679-RA;
+2L	VectorBase	three_prime_utr	210277	210460	.	+	.	Parent=AGAP004679-RA
+2L	VectorBase	gene	271285	271815	.	+	.	ID=AGAP004680;
+2L	VectorBase	mRNA	271285	271815	.	+	.	ID=AGAP004680-RA;Parent=AGAP004680;Dbxref=RefSeq_peptide:XP_001231024,RefSeq_NA:XM_001231023,RefSeq_NA:XM_001231023,RefSeq_mRNA_predicted:XM_001231023,RefSeq_Prot:XP_001231024,RefSeq_rna_predicted:XM_001231023,GenBank:AAAB01008942,UniProtKB:A0NE15,goslim_goa:GO:0003674,protein_id:EAU76743,UniParc:UPI0001538D69;description=hypothetical protein;
+2L	VectorBase	exon	271285	271815	.	+	.	ID=E013817A;Parent=AGAP004680-RA;
+2L	VectorBase	CDS	271285	271815	.	+	0	Parent=AGAP004680-RA;
+2L	VectorBase	gene	358329	359280	.	-	.	ID=AGAP004681;
+2L	VectorBase	mRNA	358329	359280	.	-	.	ID=AGAP004681-RA;Parent=AGAP004681;Dbxref=RefSeq_peptide:XP_001231026,RefSeq_NA:XM_001231025,RefSeq_NA:XM_001231025,RefSeq_mRNA_predicted:XM_001231025,RefSeq_Prot:XP_001231026,RefSeq_rna_predicted:XM_001231025,GenBank:AAAB01008942,UniProtKB:A0NE17,protein_id:EAU76745,UniParc:UPI000069B0D2;description=hypothetical protein;
+2L	VectorBase	exon	358977	359280	.	-	.	ID=E013818A;Parent=AGAP004681-RA;
+2L	VectorBase	exon	358329	358881	.	-	.	ID=E013819A;Parent=AGAP004681-RA;
+2L	VectorBase	five_prime_utr	359146	359280	.	-	.	Parent=AGAP004681-RA
+2L	VectorBase	CDS	358977	359145	.	-	0	Parent=AGAP004681-RA;
+2L	VectorBase	CDS	358640	358881	.	-	2	Parent=AGAP004681-RA;
+2L	VectorBase	three_prime_utr	358329	358639	.	-	.	Parent=AGAP004681-RA
+2L	VectorBase	gene	433503	461627	.	-	.	ID=AGAP004682;
+2L	VectorBase	mRNA	433503	461627	.	-	.	ID=AGAP004682-RA;Parent=AGAP004682;Dbxref=RefSeq_peptide:XP_307259,RefSeq_NA:XM_307259,RefSeq_NA:XM_307259,RefSeq_mRNA_predicted:XM_307259,RefSeq_Prot:XP_307259,RefSeq_rna_predicted:XM_307259,GenBank:AAAB01008026,UniProtKB:Q7QL36,protein_id:EAA03206,UniParc:UPI0001538D6A;description=hypothetical protein;
+2L	VectorBase	exon	461514	461627	.	-	.	ID=E013820A;Parent=AGAP004682-RA;
+2L	VectorBase	exon	460185	461391	.	-	.	ID=E013821A;Parent=AGAP004682-RA;
+2L	VectorBase	exon	433503	434254	.	-	.	ID=E013822A;Parent=AGAP004682-RA;
+2L	VectorBase	five_prime_utr	461514	461627	.	-	.	Parent=AGAP004682-RA;
+2L	VectorBase	five_prime_utr	461083	461391	.	-	.	Parent=AGAP004682-RA
+2L	VectorBase	CDS	460185	461082	.	-	0	Parent=AGAP004682-RA;
+2L	VectorBase	CDS	433503	434254	.	-	2	Parent=AGAP004682-RA;
+2L	VectorBase	gene	485698	488369	.	-	.	ID=AGAP004683;
+2L	VectorBase	mRNA	485698	488369	.	-	.	ID=AGAP004683-RA;Parent=AGAP004683;Dbxref=RefSeq_peptide:XP_307262,RefSeq_NA:XM_307262,RefSeq_NA:XM_307262,RefSeq_mRNA_predicted:XM_307262,RefSeq_Prot:XP_307262,RefSeq_rna_predicted:XM_307262,GenBank:AAAB01008026,UniProtKB:Q7QL35,goslim_goa:GO:0003674,protein_id:EAA03201,UniParc:UPI0001538D6B;description=hypothetical protein;
+2L	VectorBase	exon	486671	488369	.	-	.	ID=E013823A;Parent=AGAP004683-RA;
+2L	VectorBase	exon	485698	486245	.	-	.	ID=E013824A;Parent=AGAP004683-RA;
+2L	VectorBase	CDS	486671	488369	.	-	0	Parent=AGAP004683-RA;
+2L	VectorBase	CDS	485737	486245	.	-	2	Parent=AGAP004683-RA;
+2L	VectorBase	three_prime_utr	485698	485736	.	-	.	Parent=AGAP004683-RA
+2L	VectorBase	gene	493039	493543	.	+	.	ID=AGAP004684;
+2L	VectorBase	mRNA	493039	493543	.	+	.	ID=AGAP004684-RA;Parent=AGAP004684;Dbxref=RefSeq_peptide:XP_307264,RefSeq_NA:XM_307264,RefSeq_NA:XM_307264,RefSeq_mRNA_predicted:XM_307264,RefSeq_Prot:XP_307264,RefSeq_rna_predicted:XM_307264,GenBank:AAAB01008026,UniProtKB:Q7QL34,protein_id:EAA03199,UniParc:UPI0001538D6C;description=hypothetical protein;
+2L	VectorBase	exon	493039	493187	.	+	.	ID=E013825A;Parent=AGAP004684-RA;
+2L	VectorBase	exon	493252	493543	.	+	.	ID=E013826A;Parent=AGAP004684-RA;
+2L	VectorBase	CDS	493039	493187	.	+	0	Parent=AGAP004684-RA;
+2L	VectorBase	CDS	493252	493543	.	+	1	Parent=AGAP004684-RA;
+2L	VectorBase	gene	493579	497632	.	-	.	ID=AGAP004685;
+2L	VectorBase	mRNA	493579	497632	.	-	.	ID=AGAP004685-RA;Parent=AGAP004685;Dbxref=RefSeq_peptide:XP_001687806,RefSeq_peptide:XP_307265,RefSeq_NA:XM_307265,RefSeq_NA:XM_307265,RefSeq_mRNA_predicted:XM_307265,RefSeq_Prot:XP_001687806,RefSeq_Prot:XP_307265,RefSeq_rna_predicted:XM_307265,GenBank:AAAB01008026,UniProtKB:A7UR07,UniProtKB:Q7QL33,goslim_goa:GO:0003674,goslim_goa:GO:0003677,goslim_goa:GO:0004386,goslim_goa:GO:0006259,goslim_goa:GO:0008150,goslim_goa:GO:0009058,goslim_goa:GO:0016887,goslim_goa:GO:0034641,protein_id:EAA03204,protein_id:EDO64843,UniParc:UPI00015390D7;description=hypothetical protein;
+2L	VectorBase	exon	497357	497632	.	-	.	ID=E054426A;Parent=AGAP004685-RA;
+2L	VectorBase	exon	497150	497286	.	-	.	ID=E013828A;Parent=AGAP004685-RA;
+2L	VectorBase	exon	496874	497093	.	-	.	ID=E013829A;Parent=AGAP004685-RA;
+2L	VectorBase	exon	495937	496801	.	-	.	ID=E013830A;Parent=AGAP004685-RA;
+2L	VectorBase	exon	495468	495873	.	-	.	ID=E013831A;Parent=AGAP004685-RA;
+2L	VectorBase	exon	494989	495406	.	-	.	ID=E013832A;Parent=AGAP004685-RA;
+2L	VectorBase	exon	494735	494928	.	-	.	ID=E013833A;Parent=AGAP004685-RA;
+2L	VectorBase	exon	493996	494641	.	-	.	ID=E013834A;Parent=AGAP004685-RA;
+2L	VectorBase	exon	493579	493935	.	-	.	ID=E013835A;Parent=AGAP004685-RA;
+2L	VectorBase	five_prime_utr	497561	497632	.	-	.	Parent=AGAP004685-RA
+2L	VectorBase	CDS	497357	497560	.	-	0	Parent=AGAP004685-RA;
+2L	VectorBase	CDS	497150	497286	.	-	0	Parent=AGAP004685-RA;
+2L	VectorBase	CDS	496874	497093	.	-	1	Parent=AGAP004685-RA;
+2L	VectorBase	CDS	495937	496801	.	-	0	Parent=AGAP004685-RA;
+2L	VectorBase	CDS	495468	495873	.	-	2	Parent=AGAP004685-RA;
+2L	VectorBase	CDS	494989	495406	.	-	1	Parent=AGAP004685-RA;
+2L	VectorBase	CDS	494735	494928	.	-	0	Parent=AGAP004685-RA;
+2L	VectorBase	CDS	493996	494641	.	-	1	Parent=AGAP004685-RA;
+2L	VectorBase	CDS	493633	493935	.	-	0	Parent=AGAP004685-RA;
+2L	VectorBase	three_prime_utr	493579	493632	.	-	.	Parent=AGAP004685-RA
+2L	VectorBase	mRNA	493579	497632	.	-	.	ID=AGAP004685-RB;Parent=AGAP004685;Dbxref=RefSeq_peptide:XP_001687806,RefSeq_NA:XM_001687754,RefSeq_NA:XM_001687754,RefSeq_mRNA_predicted:XM_001687754,RefSeq_Prot:XP_001687806,RefSeq_rna_predicted:XM_001687754,GenBank:AAAB01008026,UniProtKB:A7UR07,goslim_goa:GO:0003674,goslim_goa:GO:0003677,goslim_goa:GO:0004386,goslim_goa:GO:0006259,goslim_goa:GO:0008150,goslim_goa:GO:0009058,goslim_goa:GO:0016887,goslim_goa:GO:0034641,protein_id:EDO64843,UniParc:UPI00015390D8;description=hypothetical protein;
+2L	VectorBase	exon	497357	497632	.	-	.	ID=E056739B;Parent=AGAP004685-RB;
+2L	VectorBase	exon	497150	497286	.	-	.	ID=E013837B;Parent=AGAP004685-RB;
+2L	VectorBase	exon	497039	497093	.	-	.	ID=E013838B;Parent=AGAP004685-RB;
+2L	VectorBase	exon	496874	496970	.	-	.	ID=E013839B;Parent=AGAP004685-RB;
+2L	VectorBase	exon	495937	496801	.	-	.	ID=E013830B;Parent=AGAP004685-RB;
+2L	VectorBase	exon	495468	495873	.	-	.	ID=E013831B;Parent=AGAP004685-RB;
+2L	VectorBase	exon	494989	495406	.	-	.	ID=E013832B;Parent=AGAP004685-RB;
+2L	VectorBase	exon	494735	494928	.	-	.	ID=E013833B;Parent=AGAP004685-RB;
+2L	VectorBase	exon	493996	494641	.	-	.	ID=E013834B;Parent=AGAP004685-RB;
+2L	VectorBase	exon	493579	493935	.	-	.	ID=E013835B;Parent=AGAP004685-RB;
+2L	VectorBase	five_prime_utr	497357	497632	.	-	.	Parent=AGAP004685-RB;
+2L	VectorBase	five_prime_utr	497150	497286	.	-	.	Parent=AGAP004685-RB;
+2L	VectorBase	five_prime_utr	497039	497093	.	-	.	Parent=AGAP004685-RB;
+2L	VectorBase	five_prime_utr	496898	496970	.	-	.	Parent=AGAP004685-RB
+2L	VectorBase	CDS	496874	496897	.	-	0	Parent=AGAP004685-RB;
+2L	VectorBase	CDS	495937	496801	.	-	0	Parent=AGAP004685-RB;
+2L	VectorBase	CDS	495468	495873	.	-	2	Parent=AGAP004685-RB;
+2L	VectorBase	CDS	494989	495406	.	-	1	Parent=AGAP004685-RB;
+2L	VectorBase	CDS	494735	494928	.	-	0	Parent=AGAP004685-RB;
+2L	VectorBase	CDS	493996	494641	.	-	1	Parent=AGAP004685-RB;
+2L	VectorBase	CDS	493633	493935	.	-	0	Parent=AGAP004685-RB;
+2L	VectorBase	three_prime_utr	493579	493632	.	-	.	Parent=AGAP004685-RB
+2L	VectorBase	gene	742004	747057	.	+	.	ID=AGAP004686;
+2L	VectorBase	mRNA	742004	747057	.	+	.	ID=AGAP004686-RA;Parent=AGAP004686;Dbxref=RefSeq_peptide:XP_001230848,RefSeq_peptide:XP_001688402,RefSeq_NA:XM_001688350,RefSeq_NA:XM_001688350,RefSeq_mRNA_predicted:XM_001688350,RefSeq_Prot:XP_001230848,RefSeq_Prot:XP_001688402,RefSeq_rna_predicted:XM_001688350,GenBank:AAAB01008864,UniProtKB:A0ND90,UniProtKB:A7USW9,goslim_goa:GO:0003674,protein_id:EAU77034,protein_id:EDO64195,UniParc:UPI00015390D9;description=hypothetical protein;
+2L	VectorBase	exon	742004	742024	.	+	.	ID=E013840A;Parent=AGAP004686-RA;
+2L	VectorBase	exon	742437	742564	.	+	.	ID=E055153A;Parent=AGAP004686-RA;
+2L	VectorBase	exon	742850	742874	.	+	.	ID=E013842A;Parent=AGAP004686-RA;
+2L	VectorBase	exon	743770	743878	.	+	.	ID=E013843A;Parent=AGAP004686-RA;
+2L	VectorBase	exon	743959	744207	.	+	.	ID=E013844A;Parent=AGAP004686-RA;
+2L	VectorBase	exon	744304	744841	.	+	.	ID=E013845A;Parent=AGAP004686-RA;
+2L	VectorBase	exon	744909	745689	.	+	.	ID=E013846A;Parent=AGAP004686-RA;
+2L	VectorBase	exon	745768	746123	.	+	.	ID=E013847A;Parent=AGAP004686-RA;
+2L	VectorBase	exon	746259	746524	.	+	.	ID=E013848A;Parent=AGAP004686-RA;
+2L	VectorBase	exon	746622	746812	.	+	.	ID=E013849A;Parent=AGAP004686-RA;
+2L	VectorBase	exon	746878	747057	.	+	.	ID=E013850A;Parent=AGAP004686-RA;
+2L	VectorBase	five_prime_utr	742004	742024	.	+	.	Parent=AGAP004686-RA;
+2L	VectorBase	five_prime_utr	742437	742520	.	+	.	Parent=AGAP004686-RA
+2L	VectorBase	CDS	742521	742564	.	+	0	Parent=AGAP004686-RA;
+2L	VectorBase	CDS	742850	742874	.	+	1	Parent=AGAP004686-RA;
+2L	VectorBase	CDS	743770	743878	.	+	0	Parent=AGAP004686-RA;
+2L	VectorBase	CDS	743959	744207	.	+	2	Parent=AGAP004686-RA;
+2L	VectorBase	CDS	744304	744841	.	+	2	Parent=AGAP004686-RA;
+2L	VectorBase	CDS	744909	745689	.	+	1	Parent=AGAP004686-RA;
+2L	VectorBase	CDS	745768	746123	.	+	0	Parent=AGAP004686-RA;
+2L	VectorBase	CDS	746259	746524	.	+	1	Parent=AGAP004686-RA;
+2L	VectorBase	CDS	746622	746812	.	+	2	Parent=AGAP004686-RA;
+2L	VectorBase	CDS	746878	747021	.	+	0	Parent=AGAP004686-RA;
+2L	VectorBase	three_prime_utr	747022	747057	.	+	.	Parent=AGAP004686-RA
+2L	VectorBase	mRNA	742004	747057	.	+	.	ID=AGAP004686-RB;Parent=AGAP004686;Dbxref=RefSeq_peptide:XP_001230848,RefSeq_NA:XM_001230847,RefSeq_NA:XM_001230847,RefSeq_mRNA_predicted:XM_001230847,RefSeq_Prot:XP_001230848,RefSeq_rna_predicted:XM_001230847,GenBank:AAAB01008864,UniProtKB:A0ND90,goslim_goa:GO:0003674,protein_id:EAU77034,UniParc:UPI00015390DA;description=hypothetical protein;
+2L	VectorBase	exon	742004	742024	.	+	.	ID=E013840B;Parent=AGAP004686-RB;
+2L	VectorBase	exon	742437	742564	.	+	.	ID=E054060B;Parent=AGAP004686-RB;
+2L	VectorBase	exon	743770	743878	.	+	.	ID=E013852B;Parent=AGAP004686-RB;
+2L	VectorBase	exon	743959	744207	.	+	.	ID=E013853B;Parent=AGAP004686-RB;
+2L	VectorBase	exon	744304	744841	.	+	.	ID=E013845B;Parent=AGAP004686-RB;
+2L	VectorBase	exon	744909	745689	.	+	.	ID=E013846B;Parent=AGAP004686-RB;
+2L	VectorBase	exon	745768	746123	.	+	.	ID=E013847B;Parent=AGAP004686-RB;
+2L	VectorBase	exon	746259	746524	.	+	.	ID=E013848B;Parent=AGAP004686-RB;
+2L	VectorBase	exon	746622	746812	.	+	.	ID=E013849B;Parent=AGAP004686-RB;
+2L	VectorBase	exon	746878	747057	.	+	.	ID=E013850B;Parent=AGAP004686-RB;
+2L	VectorBase	five_prime_utr	742004	742024	.	+	.	Parent=AGAP004686-RB;
+2L	VectorBase	five_prime_utr	742437	742564	.	+	.	Parent=AGAP004686-RB;
+2L	VectorBase	five_prime_utr	743770	743878	.	+	.	Parent=AGAP004686-RB;
+2L	VectorBase	five_prime_utr	743959	744149	.	+	.	Parent=AGAP004686-RB
+2L	VectorBase	CDS	744150	744207	.	+	0	Parent=AGAP004686-RB;
+2L	VectorBase	CDS	744304	744841	.	+	2	Parent=AGAP004686-RB;
+2L	VectorBase	CDS	744909	745689	.	+	1	Parent=AGAP004686-RB;
+2L	VectorBase	CDS	745768	746123	.	+	0	Parent=AGAP004686-RB;
+2L	VectorBase	CDS	746259	746524	.	+	1	Parent=AGAP004686-RB;
+2L	VectorBase	CDS	746622	746812	.	+	2	Parent=AGAP004686-RB;
+2L	VectorBase	CDS	746878	747021	.	+	0	Parent=AGAP004686-RB;
+2L	VectorBase	three_prime_utr	747022	747057	.	+	.	Parent=AGAP004686-RB
+2L	VectorBase	gene	819113	819301	.	-	.	ID=AGAP004687;
+2L	VectorBase	mRNA	819113	819301	.	-	.	ID=AGAP004687-RA;Parent=AGAP004687;Dbxref=RefSeq_peptide:XP_312703,RefSeq_NA:XM_312703,RefSeq_NA:XM_312703,RefSeq_mRNA_predicted:XM_312703,RefSeq_Prot:XP_312703,RefSeq_rna_predicted:XM_312703,GenBank:AAAB01008864,UniProtKB:Q7QBR8,goslim_goa:GO:0003674,goslim_goa:GO:0005975,goslim_goa:GO:0008150,goslim_goa:GO:0009056,goslim_goa:GO:0016491,goslim_goa:GO:0034641,goslim_goa:GO:0044281,goslim_goa:GO:0051186,protein_id:EAA08262,UniParc:UPI000069B0DB;description=hypothetical protein;
+2L	VectorBase	exon	819113	819301	.	-	.	ID=E013854A;Parent=AGAP004687-RA;
+2L	VectorBase	CDS	819113	819301	.	-	0	Parent=AGAP004687-RA;
+2L	VectorBase	gene	1018044	1019196	.	-	.	ID=AGAP004688;
+2L	VectorBase	mRNA	1018044	1019196	.	-	.	ID=AGAP004688-RA;Parent=AGAP004688;Dbxref=RefSeq_peptide:XP_001689108,RefSeq_NA:XM_001689056,RefSeq_NA:XM_001689056,RefSeq_mRNA_predicted:XM_001689056,RefSeq_Prot:XP_001689108,RefSeq_rna_predicted:XM_001689056,GenBank:AAAB01008968,UniProtKB:A7UUV9,goslim_goa:GO:0003674,goslim_goa:GO:0043167,protein_id:EDO63525,UniParc:UPI00015390DB;description=hypothetical protein;
+2L	VectorBase	exon	1018621	1019196	.	-	.	ID=E013855A;Parent=AGAP004688-RA;
+2L	VectorBase	exon	1018162	1018560	.	-	.	ID=E013856A;Parent=AGAP004688-RA;
+2L	VectorBase	exon	1018044	1018091	.	-	.	ID=E013857A;Parent=AGAP004688-RA;
+2L	VectorBase	CDS	1018621	1019196	.	-	0	Parent=AGAP004688-RA;
+2L	VectorBase	CDS	1018162	1018560	.	-	0	Parent=AGAP004688-RA;
+2L	VectorBase	CDS	1018044	1018091	.	-	0	Parent=AGAP004688-RA;
+2L	VectorBase	gene	1052036	1057434	.	+	.	ID=AGAP004689;
+2L	VectorBase	mRNA	1052036	1057434	.	+	.	ID=AGAP004689-RA;Parent=AGAP004689;Dbxref=RefSeq_peptide:XP_001689106,RefSeq_NA:XM_001689054,RefSeq_NA:XM_001689054,RefSeq_mRNA_predicted:XM_001689054,RefSeq_Prot:XP_001689106,RefSeq_rna_predicted:XM_001689054,GenBank:AAAB01008968,UniProtKB:A7UUV8,goslim_goa:GO:0005575,protein_id:EDO63523,UniParc:UPI00015390DC;description=hypothetical protein;
+2L	VectorBase	exon	1052036	1052410	.	+	.	ID=E013858A;Parent=AGAP004689-RA;
+2L	VectorBase	exon	1052528	1052910	.	+	.	ID=E013859A;Parent=AGAP004689-RA;
+2L	VectorBase	exon	1053358	1053597	.	+	.	ID=E013860A;Parent=AGAP004689-RA;
+2L	VectorBase	exon	1054290	1054482	.	+	.	ID=E013861A;Parent=AGAP004689-RA;
+2L	VectorBase	exon	1054548	1054769	.	+	.	ID=E013862A;Parent=AGAP004689-RA;
+2L	VectorBase	exon	1054878	1055032	.	+	.	ID=E013863A;Parent=AGAP004689-RA;
+2L	VectorBase	exon	1055104	1055176	.	+	.	ID=E013864A;Parent=AGAP004689-RA;
+2L	VectorBase	exon	1055240	1055637	.	+	.	ID=E013865A;Parent=AGAP004689-RA;
+2L	VectorBase	exon	1055743	1055760	.	+	.	ID=E013866A;Parent=AGAP004689-RA;
+2L	VectorBase	exon	1056832	1057434	.	+	.	ID=E013867A;Parent=AGAP004689-RA;
+2L	VectorBase	five_prime_utr	1052036	1052325	.	+	.	Parent=AGAP004689-RA
+2L	VectorBase	CDS	1052326	1052410	.	+	0	Parent=AGAP004689-RA;
+2L	VectorBase	CDS	1052528	1052910	.	+	2	Parent=AGAP004689-RA;
+2L	VectorBase	CDS	1053358	1053597	.	+	0	Parent=AGAP004689-RA;
+2L	VectorBase	CDS	1054290	1054482	.	+	0	Parent=AGAP004689-RA;
+2L	VectorBase	CDS	1054548	1054769	.	+	2	Parent=AGAP004689-RA;
+2L	VectorBase	CDS	1054878	1055032	.	+	2	Parent=AGAP004689-RA;
+2L	VectorBase	CDS	1055104	1055176	.	+	0	Parent=AGAP004689-RA;
+2L	VectorBase	CDS	1055240	1055637	.	+	2	Parent=AGAP004689-RA;
+2L	VectorBase	CDS	1055743	1055760	.	+	0	Parent=AGAP004689-RA;
+2L	VectorBase	CDS	1056832	1056900	.	+	0	Parent=AGAP004689-RA;
+2L	VectorBase	three_prime_utr	1056901	1057434	.	+	.	Parent=AGAP004689-RA
+2L	VectorBase	mRNA	1052036	1057434	.	+	.	ID=AGAP004689-RB;Parent=AGAP004689;Dbxref=RefSeq_peptide:XP_001689107,RefSeq_NA:XM_001689055,RefSeq_NA:XM_001689055,RefSeq_mRNA_predicted:XM_001689055,RefSeq_Prot:XP_001689107,RefSeq_rna_predicted:XM_001689055,GenBank:AAAB01008968,UniProtKB:A7UUV7,goslim_goa:GO:0005575,protein_id:EDO63524,UniParc:UPI00015390DD;description=hypothetical protein;
+2L	VectorBase	exon	1052036	1052410	.	+	.	ID=E013858B;Parent=AGAP004689-RB;
+2L	VectorBase	exon	1052528	1052683	.	+	.	ID=E013868B;Parent=AGAP004689-RB;
+2L	VectorBase	exon	1052807	1052910	.	+	.	ID=E013869B;Parent=AGAP004689-RB;
+2L	VectorBase	exon	1053358	1053597	.	+	.	ID=E013860B;Parent=AGAP004689-RB;
+2L	VectorBase	exon	1054290	1054482	.	+	.	ID=E013861B;Parent=AGAP004689-RB;
+2L	VectorBase	exon	1054548	1054769	.	+	.	ID=E013862B;Parent=AGAP004689-RB;
+2L	VectorBase	exon	1054878	1055032	.	+	.	ID=E013863B;Parent=AGAP004689-RB;
+2L	VectorBase	exon	1055104	1055176	.	+	.	ID=E013864B;Parent=AGAP004689-RB;
+2L	VectorBase	exon	1055240	1055637	.	+	.	ID=E013865B;Parent=AGAP004689-RB;
+2L	VectorBase	exon	1055743	1055760	.	+	.	ID=E013866B;Parent=AGAP004689-RB;
+2L	VectorBase	exon	1056832	1057434	.	+	.	ID=E013867B;Parent=AGAP004689-RB;
+2L	VectorBase	five_prime_utr	1052036	1052325	.	+	.	Parent=AGAP004689-RB
+2L	VectorBase	CDS	1052326	1052410	.	+	0	Parent=AGAP004689-RB;
+2L	VectorBase	CDS	1052528	1052683	.	+	2	Parent=AGAP004689-RB;
+2L	VectorBase	CDS	1052807	1052910	.	+	2	Parent=AGAP004689-RB;
+2L	VectorBase	CDS	1053358	1053597	.	+	0	Parent=AGAP004689-RB;
+2L	VectorBase	CDS	1054290	1054482	.	+	0	Parent=AGAP004689-RB;
+2L	VectorBase	CDS	1054548	1054769	.	+	2	Parent=AGAP004689-RB;
+2L	VectorBase	CDS	1054878	1055032	.	+	2	Parent=AGAP004689-RB;
+2L	VectorBase	CDS	1055104	1055176	.	+	0	Parent=AGAP004689-RB;
+2L	VectorBase	CDS	1055240	1055637	.	+	2	Parent=AGAP004689-RB;
+2L	VectorBase	CDS	1055743	1055760	.	+	0	Parent=AGAP004689-RB;
+2L	VectorBase	CDS	1056832	1056900	.	+	0	Parent=AGAP004689-RB;
+2L	VectorBase	three_prime_utr	1056901	1057434	.	+	.	Parent=AGAP004689-RB
+2L	VectorBase	mRNA	1052036	1057434	.	+	.	ID=AGAP004689-RC;Parent=AGAP004689;Dbxref=RefSeq_peptide:XP_318183,RefSeq_NA:XM_318183,RefSeq_NA:XM_318183,RefSeq_mRNA_predicted:XM_318183,RefSeq_Prot:XP_318183,RefSeq_rna_predicted:XM_318183,GenBank:AAAB01008968,UniProtKB:Q7Q2J8,goslim_goa:GO:0005575,protein_id:EAA13176,UniParc:UPI00015390DE;description=hypothetical protein;
+2L	VectorBase	exon	1052036	1052410	.	+	.	ID=E013858C;Parent=AGAP004689-RC;
+2L	VectorBase	exon	1052528	1052683	.	+	.	ID=E013868C;Parent=AGAP004689-RC;
+2L	VectorBase	exon	1052807	1052910	.	+	.	ID=E013869C;Parent=AGAP004689-RC;
+2L	VectorBase	exon	1053358	1053597	.	+	.	ID=E013860C;Parent=AGAP004689-RC;
+2L	VectorBase	exon	1054290	1054482	.	+	.	ID=E013861C;Parent=AGAP004689-RC;
+2L	VectorBase	exon	1054548	1054769	.	+	.	ID=E013862C;Parent=AGAP004689-RC;
+2L	VectorBase	exon	1054878	1055032	.	+	.	ID=E013863C;Parent=AGAP004689-RC;
+2L	VectorBase	exon	1055104	1055176	.	+	.	ID=E013864C;Parent=AGAP004689-RC;
+2L	VectorBase	exon	1055240	1055637	.	+	.	ID=E013865C;Parent=AGAP004689-RC;
+2L	VectorBase	exon	1056832	1057434	.	+	.	ID=E013867C;Parent=AGAP004689-RC;
+2L	VectorBase	five_prime_utr	1052036	1052325	.	+	.	Parent=AGAP004689-RC
+2L	VectorBase	CDS	1052326	1052410	.	+	0	Parent=AGAP004689-RC;
+2L	VectorBase	CDS	1052528	1052683	.	+	2	Parent=AGAP004689-RC;
+2L	VectorBase	CDS	1052807	1052910	.	+	2	Parent=AGAP004689-RC;
+2L	VectorBase	CDS	1053358	1053597	.	+	0	Parent=AGAP004689-RC;
+2L	VectorBase	CDS	1054290	1054482	.	+	0	Parent=AGAP004689-RC;
+2L	VectorBase	CDS	1054548	1054769	.	+	2	Parent=AGAP004689-RC;
+2L	VectorBase	CDS	1054878	1055032	.	+	2	Parent=AGAP004689-RC;
+2L	VectorBase	CDS	1055104	1055176	.	+	0	Parent=AGAP004689-RC;
+2L	VectorBase	CDS	1055240	1055637	.	+	2	Parent=AGAP004689-RC;
+2L	VectorBase	CDS	1056832	1056900	.	+	0	Parent=AGAP004689-RC;
+2L	VectorBase	three_prime_utr	1056901	1057434	.	+	.	Parent=AGAP004689-RC
+2L	VectorBase	gene	1133037	1133751	.	-	.	ID=AGAP004690;
+2L	VectorBase	mRNA	1133037	1133751	.	-	.	ID=AGAP004690-RA;Parent=AGAP004690;Dbxref=RefSeq_peptide:XP_318181,RefSeq_NA:XM_318181,RefSeq_NA:XM_318181,RefSeq_mRNA_predicted:XM_318181,RefSeq_Prot:XP_318181,RefSeq_rna_predicted:XM_318181,GenBank:AAAB01008968,UniProtKB:Q7Q2K0,protein_id:EAA13211,UniParc:UPI000069B0DF;description=hypothetical protein;
+2L	VectorBase	exon	1133661	1133751	.	-	.	ID=E013870A;Parent=AGAP004690-RA;
+2L	VectorBase	exon	1133037	1133593	.	-	.	ID=E013871A;Parent=AGAP004690-RA;
+2L	VectorBase	five_prime_utr	1133670	1133751	.	-	.	Parent=AGAP004690-RA
+2L	VectorBase	CDS	1133661	1133669	.	-	0	Parent=AGAP004690-RA;
+2L	VectorBase	CDS	1133189	1133593	.	-	0	Parent=AGAP004690-RA;
+2L	VectorBase	three_prime_utr	1133037	1133188	.	-	.	Parent=AGAP004690-RA
