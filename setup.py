@@ -21,7 +21,7 @@ install_requires = [
 
 dependency_links = [
     #"git+ssh://git@github.com/mwilliamson/mayo.git@0.2.1#egg=mayo-0.2.1"
-    "git+ssh://git@github.com:xguse/sanitize.git"
+    "git+ssh://git@github.com:xguse/sanitize.git@dev#egg=sanitize"
 ]
 
 setup(name='spartan',
