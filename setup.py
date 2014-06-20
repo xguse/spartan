@@ -14,8 +14,15 @@ install_requires = [
     # http://packages.python.org/distribute/setuptools.html#declaring-dependencies
     'gffutils',
     'pyfasta',
+    'sanitize',
+    'xlrd',
+    'docopt',
 ]
 
+dependency_links = [
+    #"git+ssh://git@github.com/mwilliamson/mayo.git@0.2.1#egg=mayo-0.2.1"
+    "git+ssh://git@github.com:xguse/sanitize.git"
+]
 
 setup(name='spartan',
     version=version,
@@ -30,11 +37,12 @@ setup(name='spartan',
     url='https://github.com/xguse',
     license='GPL3',
     packages=find_packages('src'),
-    package_dir = {'': 'src'},include_package_data=True,
+    package_dir mkd= {'': 'src'}, include_package_data=True,
     zip_safe=False,
     install_requires=install_requires,
-    # entry_points={
-    #     'console_scripts':
-    #         ['spartan=spartan:main']
-    # }
+    entry_points={
+        'console_scripts':
+            #['spartan=spartan:main']
+            ['xls_to_csvs=spartan.scripts.xls_to_csvs:main']
+    }
 )

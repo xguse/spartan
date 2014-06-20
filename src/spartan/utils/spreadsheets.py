@@ -11,13 +11,14 @@ Purpose:
 Helper functions to open and manipulate excel-type spreadsheets.
 """
 
-__author__ = 'gus'
+__author__ = 'Gus Dunn'
 
 
 import csv
 import os
 
 import xlrd
+
 try:
     from sanitize import sanitize_path_fragment
 except ImportError:
@@ -31,8 +32,6 @@ def sanitize_file_name(file_name):
 
 
 def get_workbook(workbook_path):
-    """
-    """
     return xlrd.open_workbook(workbook_path)
 
 
@@ -44,7 +43,6 @@ def get_rows(worksheet):
     """
     Returns a generator for cleaner iteration over `worksheet.row(row_i to row_N)`.
 
-
     :param worksheet: xlrd worksheet object
     """
     for i in range(worksheet.nrows):
@@ -55,7 +53,6 @@ def get_row_values(worksheet):
     """
     Returns a generator for cleaner iteration over the `worksheet.row_values(row_i to row_N)`.
 
-
     :param worksheet: xlrd worksheet object
     """
     for i in range(worksheet.nrows):
@@ -65,7 +62,6 @@ def get_row_values(worksheet):
 def worksheet_to_csv(worksheet, csv_path):
     """
     Writes data from `worksheet` in csv format to new file: `csv_path`.
-
 
     :param worksheet: xlrd sheet object
     :param csv_path: path to new csv file
