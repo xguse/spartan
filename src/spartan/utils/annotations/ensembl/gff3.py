@@ -102,8 +102,10 @@ class GFF3(object):
         # add parent:child relationships to parent_graph
         for uid, feat in self.feature_db.iteritems():
             try:
-                p = self.common_to_uniq_id[feat.data.attributes.Parent]
-                self.parents_graph.add_edge(uid, p)
+                raise NotImplementedError('You need to fix this block...')
+                # p = self.common_to_uniq_id[feat.data.attributes.Parent]
+                # feat.relatives[
+                # self.parents_graph.add_edge(uid, p)
             except AttributeError:
                 pass
 
