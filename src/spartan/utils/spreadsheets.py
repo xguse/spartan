@@ -18,11 +18,17 @@ import csv
 import os
 
 import xlrd
-from sanitize import sanitize_path_fragment
+try:
+    from sanitize import sanitize_path_fragment
+except ImportError:
+    raise ImportError('''For now you must install my fork of `sanitize`: You can do so with:
+    `pip install git+https://github.com/xguse/sanitize.git` or manually downloading/installing
+     the code at that url.''')
 
 
 def sanitize_file_name(file_name):
-    return sanitize_path_fragment(file_name,additional_illegal_characters=[u' '])
+    return sanitize_path_fragment(file_name, additional_illegal_characters=[u' '])
+
 
 def get_workbook(workbook_path):
     """
