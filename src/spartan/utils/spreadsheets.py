@@ -23,7 +23,7 @@ try:
     from sanitize import sanitize_path_fragment
 except ImportError:
     raise ImportError('''For now you must install my fork of `sanitize`: You can do so with:
-    `pip install git+https://github.com/xguse/sanitize.git` or manually downloading/installing
+    `pip install git+ssh://git@github.com/xguse/sanitize.git@gus_mod#egg=sanitize` or manually downloading/installing
      the code at that url.''')
 
 
