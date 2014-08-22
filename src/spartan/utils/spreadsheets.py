@@ -18,6 +18,7 @@ import csv
 import os
 
 import xlrd
+import arrow
 
 try:
     from sanitize import sanitize_path_fragment
@@ -95,3 +96,13 @@ def workbook_to_csv_files(workbook_path):
         csv_path = "%s/%s--%s.csv" % (workbook_dir, workbook_name, worksheet_name)
         worksheet_to_csv(worksheet, csv_path)
 
+
+def get_date(value, datemode):
+
+    """
+    Returns an `arrow` date object
+    :param value: `xlrd` produced date float
+    :param datemode: the datemode of the workbook
+    """
+    date_tuple = xlrd.xldate_as_tuple(value, datemode)
+    return arrow.get(*date_tuple)
