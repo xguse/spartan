@@ -75,7 +75,7 @@ def worksheet_to_csv(worksheet, csv_path):
     csv_file.close()
 
 
-def workbook_to_csv_files(workbook_path):
+def workbook_to_csv_files(workbook_path, out_dir=None):
     """
     Given a `workbook_path`, convert all worksheets to individual csv files with names
     constructed from the workbook name and worksheet names.
@@ -93,7 +93,11 @@ def workbook_to_csv_files(workbook_path):
         # TODO: add code to test for sheets with same name and disambiguate if found
 
         worksheet_name = sanitize_file_name(worksheet.name)
-        csv_path = "%s/%s--%s.csv" % (workbook_dir, workbook_name, worksheet_name)
+
+        if out_dir is None:
+            out_dir = workbook_dir
+
+        csv_path = "%s/%s--%s.csv" % (out_dir, workbook_name, worksheet_name)
         worksheet_to_csv(worksheet, csv_path)
 
 

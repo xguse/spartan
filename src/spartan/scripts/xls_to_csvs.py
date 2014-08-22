@@ -18,10 +18,11 @@ __author__ = 'Gus Dunn'
 
 usage = """
 Usage:
-xls_to_csvs XLS_FILE
+xls_to_csvs XLS_FILE [OUT_DIR]
 
 Arguments:
   XLS_FILE     input xls file
+  OUT_DIR      optional output directory
 
 Options:
   -h --help    show this
@@ -32,4 +33,4 @@ Options:
 def main():
     args = docopt.docopt(usage)
 
-    workbook_to_csv_files(args['XLS_FILE'])
+    workbook_to_csv_files(args['XLS_FILE'], args['OUT_DIR'])
