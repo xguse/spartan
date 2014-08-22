@@ -1,0 +1,1 @@
+git+https://github.com/xguse/sanitize.git@gus_mod#egg=sanitize
