@@ -16,7 +16,7 @@ import os
 import sys
 import tempfile
 from spartan.utils.errors import InvalidFileFormatError, SanityCheckError
-from spartan.utils.externals import runExternalApp
+from spartan.utils.externals import run_external_app
 from spartan.utils.misc import fold_seq
 
 __author__ = 'Gus Dunn'
@@ -47,7 +47,6 @@ class ParseFastA(object):
         self.bufferLine = None   # stores next headerLine between records.
         self.joinWith = joinWith
         self._stop = False
-
 
     def __iter__(self):
         return self
@@ -163,13 +162,13 @@ class ParseFastA(object):
             os.rename(absPath(outPath.name),absPath(self._file.name))
 
             try:
-                chmodResult = runExternalApp('chmod', '%s %s' % (chmod,absPath(self._file.name)))
+                chmodResult = run_external_app('chmod', '%s %s' % (chmod,absPath(self._file.name)))
             except ExternalError as err:
                 sys.stderr.write('%s\n' % (err))
         else:
             try:
                 outPath.close()
-                chmodResult = runExternalApp('chmod', '%s %s' % (chmod,absPath(outPath.name)))
+                chmodResult = run_external_app('chmod', '%s %s' % (chmod,absPath(outPath.name)))
             except ExternalError as err:
                 sys.stderr.write('%s\n' % (err))
 

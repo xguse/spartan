@@ -54,6 +54,7 @@ class Bunch(dict):
         super(Bunch,self).__init__(*args,**kwds)
         self.__dict__ = self
 
+
 def bunchify(dict_tree):
     """
     Traverses a dictionary tree and converts all sub-dictionaries to Bunch() objects.
