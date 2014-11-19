@@ -253,7 +253,7 @@ def tableFile2namedTuple(tablePath,sep='\t',headers=None):
 
     reader  = csv.reader(open(tablePath,'rU'), delimiter=sep)
     if not headers:
-        headers = reader.next()   
+        headers = [h.lower() for h in reader.next()]
     Table   = collections.namedtuple('Table', headers)
     # wrap Table.__getattribute__() for less typing
     def get(self,colName):
