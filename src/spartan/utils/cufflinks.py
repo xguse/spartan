@@ -16,7 +16,7 @@ def get_ensembl_from_gene_name(gene_names_path,cuffmerge_gtf_path,out_file_path)
     
     name_maps = {}
     
-    # ensembl name seems to be 'oId' and 'nearest_ref' in attributes field
+    # ensembl location seems to be 'oId' and 'nearest_ref' in attributes field
     # gene nam/symbol/short_name/etc seems to be 'gene_name'
     # extract attribute key/value pairs
     
@@ -87,5 +87,4 @@ class XLOCmapping(dict):
             return dict.__getitem__(self,key)
         except (KeyError,):
             return key     
-    
     
