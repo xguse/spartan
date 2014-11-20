@@ -119,7 +119,7 @@ def change_vcf_chrom_names(in_path, out_path, name_map):
 
     for line in in_file:
 
-        if line.startswith('##'):
+        if line.startswith('#'):
             if is_vcf_chrom_header(line):
                 out_file.write(replace_chrom_name_in_header(line, name_map))
             else:
