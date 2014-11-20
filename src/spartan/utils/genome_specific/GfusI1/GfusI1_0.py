@@ -125,11 +125,8 @@ def change_vcf_chrom_names(in_path, out_path, name_map):
             else:
                 out_file.write(line)
 
-        elif is_vcf_call_line(line):
-            out_file.write(replace_chrom_name_in_call_line(line, name_map))
-
         else:
-            out_file.write(line)
+            out_file.write(replace_chrom_name_in_call_line(line, name_map))
 
     in_file.close()
     out_file.close()
