@@ -101,7 +101,9 @@ def replace_chrom_name_in_call_line(line, name_map):
     :return: new call line
     """
 
-    old_name = re.split(':|\s', line)[1]
+    # split on whitespace THEN ':',
+    # bc not all VCF will have the source_file:Chrom_Name structure
+    old_name = line.split()[0].split(':')[-1]
     fields_not_first = line.split()[1:]
     new_name = name_map[old_name]
     new_line = "%s\t%s" % (new_name, '\t'.join(fields_not_first))
