@@ -102,8 +102,11 @@ def replace_chrom_name_in_call_line(line, name_map):
     """
 
     old_name = re.split(':|\s', line)[1]
+    fields_not_first = line.split()[1:]
+    new_name = name_map[old_name]
+    new_line = "%s\t%s" % (new_name, '\t'.join(fields_not_first))
 
-    return line.replace(old_name, name_map[old_name])
+    return new_line
 
 def change_vcf_chrom_names(in_path, out_path, name_map):
     """
