@@ -14,23 +14,47 @@ __author__ = 'Gus Dunn'
 
 from spartan.utils.annotations import intervals as i
 
+test_intervals = []
+test_intervals.append(i.Interval(1, 9))
+test_intervals.append(i.Interval(5, 6))
+test_intervals.append(i.Interval(12, 14))
+test_intervals.append(i.Interval(14, 15))
+test_intervals.append(i.Interval(17, 20))
+
+a,b,c,d,e,f = test_intervals
+
 class TestIntervalLength():
     """
-    tests i.interval_length
+    tests i.raw_interval_length
     """
  
     def test_150_200(self):
-        assert i.interval_length(150, 200)  == 51
+        assert i.raw_interval_length(150, 200)  == 51
 
     def test_150_150(self):
-        assert i.interval_length(150, 150) == 1
+        assert i.raw_interval_length(150, 150) == 1
 
 
 class TestGrowInterval():
     """
-    tests i.grow_interval
+    tests i.grow
     """
 
     pass
+
+
+class TestInterval():
+    """
+    tests i.Interval()
+    """
+
+    def test_interval_a_in_b(self):
+        assert (a in b) == False
+
+    def test_interval_b_in_a(self):
+        assert (a in b) == True
+
+    def test_interval_a_in_b(self):
+        assert (a in b) == False
 
 

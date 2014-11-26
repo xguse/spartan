@@ -5,7 +5,7 @@
 
 """
 =================================================
-intervals.py
+test_intervals.py
 =================================================
 Purpose:
 This code is intended to provide the "base" interval representation for `spartan`.
@@ -15,172 +15,57 @@ This code is intended to provide the "base" interval representation for `spartan
 from spartan.utils.misc import Bunch
 
 __author__ = 'Gus Dunn'
+
+from collections import deque
+
 import spartan.utils.errors as e
 
 
-#### Helper functions ####
-def interval_length(start, end):
-    return end - start + 1
 
-def grow_interval(orig_start, orig_end, grow_by, add_to="both"):
+class Interval(object):
     """
-    Returns new interval start and end base locations after growing the interval at either
-    the ``left``, ``right``, or ``both`` ends by ``grow_by`` amount.
-
-    :param grow_by: number of bases to grow the edges of the interval
-    :param add_to: {"left", "right", "both"}
-    :return: (new_start, new_end)
+    Represents a single, strandless, start/end interval.
     """
 
-    assert isinstance(orig_start, int)
-    assert isinstance(orig_end, int)
-    if add_to == "both":
-        grow_left == True
-        grow_right == True
-    elif add_to == "left":
-        grow_left == True
-        grow_right == False
-    elif add_to == "right":
-        grow_left == False
-        grow_right == True
-    else:
-        raise e.InvalidOptionError(wrong_value=add_to,
-                                   option_name="add_to",
-                                   valid_values=('both', 'left', 'right'))
-
-    merge_these = [(orig_start, orig_end)]
-
-    if grow_left:
-        merge_these.append(left_window_coords(grow_by, orig_start))
-
-    if grow_right:
-        merge_these.append(right_window_coords(grow_by, orig_end))
-
-    merged = merge_intervals(merge_these)
-
-    if len(merged) == 1:
-        return merged
-    else:
-        msg = "`grow_interval` should return a single new interval. Check your input then check the code. Would " \
-              "have returned: %s" % (str(merged))
-        raise e.SanityCheckError(msg)
-
-def merge_intervals(intervals):
-    """
-    Returns a list of interval tuples (sorted from left to right by left bound) after overlapping intervals have been
-    combined.
-
-    :param intervals: iterable of interval tuples
-    """
-
-    pass
-
-
-
-
-def left_window_coords(win_size, original_left_bound):
-    """
-    Returns a `tuple` `(new_start, new_end)` left of original bound describing a window of length `win_size` (see
-    note).
-
-    Note: Converts any new value less than `1` to `1`.
-
-    :param win_size: size of window to the left.
-    :param original_left_bound:
-    :return: new_coords
-    """
-    new_start = original_left_bound - win_size
-    new_end = original_left_bound - 1
-
-    if new_start < 1:
-        new_start = 1
-    if new_end < 1:
-        new_end = 1
-
-    new_coords = (new_start, new_end)
-
-    return new_coords
-
-def right_window_coords(win_size, original_right_bound):
-    """
-    Returns a `tuple` `(new_start, new_end)` right of original bound describing a window of length `win_size`.
-
-    :param win_size: size of window to the right.
-    :param original_right_bound:
-    :return: new_coords
-    """
-    new_start = original_right_bound + 1
-    new_end = original_right_bound + win_size
-
-    new_coords = (new_start, new_end)
-
-    return new_coords
-
-
-def detect_overlap(coords1, coords2):
-    """
-    Returns `True` if `coords1` overlaps with `coords2`.
-    :param coords1: `list` of two `int` numbers representing **start**, **end** coordinates of a feature
-    :param coords2: `list` of two `int` numbers representing **start**, **end** coordinates of a feature
-    """
-    coords1[0], coords1[1] = int(coords1[0]), int(coords1[1])
-    coords2[0], coords2[1] = int(coords2[0]), int(coords2[1])
-
-    # +++ Sort Coords +++
-    coords1.sort()
-    coords2.sort()
-    # +++ Classify Coords +++
-    if (coords1[1]-coords1[0]) <= (coords2[1]-coords2[0]):
-        shorter = coords1
-        longer = coords2
-    else:
-        shorter = coords2
-        longer = coords1
-    # +++  +++
-    left_edge = (shorter[0]-longer[0] >= 0) and (shorter[0]-longer[1] <= 0)
-    right_edge = (shorter[1]-longer[0] >= 0) and (shorter[1]-longer[1] <= 0)
-    # -- did we get a hit? --
-    return left_edge or right_edge
-
-##########################
-
-
-class SimpleFeature(object):
-
-    def __init__(self, start, end,):
+    def __init__(self, start, end):
 
         """
-
-
         :param start: left most coordinate.
         :param end: right most coordinate.
         """
+        assert isinstance(start, int)
+        assert isinstance(end, int)
         assert start <= end
 
-        self.data = Bunch()
+        self.start = start
+        self.end = end
 
-        try:
-            self.data.start = start
-            self.data.end = end
-        except TypeError:
-            pass
 
     def __str__(self):
-        return "%s-%s" % (self.data.start, self.data.end)
+        return "%s-%s" % (self.start, self.end)
+
+    def __repr__(self):
+        return "Interval(%s, %s)" % (self.start, self.end)
 
     def __len__(self):
-        return interval_length(self.data.start, self.data.end)
+        return raw_interval_length(self.start, self.end)
 
     def __contains__(self, other):
-        s_start = self.data.start
-        o_start = other.data.start
-        s_end = self.data.end
-        o_end = other.data.end
-
-        if (s_start <= o_start) and (s_end >= o_end):
-            return True
-        else:
-            return False
+        
+        try:
+            # do this if `other` is an Interval obj
+            if (self.start <= other.start) and (self.end >= other.end):
+                return True
+            else:
+                return False
+        
+        except AttributeError:
+            if isinstance(other, int):
+                # do this if `other` is an integer
+                if (self.start <= other) and (self.end >= other):
+                    return True
+                else:
+                    return False
 
     def __cmp__(self, other):
         """
@@ -191,16 +76,16 @@ class SimpleFeature(object):
             * `1` if `other` should sort to the left of `self`
 
         """
-        s_start = self.data.start
-        o_start = other.data.start
+        self.start = self.start
+        other.start = other.start
 
-        if s_start < o_start:
+        if self.start < other.start:
             return -1
 
-        if s_start == o_start:
+        if self.start == other.start:
             return 0
 
-        if s_start > o_start:
+        if self.start > other.start:
             return 1
 
     def __eq__(self, other):
@@ -208,12 +93,12 @@ class SimpleFeature(object):
         Returns `True` if `other` perfectly overlaps this feature, `False` otherwise.
         :param other: an interval/feature
         """
-        s_start = self.data.start
-        o_start = other.data.start
-        s_end = self.data.end
-        o_end = other.data.end
+        self.start = self.start
+        other.start = other.start
+        self.end = self.end
+        other.end = other.end
 
-        if (s_start == o_start) and (s_end == o_end):
+        if (self.start == other.start) and (self.end == other.end):
             return True
         else:
             return False
@@ -224,7 +109,7 @@ class SimpleFeature(object):
         `False` otherwise.
         :param other: an interval/feature
         """
-        if self.data.end > other.data.end:
+        if self.end > other.end:
             return True
         else:
             return False
@@ -236,14 +121,143 @@ class SimpleFeature(object):
         `False` otherwise.
         :param other: an interval/feature
         """
-        if self.data.start < other.data.start:
+        if self.start < other.start:
             return True
         else:
             return False
 
-    def has_overlap(self, other):
-        return detect_overlap(coords1=[self.data.start, self.data.end],
-                              coords2=[other.data.start, other.data.end])
+
+    def grow(self, grow_by, add_to="both"):
+        """
+        Returns new Interval obj after growing the Interval at either
+        the ``left``, ``right``, or ``both`` ends by ``grow_by`` amount.
+    
+        :param grow_by: number of bases to grow the edges of the interval
+        :param add_to: {"left", "right", "both"}
+        :return: (new_start, new_end)
+        """
+    
+        assert isinstance(self.start, int)
+        assert isinstance(self.end, int)
+
+        if add_to == "both":
+            grow_left = True
+            grow_right = True
+        elif add_to == "left":
+            grow_left = True
+            grow_right = False
+        elif add_to == "right":
+            grow_left = False
+            grow_right = True
+        else:
+            raise e.InvalidOptionError(wrong_value=add_to,
+                                       option_name="add_to",
+                                       valid_values=('both', 'left', 'right'))
+    
+        merge_these = []
+    
+        if grow_left:
+            merge_these.append(self.left_window(grow_by))
+    
+        if grow_right:
+            merge_these.append(self.right_window(grow_by))
+    
+        merged = self.merge(merge_these)
+    
+        if len(merged) == 1:
+            return merged
+        else:
+            msg = "`grow` should return a single new interval. Check your input then check the code. Would " \
+                  "have returned: %s" % (str(merged))
+            raise e.SanityCheckError(msg)
+       
+    def merge(self, intervals):
+        """
+        Returns a list of Interval objects (sorted from left to right by `start` bound) after overlapping test_intervals
+        have been combined.
+    
+        :param intervals: iterable of Interval objs
+        """
+    
+        # test_intervals.append(self)
+        #
+        # deck = deque(sorted(test_intervals))
+        #
+        # merged = deck.popleft()
+        #
+        # while deck:
+        #     merging = merged[-1]
+        #     if merging.
+
+
+
+
+    
+    def left_window(self, win_size):
+        """
+        Returns a new Interval obj left of original bound describing a window of length `win_size` (see
+        note).
+    
+        Note: Converts any new value less than `1` to `1`.
+    
+        :param win_size: size of window to the left.
+        """
+        new_start = self.start - win_size
+        new_end = self.start - 1
+    
+        if new_start < 1:
+            new_start = 1
+        if new_end < 1:
+            new_end = 1
+    
+        new_interval = Interval(new_start, new_end)
+    
+        return new_interval
+    
+    def right_window(self, win_size):
+        """
+        Returns a new Interval obj right of original bound describing a window of length `win_size`.
+    
+        :param win_size: size of window to the right.
+        """
+        new_start = self.end + 1
+        new_end = self.end + win_size
+
+        new_interval = Interval(new_start, new_end)
+
+        return new_interval
+
+
+    def overlaps(self, other):
+        """
+        Returns `True` if `self` overlaps with `other`.
+        :param self: `list` of two `int` numbers representing **start**, **end** coordinates of a feature
+        :param other: `list` of two `int` numbers representing **start**, **end** coordinates of a feature
+        """
+
+        # An overlap exists if the left-sorted interval contains the start of the right-sorted interval.
+
+        left_interval, right_interval = sorted([self, other])
+
+        if right_interval.start in left_interval:
+            return True
+        else:
+            return False
+
+#### Helper functions ####
+def raw_interval_length(start, end):
+    return end - start + 1
+
+
+
+
+##########################
+
+
+class SimpleFeature(object):
+
+
+
 
     def get_flank(self, length):
         # TODO: SimpleFeature.flank
