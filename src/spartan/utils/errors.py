@@ -21,7 +21,12 @@ import warnings
 
 class SpartanError(StandardError):
     """Base class for exceptions in the blacktie package."""
-    pass
+
+    def __init__(self, msg):
+        self.msg = msg
+
+    def __str__(self):
+        return """%s""" % (self.msg)
 
 
 class SystemCallError(SpartanError):
@@ -49,41 +54,42 @@ class SystemCallError(SpartanError):
 
 class SanityCheckError(SpartanError):
     """When a 'state check' comes back as conflicting or nonsensical."""
-    pass
 
 
 class UnexpectedValueError(SpartanError):
     """When values that "should" not be possible happen; like if a variable was changed unexpectedly."""
-    pass
 
 
 class InvalidFileFormatError(SpartanError):
     """When errors occur due to malformed file formats."""
-    pass
 
 
 class MissingArgumentError(SpartanError):
     """When a required argument is missing from the parsed command line options."""
 
-    def __init__(self, errMsg):
-        self.msg = errMsg
-
-    def __str__(self):
-        return """ERROR: %s""" % (self.msg)
 
 
 class InvalidOptionError(SpartanError):
-    def __init__(self, optVal, optName, validVals=None):
-        self.optVal = optVal
-        self.optName = optName
-        self.validVals = validVals
+    """
+    Raised when a constrained settable option fails its validity test.
+    """
+    def __init__(self, wrong_value, option_name, valid_values=None):
+        """
+        Provides standard format for error messages of this type.
+        :param wrong_value: Value encountered
+        :param option_name: Name of option
+        :param valid_values: iterable of valid values
+        """
+        self.wrong_value = wrong_value
+        self.option_name = option_name
+        self.valid_values = valid_values
 
     def __str__(self):
-        if self.validVals:
-            return """ERROR: %s is not a valid value for arg:%s.\n\tValid values are: %s""" % (
-                self.optVal, self.optName, self.validVals)
+        if self.valid_values:
+            return """%s is not a valid value for arg:%s.\n\tValid values are: %s""" % (
+                self.wrong_value, self.option_name, self.valid_values)
         else:
-            return """ERROR: %s is not a valid value for arg:%s.""" % (self.optVal, self.optName)
+            return """%s is not a valid value for arg:%s.""" % (self.wrong_value, self.option_name)
 
 
 
@@ -91,4 +97,3 @@ class InvalidOptionError(SpartanError):
     
     
 
-    
