@@ -17,11 +17,12 @@ from spartan.utils.misc import Bunch
 __author__ = 'Gus Dunn'
 
 from collections import deque
+import pybedtools as pbt
 
 import spartan.utils.errors as e
 
 
-
+# class Interval(pbt.Interval):
 class Interval(object):
     """
     Represents a single, strandless, start/end interval.
@@ -35,7 +36,11 @@ class Interval(object):
         """
         assert isinstance(start, int)
         assert isinstance(end, int)
-        assert start <= end
+
+        try:
+            assert start <= end
+        except AssertionError:
+            raise e.NonsenseInterval
 
         self.start = start
         self.end = end
@@ -66,6 +71,49 @@ class Interval(object):
                     return True
                 else:
                     return False
+
+    def __add__(self, other):
+        """
+        Returns a single merged new Interval object if overlap is detected, two new objects with original values
+        otherwise.
+
+        :param other: Another Interval object
+        """
+
+        if self.overlaps(other):
+            new_start = min(self.start, other.start)
+            new_end = max(self.end, other.end)
+            return Interval(new_start, new_end)
+
+        else:
+            return Interval(self.start, self.end), Interval(other.start, other.end)
+
+
+    def __sub__(self, other):
+        """
+        Returns portion of self NOT overlapped by other as new Interval Object(s).
+
+        :param other: Another Interval object
+        """
+        return_intervals = []
+
+        try:
+            return_intervals.append(Interval(self.start, other.start))
+        except e.NonsenseInterval:
+            pass
+
+        try:
+            return_intervals.append(Interval(other.end, self.end))
+        except e.NonsenseInterval:
+            pass
+
+        return return_intervals
+
+
+
+
+
+
 
     def __cmp__(self, other):
         """
@@ -178,18 +226,13 @@ class Interval(object):
     
         :param intervals: iterable of Interval objs
         """
-    
-        # test_intervals.append(self)
+        # to_merge = sorted(deque(intervals + self))
         #
-        # deck = deque(sorted(test_intervals))
+        #  = deck.popleft()
         #
-        # merged = deck.popleft()
-        #
-        # while deck:
+        # while 1:
         #     merging = merged[-1]
         #     if merging.
-
-
 
 
     

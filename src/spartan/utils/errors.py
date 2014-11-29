@@ -22,7 +22,9 @@ import warnings
 class SpartanError(StandardError):
     """Base class for exceptions in the blacktie package."""
 
-    def __init__(self, msg):
+    def __init__(self, msg=None):
+        if msg is None:
+            msg = "No error message supplied."
         self.msg = msg
 
     def __str__(self):
@@ -92,7 +94,10 @@ class InvalidOptionError(SpartanError):
             return """%s is not a valid value for arg:%s.""" % (self.wrong_value, self.option_name)
 
 
-
+class NonsenseInterval(SanityCheckError):
+    """
+    Raised by Interval Object when an object's values do not produce a valid Interval. Example: Interval(20,10).
+    """
 
     
     
