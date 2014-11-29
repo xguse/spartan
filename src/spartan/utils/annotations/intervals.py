@@ -28,9 +28,10 @@ class Interval(object):
     Represents a single, strandless, start/end interval.
     """
 
-    def __init__(self, start, end):
+    def __init__(self, start, end, one_to_zero=False):
 
         """
+        If ``one_to_zero``, conversion from 1-based(closed) to 0-based(half-open) will be performed.
         :param start: left most coordinate.
         :param end: right most coordinate.
         """
@@ -42,8 +43,13 @@ class Interval(object):
         except AssertionError:
             raise e.NonsenseInterval
 
-        self.start = start
-        self.end = end
+        if one_to_zero:
+            self.start = start - 1
+            self.end = end
+
+        else:
+            self.start = start
+            self.end = end
 
 
     def __str__(self):
@@ -74,8 +80,7 @@ class Interval(object):
 
     def __add__(self, other):
         """
-        Returns a single merged new Interval object if overlap is detected, two new objects with original values
-        otherwise.
+        Returns a single merged new Interval object if overlap is detected, ``None`` otherwise.
 
         :param other: Another Interval object
         """
@@ -86,29 +91,33 @@ class Interval(object):
             return Interval(new_start, new_end)
 
         else:
-            return Interval(self.start, self.end), Interval(other.start, other.end)
+            return None
 
 
     def __sub__(self, other):
         """
-        Returns portion of self NOT overlapped by other as new Interval Object(s).
+        Returns portion(s) of self NOT overlapped by other as new Interval Object(s) as long as other overlaps self
+        SOMEWHERE; returns ``None`` otherwise.
 
         :param other: Another Interval object
         """
         return_intervals = []
 
-        try:
-            return_intervals.append(Interval(self.start, other.start))
-        except e.NonsenseInterval:
-            pass
+        if self.overlaps(other):
+            try:
+                return_intervals.append(Interval(self.start, other.start))
+            except e.NonsenseInterval:
+                pass
 
-        try:
-            return_intervals.append(Interval(other.end, self.end))
-        except e.NonsenseInterval:
-            pass
+            try:
+                return_intervals.append(Interval(other.end, self.end))
+            except e.NonsenseInterval:
+                pass
 
-        return return_intervals
+            return return_intervals
 
+        else:
+            return None
 
 
 
@@ -174,6 +183,11 @@ class Interval(object):
         else:
             return False
 
+    def range(self):
+        """
+        Returns ``range(self.start, self.end)``
+        """
+        return range(self.start, self.end)
 
     def grow(self, grow_by, add_to="both"):
         """
@@ -226,13 +240,27 @@ class Interval(object):
     
         :param intervals: iterable of Interval objs
         """
-        # to_merge = sorted(deque(intervals + self))
-        #
-        #  = deck.popleft()
-        #
-        # while 1:
-        #     merging = merged[-1]
-        #     if merging.
+        assert isinstance(intervals,list)
+
+        right_intervals = deque(sorted(intervals + [self]))
+        left_intervals = deque()
+
+        left_intervals.append(right_intervals.popleft())
+
+        while right_intervals:
+            left_i = left_intervals.pop()
+            right_i = right_intervals.popleft()
+
+            something_to_merge = left_i + right_i
+
+            if something_to_merge:
+                left_intervals.append(something_to_merge)
+            else:
+                left_intervals.append(left_i)
+                left_intervals.append(right_i)
+
+        return left_intervals
+
 
 
     
@@ -289,7 +317,7 @@ class Interval(object):
 
 #### Helper functions ####
 def raw_interval_length(start, end):
-    return end - start + 1
+    return end - start
 
 
 
