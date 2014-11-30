@@ -11,12 +11,13 @@ Purpose:
 This code is intended to provide the "base" interval representation for `spartan`.
 
 """
-
-from spartan.utils.misc import Bunch
-
 __author__ = 'Gus Dunn'
 
-from collections import deque
+import ipdb
+
+import itertools
+import operator
+
 import pybedtools as pbt
 
 import spartan.utils.errors as e
@@ -51,6 +52,7 @@ class Interval(object):
             self.start = start
             self.end = end
 
+        self._range = frozenset(self.range())
 
     def __str__(self):
         return "%s-%s" % (self.start, self.end)
@@ -59,24 +61,24 @@ class Interval(object):
         return "Interval(%s, %s)" % (self.start, self.end)
 
     def __len__(self):
-        return raw_interval_length(self.start, self.end)
+        return self.end - self.start
 
     def __contains__(self, other):
-        
+        """
+        Returns `True` if `other` is completely contained within `self`, `False` otherwise.
+        """
         try:
             # do this if `other` is an Interval obj
-            if (self.start <= other.start) and (self.end >= other.end):
-                return True
-            else:
-                return False
+            return self._range >= other._range
         
         except AttributeError:
             if isinstance(other, int):
                 # do this if `other` is an integer
-                if (self.start <= other) and (self.end >= other):
-                    return True
-                else:
-                    return False
+                return other in self._range
+            else:
+                raise e.InvalidOptionError(wrong_value=other,
+                                           option_name='other',
+                                           valid_values=[type(self).__name__, type(1).__name__])
 
     def __add__(self, other):
         """
@@ -118,10 +120,6 @@ class Interval(object):
 
         else:
             return None
-
-
-
-
 
 
     def __cmp__(self, other):
@@ -224,10 +222,10 @@ class Interval(object):
         if grow_right:
             merge_these.append(self.right_window(grow_by))
     
-        merged = self.merge(merge_these)
+        merged = list(self.merge(merge_these))
     
         if len(merged) == 1:
-            return merged
+            return merged[0]
         else:
             msg = "`grow` should return a single new interval. Check your input then check the code. Would " \
                   "have returned: %s" % (str(merged))
@@ -235,31 +233,24 @@ class Interval(object):
        
     def merge(self, intervals):
         """
-        Returns a list of Interval objects (sorted from left to right by `start` bound) after overlapping test_intervals
+        Returns a generator of Interval objects (sorted from left to right by `start` bound) after overlapping
+        test_intervals
         have been combined.
     
         :param intervals: iterable of Interval objs
         """
-        assert isinstance(intervals,list)
+        _range = operator.attrgetter('_range')
 
-        right_intervals = deque(sorted(intervals + [self]))
-        left_intervals = deque()
+        assert isinstance(intervals, list)
+        intervals.append(self)
 
-        left_intervals.append(right_intervals.popleft())
+        merged_positions = set()
+        merged_positions.update(*map(_range,intervals))
 
-        while right_intervals:
-            left_i = left_intervals.pop()
-            right_i = right_intervals.popleft()
+        new_intervals = intervals_from_positions(sorted(list(merged_positions))) # returns generator
+        return new_intervals
 
-            something_to_merge = left_i + right_i
 
-            if something_to_merge:
-                left_intervals.append(something_to_merge)
-            else:
-                left_intervals.append(left_i)
-                left_intervals.append(right_i)
-
-        return left_intervals
 
 
 
@@ -274,7 +265,7 @@ class Interval(object):
         :param win_size: size of window to the left.
         """
         new_start = self.start - win_size
-        new_end = self.start - 1
+        new_end = self.start
     
         if new_start < 1:
             new_start = 1
@@ -291,7 +282,7 @@ class Interval(object):
     
         :param win_size: size of window to the right.
         """
-        new_start = self.end + 1
+        new_start = self.end
         new_end = self.end + win_size
 
         new_interval = Interval(new_start, new_end)
@@ -306,18 +297,36 @@ class Interval(object):
         :param other: `list` of two `int` numbers representing **start**, **end** coordinates of a feature
         """
 
-        # An overlap exists if the left-sorted interval contains the start of the right-sorted interval.
-
-        left_interval, right_interval = sorted([self, other])
-
-        if right_interval.start in left_interval:
+        # any intersection of the ._range sets is an overlap.
+        if self._range.intersection(other._range):
             return True
         else:
             return False
 
+
 #### Helper functions ####
-def raw_interval_length(start, end):
-    return end - start
+def intervals_from_positions(positions, one_to_zero=False):
+    """
+    Returns a generator of `Interval` objects initialized based on groups of any contiguous ranges of numbers found
+    in the `positions` list.
+
+    """
+
+    positions.sort()
+    pos_lists = get_contiguous_integers(positions)
+
+    for plist in pos_lists:
+        start = plist[0]
+        end = start + len(plist) # use the start + len bc of the half-open nature of range definitions.
+        yield Interval(start=start, end=end, one_to_zero=one_to_zero)
+
+
+def get_contiguous_integers(integer_list):
+    """
+    Returns a generator of lists containing contiguous numbers.
+    """
+    for k, g in itertools.groupby(enumerate(integer_list), lambda (i, x): i - x):
+        yield map(operator.itemgetter(1), g)
 
 
 
