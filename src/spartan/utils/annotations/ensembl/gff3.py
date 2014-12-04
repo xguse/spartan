@@ -38,6 +38,31 @@ def convert_strand(strand):
     return strand_dict[strand]
 
 
+
+def parse_gff3_attributes(attributes):
+    """
+    Returns a `dict`-like object `Bunch` from the key/value data encoded in the attributes string.
+
+    :param attributes: attributes string from a GFF3 line.
+    """
+    attrib_pairs = attributes.split(';')
+
+    # TODO: convert this to use OrderedDict instead of bunch
+    attrib_bunch = Bunch()
+
+    for key_val in attrib_pairs:
+        try:
+            k, v = key_val.split('=')
+            attrib_bunch[k] = v
+        except ValueError:
+            try:
+                attrib_bunch['unnamed_attributes'].append(key_val)
+            except KeyError:
+                attrib_bunch['unnamed_attributes'] = [key_val]
+
+    return attrib_bunch
+
+
 def parse_gff3(gff3_path):
     """
 
@@ -157,21 +182,7 @@ class SimpleFeatureGFF3(intervals.SimpleFeature):
 
         :param attributes: attributes string from a GFF3 line.
         """
-        attrib_pairs = attributes.split(';')
-
-        attrib_bunch = Bunch()
-
-        for key_val in attrib_pairs:
-            try:
-                k, v = key_val.split('=')
-                attrib_bunch[k] = v
-            except ValueError:
-                try:
-                    attrib_bunch['unnamed_attributes'].append(key_val)
-                except KeyError:
-                    attrib_bunch['unnamed_attributes'] = [key_val]
-
-        return attrib_bunch
+        return parse_gff3_attributes(attributes=attributes)
 
     def get_range(self):
         return self.data.start, self.data.end
