@@ -11,6 +11,9 @@ intervals.append(i.Interval(21, 25,1))
 intervals.append(i.Interval(27, 33,1))
 intervals
 a,b,c,d,e,f,g = intervals
+a.grow(3)
+
+
 repr(a)
 str(a)
 a in b # False
