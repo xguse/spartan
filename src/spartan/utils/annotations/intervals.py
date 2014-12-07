@@ -29,7 +29,7 @@ class Interval(object):
     Represents a single, strandless, start/end interval.
     """
 
-    def __init__(self, start, end, one_to_zero=False):
+    def __init__(self, start, end, seq=None, one_to_zero=False):
 
         """
         If ``one_to_zero``, conversion from 1-based(closed) to 0-based(half-open) will be performed.
@@ -43,6 +43,11 @@ class Interval(object):
             assert start <= end
         except AssertionError:
             raise e.NonsenseInterval
+
+        if seq is not None:
+            self.seq = seq
+        else:
+            self.seq = 'unnamed'
 
         if one_to_zero:
             self.start = start - 1
@@ -251,7 +256,23 @@ class Interval(object):
         return new_intervals
 
 
+    def separation(self, other):
+        """
+        Returns the genomic distance separating the two Intervals if on the same seq, `None` otherwise.
+        :param other: Interval obj
+        """
+        #TODO: finish coding separation method
 
+        assert self.seq == other.seq
+        intervals = [self, other]
+        left, right = sorted(intervals)
+
+        sep = right.start - left.end
+
+        if sep > 0:
+            return sep
+        else:
+            return 0
 
 
     
