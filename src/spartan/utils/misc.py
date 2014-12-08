@@ -72,7 +72,6 @@ def whoami():
     return inspect.stack()[1][3]
 
 
-    
 def get_time():
     """
     Return system time formatted as 'YYYY:MM:DD-hh:mm:ss'.
@@ -80,14 +79,14 @@ def get_time():
     t = time.localtime()
     return time.strftime('%Y.%m.%d-%H:%M:%S',t)
         
-    
 
 def uniques(seq):
     seen = set()
     seen_add = seen.add
     return [ x for x in seq if x not in seen and not seen_add(x)]
 
-def slidingWindow(sequence,winSize,step=1):
+
+def slidingWindow(sequence, winSize, step=1):
     """Returns a generator that will iterate through
     the defined chunks of input sequence.  Input sequence
     must be iterable."""
@@ -109,6 +108,7 @@ def slidingWindow(sequence,winSize,step=1):
     # Do the work
     for i in range(0,numOfChunks*step,step):
         yield sequence[i:i+winSize]
+
 
 def fold_seq(seq, lineLen=70):
     return [seq[i:i+lineLen] for i in xrange(0, len(seq), lineLen)]

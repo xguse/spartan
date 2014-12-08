@@ -15,6 +15,7 @@ import gzip
 import os
 import sys
 import tempfile
+import math
 from spartan.utils.errors import InvalidFileFormatError, SanityCheckError
 from spartan.utils.externals import run_external_app
 from spartan.utils.misc import fold_seq
@@ -24,7 +25,7 @@ __author__ = 'Gus Dunn'
 
 class ParseFastA(object):
     """Returns a record-by-record fastA parser analogous to file.readline()."""
-    def __init__(self,filePath,joinWith='',key=None):
+    def __init__(self, filePath, joinWith='', key=None):
         """Returns a record-by-record fastA parser analogous to file.readline().
         Exmpl: parser.next()
         Its ALSO an iterator so "for rec in parser" works too!
@@ -122,7 +123,7 @@ class ParseFastA(object):
                 break
         return fasDict
 
-    def rewrite_headers(self,outPath,lineLen=70,delim=' ',order=[],ow=False,chmod=755):
+    def rewrite_headers(self, outPath, lineLen=70, delim=' ', order=[], ow=False, chmod=755):
         """
         PURPOSE
         * reorganize the headers of a fasta file:
@@ -142,7 +143,7 @@ class ParseFastA(object):
         if ow:
             outPath = tempfile.NamedTemporaryFile(suffix='.renamed.fas')
         else:
-            outPath = open(outPath,'w')
+            outPath = open(outPath, 'w')
 
         while 1:
             try:
@@ -151,24 +152,24 @@ class ParseFastA(object):
                 break
             fSplit  = f[0].lstrip('>').rstrip('\n').split(delim)
             newHead = delim.join([fSplit[x] for x in order])
-            outPath.write('>%s\n%s\n' % (newHead,'\n'.join(fold_seq(f[1],lineLen))))
+            outPath.write('>%s\n%s\n' % (newHead, '\n'.join(fold_seq(f[1], lineLen))))
 
         self._file.close()
 
-        absPath     = os.path.abspath
+        absPath = os.path.abspath
         if ow:
             outPath.flush()
             outPath.delete = False
-            os.rename(absPath(outPath.name),absPath(self._file.name))
+            os.rename(absPath(outPath.name), absPath(self._file.name))
 
             try:
-                chmodResult = run_external_app('chmod', '%s %s' % (chmod,absPath(self._file.name)))
+                chmodResult = run_external_app('chmod', '%s %s' % (chmod, absPath(self._file.name)))
             except ExternalError as err:
                 sys.stderr.write('%s\n' % (err))
         else:
             try:
                 outPath.close()
-                chmodResult = run_external_app('chmod', '%s %s' % (chmod,absPath(outPath.name)))
+                chmodResult = run_external_app('chmod', '%s %s' % (chmod, absPath(outPath.name)))
             except ExternalError as err:
                 sys.stderr.write('%s\n' % (err))
 
@@ -280,3 +281,74 @@ def fastaRec_length_indexer(fastaFiles):
             recDict[rec] = lengths[0]
 
     return (recDict,seqDict)
+
+
+def count_fasta_recs_in_file(fasta_path):
+    """
+    Returns number of records contained in a fasta file.
+
+    :param fasta_path: Path to fasta file
+    """
+    return len(ParseFastA(fasta_path).to_dict().keys())
+
+
+def divide_fasta_file(fasta_path, divide_by=2, out_path_base=None):
+    """
+    Returns tuple of paths to resulting files.
+    Splits and writes out records in ``fasta_path`` to new files.
+    Default ``out_path_base`` derived from ``fasta_path``.
+
+    :param fasta_path: Path to fasta file
+    :param divide_by: Number of files to divide the fasta records into
+    :param out_path_base: Base path for resulting fasta files
+
+    """
+    assert isinstance(divide_by, int)
+
+    num_fastas = count_fasta_recs_in_file(fasta_path)
+    recs_per_file = math.ceil(num_fastas/divide_by)
+
+    out_paths = []
+
+    ext = '.fas'
+    if out_path_base is None:
+        out_path_base, ext = os.path.splitext(fasta_path)
+
+    out_path_template = "{out_base}.{file_num}{ext}"
+    fasta_seq_template = ">{header}\n{seq_lines}\n"
+
+    for index, (header, seq) in enumerate(ParseFastA(fasta_path).to_dict().iteritems()):
+
+        # create a switch after every `recs_per_file` records that opens a new file for writing
+        if index % recs_per_file == 0:
+            current_out_path = out_path_template.format(out_base=out_path_base,
+                                                        file_num=index,
+                                                        ext=ext)
+            # Record out_path
+            out_paths.append(current_out_path)
+
+            # Close current file if it exists
+            try:
+                out_file.close()
+            except NameError:
+                pass
+
+            # create new out_file with current path
+            out_file = open(current_out_path, 'w')
+
+        # with this fasta dict item,
+        # fold seqs into '\n' delimited string
+        # append to new header
+        # write to file
+
+        seq_lines = fold_seq(seq, lineLen=100)
+
+        fasta_record = fasta_seq_template.format(header=header,
+                                                 seq_lines='\n'.join(seq_lines))
+        out_file.write(fasta_record)
+
+    return out_paths
+
+
+
+
