@@ -41,7 +41,7 @@ def main():
 
         # Change e.g., if you have a different username on the remote machine
         ctx.user_id = "wd238"
-        ctx.user_cert = '$HOME/.ssh/.ssh/id_rsa'
+        # ctx.user_cert = '$HOME/.ssh/.ssh/id_rsa'
         ctx.user_key = '$HOME/.ssh/id_rsa.pub'
 
         session = saga.Session()
