@@ -39,8 +39,10 @@ def main():
         # Your ssh identity on the remote machine.
         ctx = saga.Context("ssh")
 
-        # Change e.g., if you have a differnent username on the remote machine
-        # ctx.user_id = "your_ssh_username"
+        # Change e.g., if you have a different username on the remote machine
+        ctx.user_id = "wd238"
+        ctx.user_cert = '$HOME/.ssh/.ssh/id_rsa'
+        ctx.user_key = '$HOME/.ssh/id_rsa.pub'
 
         session = saga.Session()
         session.add_context(ctx)
