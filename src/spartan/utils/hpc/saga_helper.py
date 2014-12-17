@@ -22,6 +22,8 @@ __author__ = 'Gus Dunn'
 import sys
 import saga
 
+from spartan.utils.misc import add_home
+
 
 # ----------------------------------------------------------------------------
 # This is an example for a callback function. Callback functions can be
@@ -34,6 +36,8 @@ def job_state_change_cb(src_obj, fire_on, value):
 
 # ----------------------------------------------------------------------------
 #
+
+
 def main():
     try:
         # Your ssh identity on the remote machine.
@@ -41,8 +45,8 @@ def main():
 
         # Change e.g., if you have a different username on the remote machine
         ctx.user_id = "wd238"
-        ctx.user_cert = "/home2/wd238/.ssh/.ssh/id_rsa"
-        ctx.user_key = "/home2/wd238/.ssh/id_rsa.pub"
+        ctx.user_cert = add_home(".ssh/.ssh/id_rsa")
+        ctx.user_key = add_home(".ssh/id_rsa.pub")
 
         session = saga.Session()
         session.add_context(ctx)
@@ -68,9 +72,9 @@ def main():
         # jd.queue = "batch"
         #jd.project           = "TG-MCB090174"
 
-        jd.working_directory = "/home2/wd238/test_saga"
-        jd.output = "/home2/wd238/qsub_out/examplejob.out"
-        jd.error = "/home2/wd238/qsub_out/examplejob.err"
+        jd.working_directory = "test_saga"
+        jd.output = add_home("qsub_out/examplejob.out")
+        jd.error = add_home("qsub_out/examplejob.err")
 
         # Create a new job from the job description. The initial state of
         # the job is 'New'.
@@ -111,7 +115,7 @@ def main():
 
     except saga.SagaException, ex:
         # Catch all saga exceptions
-        print "An exception occured: (%s) %s " % (ex.type, (str(ex)))
+        print "An exception occurred: (%s) %s " % (ex.type, (str(ex)))
         # Get the whole traceback in case of an exception -
         # this can be helpful for debugging the problem
         print " \n*** Backtrace:\n %s" % ex.traceback

@@ -23,6 +23,7 @@ import smtplib
 import base64
 import time
 import re
+import os
 
 from collections import defaultdict
 
@@ -44,6 +45,15 @@ def get_version_number(path_to_setup):
 
     else:
         print("No version definition found in ", setup_path)
+
+
+def add_home(path):
+    """
+    returns `path` added to the current $HOME environment variable value.
+    """
+    assert isinstance(path, str)
+
+    return "%s/%s" % (os.environ["HOME"], path.lstrip('/'))
 
 
 class Bunch(dict):
