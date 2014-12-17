@@ -41,8 +41,8 @@ def main():
 
         # Change e.g., if you have a different username on the remote machine
         ctx.user_id = "wd238"
-        ctx.user_cert = "$HOME/.ssh/.ssh/id_rsa"
-        ctx.user_key = "$HOME/.ssh/id_rsa.pub"
+        ctx.user_cert = "/home2/wd238/.ssh/.ssh/id_rsa"
+        ctx.user_key = "/home2/wd238/.ssh/id_rsa.pub"
 
         session = saga.Session()
         session.add_context(ctx)
@@ -68,9 +68,9 @@ def main():
         # jd.queue = "batch"
         #jd.project           = "TG-MCB090174"
 
-        jd.working_directory = "$HOME/test_saga"
-        jd.output = "$HOME/qsub_out/examplejob.out"
-        jd.error = "$HOME/qsub_out/examplejob.err"
+        jd.working_directory = "/home2/wd238/test_saga"
+        jd.output = "/home2/wd238/qsub_out/examplejob.out"
+        jd.error = "/home2/wd238/qsub_out/examplejob.err"
 
         # Create a new job from the job description. The initial state of
         # the job is 'New'.
