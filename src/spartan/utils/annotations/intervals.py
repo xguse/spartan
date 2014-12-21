@@ -65,6 +65,7 @@ def grow_interval(orig_start, orig_end, grow_by, add_to="both"):
               "have returned: %s" % (str(merged))
         raise e.SanityCheckError(msg)
 
+
 def merge_intervals(intervals):
     """
     Returns a list of interval tuples (sorted from left to right by left bound) after overlapping intervals have been
@@ -74,8 +75,6 @@ def merge_intervals(intervals):
     """
 
     pass
-
-
 
 
 def left_window_coords(win_size, original_left_bound):
@@ -100,6 +99,7 @@ def left_window_coords(win_size, original_left_bound):
     new_coords = (new_start, new_end)
 
     return new_coords
+
 
 def right_window_coords(win_size, original_right_bound):
     """

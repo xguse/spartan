@@ -48,6 +48,7 @@ def get_name_map_from_fasta_headers(fasta_path):
 
     return name_map
 
+
 def is_vcf_chrom_header(line):
     """
     Returns ``True`` if ``line`` is a VCF chrom-definition header line, ``False`` otherwise.
@@ -74,6 +75,7 @@ def is_vcf_call_line(line):
         return True
     else:
         return False
+
 
 def replace_chrom_name_in_header(line, name_map):
     """
@@ -109,6 +111,7 @@ def replace_chrom_name_in_call_line(line, name_map):
     new_line = "%s\t%s\n" % (new_name, '\t'.join(fields_not_first))
 
     return new_line
+
 
 def change_vcf_chrom_names(in_path, out_path, name_map):
     """

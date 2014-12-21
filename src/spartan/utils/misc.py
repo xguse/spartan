@@ -1,4 +1,4 @@
-#*****************************************************************************
+# *****************************************************************************
 #  misc.py (part of the spartan package)
 #
 #  (c) 2013 - Augustine Dunn
@@ -8,7 +8,7 @@
 #  wadunn83@gmail.com
 #
 #  Licensed under the GNU General Public License 3.0 license.
-#******************************************************************************
+# ******************************************************************************
 
 """
 ####################
@@ -24,7 +24,23 @@ import base64
 import time
 import re
 
-from collections import defaultdict
+
+def split_stream(stream, divisor):
+    """
+    Yields stream items grouped into lists with length `divisor` including the remainder.
+    """
+
+    group = []
+
+    for item in stream:
+        group.append(item)
+
+        if len(group) == divisor:
+            yield_me = tuple(group[:])
+            group = []
+            yield yield_me
+
+    yield group
 
 
 def get_version_number(path_to_setup):
