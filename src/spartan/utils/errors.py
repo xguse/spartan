@@ -1,4 +1,4 @@
-#*****************************************************************************
+# *****************************************************************************
 #  errors.py (part of the  package)
 #
 #  (c) 2013 - Augustine Dunn
@@ -8,7 +8,7 @@
 #  wadunn83@gmail.com
 #
 #  Licensed under the GNU General Public License 3.0 license.
-#******************************************************************************
+# ******************************************************************************
 
 """
 ####################
@@ -26,7 +26,7 @@ class SpartanError(StandardError):
         self.msg = msg
 
     def __str__(self):
-        return """%s""" % (self.msg)
+        return """%s""" % self.msg
 
 
 class SystemCallError(SpartanError):
@@ -68,7 +68,6 @@ class MissingArgumentError(SpartanError):
     """When a required argument is missing from the parsed command line options."""
 
 
-
 class InvalidOptionError(SpartanError):
     """
     Raised when a constrained settable option fails its validity test.
@@ -92,8 +91,12 @@ class InvalidOptionError(SpartanError):
             return """%s is not a valid value for arg:%s.""" % (self.wrong_value, self.option_name)
 
 
+class IgnoreThisError(SpartanError):
+    """
+    Raised when a function sees a value that does not match what is expected but should not cause the code to die.
+    Useful for parsers that may need to ignore 'commented' lines or malformed but 'harmless' text.
+    When caught, `spartan` functions should handle by gracefully ignoring that run of the function.
+    """
 
-
-    
-    
-
+    # def __init__(self, msg):
+    #     self.msg = msg

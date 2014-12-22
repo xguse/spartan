@@ -27,7 +27,7 @@ import re
 
 def split_stream(stream, divisor):
     """
-    Yields stream items grouped into lists with length `divisor` including the remainder.
+    Yields stream items grouped into tuples with length `divisor` including the remainder.
     """
 
     group = []

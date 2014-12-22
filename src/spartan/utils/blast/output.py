@@ -12,15 +12,15 @@ Purpose:
 """
 __author__ = 'Gus Dunn'
 
+from spartan.utils import errors as e
 
-def filter_for_argot(path, protein_names):
-    """
-    Yields lines from `path` that represent blast results for any protein listed in `protein_names` as strings.
-    """
 
-    names = set(protein_names)
+def protein_name_from_argot_search(line, group_map):
+    if line.startswith('#'):
+        raise e.IgnoreThisError('Comment line')
 
-    with open(path, 'rU') as blast_file:
-        for line in blast_file:
-            if line.split()[0] in names:
-                yield line
+    try:
+        return group_map[line.split()[0]]
+    except IndexError:
+        raise e.IgnoreThisError('wonky line: %s' % line)
+
