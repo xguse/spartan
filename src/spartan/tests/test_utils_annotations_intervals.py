@@ -14,6 +14,7 @@ __author__ = 'Gus Dunn'
 
 from spartan.utils.annotations import intervals as i
 
+
 class TestIntervalLength():
     """
     tests i.interval_length

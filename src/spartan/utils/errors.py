@@ -100,3 +100,10 @@ class IgnoreThisError(SpartanError):
 
     # def __init__(self, msg):
     #     self.msg = msg
+
+
+class FixMeError(SpartanError):
+    """
+    Raised when a function is called that has been identified as functionally bankrupt and running of said function
+    deemed too risky to allow without someone's attention used to fix it.
+    """
