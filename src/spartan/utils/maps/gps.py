@@ -12,14 +12,30 @@ Operate on GPS type data.
 """
 __author__ = 'Gus Dunn'
 
-from bunch import Bunch
+from collections import defaultdict, deque
+
+import numpy as np
+
+from munch import Munch, munchify
 
 import spartan.utils.errors as e
 from spartan.utils.files import tableFile2namedTuple
 
 
 # ----- Utility functions for this module ----- #
+
+def create_bread_crumbs_from_trace(trace):
+    assert isinstance(trace, str)
+
+    return deque(trace.split('.'))
+
+
 def clean_coord(value):
+    if isinstance(value, float):
+        return value
+    if isinstance(value, int):
+        return float(value)
+
     if value.upper().startswith('S'):
         return -1 * abs(float(value.strip('S')))
 
@@ -36,12 +52,9 @@ def clean_coord(value):
         return float(value)
 
 
-
-
 # ----- For Loading GPS info from files ----- #
-
 def load_gps_coords(paths):
-    if not isinstance(paths,list):
+    if not isinstance(paths, list):
         paths = [paths]
 
     gps_files = []
@@ -53,7 +66,7 @@ def load_gps_coords(paths):
         for coord in coord_group:
             gps_objs.append(build_GPSCoord(gps_data=coord))
 
-    return GPSCoordTree(gps_coord_objs=gps_objs, level='root')
+    return GPSCoordTree(gps_coord_objs=gps_objs)
 
 
 def build_GPSCoord(gps_data):
@@ -65,126 +78,248 @@ def build_GPSCoord(gps_data):
         trace = gps_data.trace
     except AttributeError as exc:
         if "'Table' object has no attribute 'trace'" in exc.message:
-            trace = ''
+            trace = location
         else:
             raise exc
 
-    trace = '.'.join(['root', trace]).strip('.')
+    # trace = '.'.join(['root', trace]).strip('.')
 
     return GPSCoord(location=location, lat=lat, lon=lon, trace=trace)
 
 
+# class GPSCoordTree_OLD(Munch):
+#     """
+#     Class represents a hierarchical tree of GPSCoord objects grouped by their `trace` strings.
+#     """
+#
+#     def __init__(self, gps_coord_objs=None, level=None, kind='branch', **kwargs):
+#         """
+#         Returns initialized GPS coord tree based on a group of existing `GPSCoord()` objects.
+#
+#
+#         :param gps_coord_objs:
+#         :type gps_coord_objs: `list()`
+#         :param level:
+#         :param kind:
+#         :param kwargs:
+#         :return: GPSCoordTree
+#         :rtype: `GPSCoordTree()`
+#         """
+#
+#         self.level = level
+#         self.kind = kind
+#         self.members = set()
+#
+#         super(GPSCoordTree, self).__init__(**kwargs)
+#
+#         if gps_coord_objs is not None:
+#             for gps_obj in gps_coord_objs:
+#                 self._grow_branch(gps_obj=gps_obj)
+#
+#     def _grow_branch(self, gps_obj):
+#         # self.members.add(gps_obj)
+#
+#         levels = list(reversed(gps_obj.trace.strip('.').split('.')))
+#
+#         next_level = levels.pop()
+#         remaining_levels = levels
+#
+#         last_level = self._add_levels(next_level=next_level, current_level=self, remaining_levels=remaining_levels,
+#                                       gps_obj=gps_obj)
+#
+#         last_level[gps_obj.location] = last_level.get(gps_obj.location, GPSCoordTree(level=gps_obj.location,
+#                                                                                      kind='leaf'))
+#
+#         last_level[gps_obj.location][gps_obj.id] = gps_obj
+#
+#     def _add_levels(self, next_level, current_level, remaining_levels, gps_obj):
+#
+#         current_level.members.add(gps_obj)
+#
+#         # get current_level.next_level GPSCoordTree if it exists, create empty GPSCoordTree otherwise
+#         current_level[next_level] = current_level.get(next_level, GPSCoordTree(level=next_level))
+#
+#         # shift levels one register
+#         current_level = current_level[next_level]
+#         try:
+#             next_level = remaining_levels.pop()
+#
+#         except IndexError as exc:
+#             if 'empty list' in exc.message:
+#                 return current_level
+#             else:
+#                 raise exc
+#
+#         return self._add_levels(next_level=next_level, current_level=current_level,
+#                                 remaining_levels=remaining_levels, gps_obj=gps_obj)
+#
+#     # def get_subtree(self, subtrace):
+#     # """
+#     #     Returns a ``GPSCoordTree`` object containing references to all leaves below subtrace:
+#     #     :param subtrace: The path to the node that will be the base of the subtree.
+#     #     :type subtrace: string
+#     #     :returns: a tree containing references to all leaves below subtrace:
+#     #     :rtype: GPSCoordTree
+#     #     """
+#     #     levels = subtrace.split('.')
+#     #
+#     #     for level in levels:
+#     #         if level in self.keys():
+#     #             return self[level]
+#     #         else:
+#     #             for key in self.keys():
+#     #                 return self.get_subtree(level=key)
+#
+#     def mean(self):
+#         """
+#         Returns a `GPSCoord()` initialized with the mean latitude and longitude of all of the leaves on this
+#         GPSCoordTree.
+#
+#         :return: :mod:`GPSCoord`
+#         :rtype: :mod:`GPSCoord`
+#         """
+#
+#         coords = tuple(self.members)
+#
+#         lats = np.array([coord.lat for coord in coords]).mean()
+#         lons = np.array([coord.lon for coord in coords]).mean()
+#
+#         return GPSCoord(location=self.level, lat=lats.mean(), lon=lons.mean())
 
-class GPSCoordTree(Bunch):
-    '''
+
+class GPSCoordTree(object):
+    """
     Class represents a hierarchical tree of GPSCoord objects grouped by their `trace` strings.
-    '''
+    """
 
-    def __init__(self, gps_coord_objs=None, level=None, kind='branch', **kwargs):
-        '''
+    def __init__(self, gps_coord_objs=None, name=None):
+        """
         Returns initialized GPS coord tree based on a group of existing `GPSCoord()` objects.
 
 
         :param gps_coord_objs:
-        :type gps_coord_objs: `list()`
-        :param level:
-        :param kind:
-        :param kwargs:
         :return: GPSCoordTree
         :rtype: `GPSCoordTree()`
-        '''
+        """
 
-        self.level = level
-        self.kind = kind
+        if name is None:
+            name = 'unnamed'
 
-        super(GPSCoordTree, self).__init__(**kwargs)
+        Tree = lambda: defaultdict(Tree)
+        self.tree = Tree()
+        self.name = name
 
         if gps_coord_objs is not None:
             for gps_obj in gps_coord_objs:
                 self._grow_branch(gps_obj=gps_obj)
 
+        self.tree = munchify(self.tree)
 
+    def _get_subtree(self, bread_crumbs=None, current_node=None):
+        """
+        Returns subtree of `self.tree` described with `bread_crumbs`.
+        If the path described in `bread_crumbs` does not exist, it is created/grown.
 
+        :param bread_crumbs:
+        :type bread_crumbs:
+        :return:
+        :rtype:
+        """
 
-    def _grow_branch(self, gps_obj):
-        levels = list(reversed(gps_obj.trace.strip('.').split('.')))
+        # raise e.FixMeError
+        if bread_crumbs is None:
+            return self.tree
 
-        next_level = levels.pop()
-        remaining_levels = levels
+        assert isinstance(bread_crumbs, deque)
 
-        last_level = self._add_levels(next_level=next_level, current_level=self, remaining_levels=remaining_levels)
+        if current_node is None:
+            current_node = self.tree
 
-        last_level[gps_obj.location] = last_level.get(gps_obj.location, GPSCoordTree(level=gps_obj.location,
-                                                                                     kind='leaf'))
+        assert isinstance(current_node, (defaultdict, Munch))
 
-        last_level[gps_obj.location][gps_obj.id] = gps_obj
-
-    def _add_levels(self, next_level, current_level, remaining_levels):
-
-        # get current_level.next_level GPSCoordTree if it exists, create empty GPSCoordTree otherwise
-        current_level[next_level] = current_level.get(next_level, GPSCoordTree(level=next_level))
-
-        # shift levels one register
-        current_level = current_level[next_level]
         try:
-            next_level = remaining_levels.pop()
+            next_crumb = bread_crumbs.popleft()
+            next_node = current_node[next_crumb]
+            return self._get_subtree(bread_crumbs=bread_crumbs, current_node=next_node)
 
-        except IndexError as exc:
-            if 'empty list' in exc.message:
-                return current_level
-            else:
-                raise exc
+        except IndexError:
+            return current_node
 
-        self._add_levels(next_level=next_level, current_level=current_level, remaining_levels=remaining_levels)
-
-
-    def get_subtree(self, level):
+    def _grow_branch(self, gps_obj, bread_crumbs=None, current_node=None):
         """
-        Returns a ``GPSCoordTree`` object containing references to all leaves below level:
-        :param level: The name of the node that will be the base of the subtree.
-        :type level: string
-        :returns: a tree containing references to all leaves below level:
-        :rtype: GPSCoordTree
         """
 
-        if level in self.keys():
-            return self[level]
+        if bread_crumbs is None:
+            bread_crumbs = deque(gps_obj.trace.split('.'))
+
+        if current_node is None:
+            current_node = self.tree
+
+        assert isinstance(current_node, defaultdict)
+        assert isinstance(bread_crumbs, deque)
+
+        # add this gps_object to this node's members
+        current_node.setdefault('members', set())
+        current_node['members'].add(gps_obj)
+
+        try:
+            next_crumb = bread_crumbs.popleft()
+            next_node = current_node[next_crumb]
+
+            return self._grow_branch(gps_obj=gps_obj, bread_crumbs=bread_crumbs, current_node=next_node)
+
+        except IndexError:
+            return current_node
+
+    def mean(self, trace=None):
+        """
+        Returns a `GPSCoord()` initialized with the mean latitude and longitude of all of the leaves on the
+        node described by the trace.
+
+        """
+
+        if trace is None:
+            trace = self.name
+            subtree = self.tree
         else:
-            for key in self.keys():
-                return self.get_subtree(level=key)
+            bread_crumbs = create_bread_crumbs_from_trace(trace)
+            subtree = self._get_subtree(bread_crumbs)
 
+        coords = tuple(subtree.members)
 
+        lats = np.array([coord.lat for coord in coords]).mean()
+        lons = np.array([coord.lon for coord in coords]).mean()
 
+        return GPSCoord(location=trace.split('.')[-1], lat=lats, lon=lons, trace=trace)
 
-
-    def mean(self, level):
+    def median(self, trace=None):
         """
-        Returns a `GPSCoord()` initialized with the mean latitude and longitude of the subtree below level: specified.
+        Returns a `GPSCoord()` initialized with the median latitude and longitude of all of the leaves on the
+        node described by the trace.
 
-        :param level: The name of the deepest node defined in each of your coord objs' `trace` that they have in
-        common.
-
-        Example: ``level='Kole'`` will group ``MWA`` and ``OLE``
-
-        coord1's trace -> root.Uganda.Kole.MWA
-        coord2's trace -> root.Uganda.Kole.OLE
-        coord3's trace -> root.Uganda.Amuru.OKS
-
-
-        :type level: string
-        :return: :mod:`GPSCoord`
-        :rtype: :mod:`GPSCoord`
         """
 
+        if trace is None:
+            trace = self.name
+            subtree = self.tree
+        else:
+            bread_crumbs = create_bread_crumbs_from_trace(trace)
+            subtree = self._get_subtree(bread_crumbs)
+
+        coords = tuple(subtree.members)
+
+        lats = np.median(np.array([coord.lat for coord in coords]))
+        lons = np.median(np.array([coord.lon for coord in coords]))
+
+        return GPSCoord(location=trace.split('.')[-1], lat=lats, lon=lons, trace=trace)
 
 
-
-class GPSCoord(Bunch):
-    '''
+class GPSCoord(Munch):
+    """
     Class represents a single GPS coordinate.
 
     VERY SIMPLE RIGHT NOW!
-    '''
+    """
 
     def __init__(self, location, lat, lon, trace='', **kwargs):
         """
@@ -210,10 +345,22 @@ class GPSCoord(Bunch):
         self.trace = trace
         self.id = ':'.join([self.location, str(self.lat), str(self.lon)])
 
-    # def __repr__(self):
-    #     return "GPSCoord(location={0}, lat={1}, lon={2}, trace={3})".format(self.location, self.lat, self.lon, self.trace)
-    #
-    # def __str__(self):
-    #     return self.__repr__()
+    def __repr__(self):
+        return "GPSCoord(location={0}, lat={1}, lon={2}, trace={3})".format(self.location, self.lat, self.lon,
+                                                                            self.trace)
+
+    def __str__(self):
+        return self.__repr__()
+
+    def __hash__(self):
+        return hash(repr(self))
+
+    def __eq__(self, other):
+        if repr(self) == repr(other):
+            return True
+        else:
+            return False
+
+
 
 

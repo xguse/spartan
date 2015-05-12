@@ -1,4 +1,4 @@
-#*****************************************************************************
+# *****************************************************************************
 #  misc.py (part of the spartan package)
 #
 #  (c) 2013 - Augustine Dunn
@@ -8,7 +8,7 @@
 #  wadunn83@gmail.com
 #
 #  Licensed under the GNU General Public License 3.0 license.
-#******************************************************************************
+# ******************************************************************************
 
 """
 ####################
@@ -24,7 +24,23 @@ import base64
 import time
 import re
 
-from collections import defaultdict
+
+def split_stream(stream, divisor):
+    """
+    Yields stream items grouped into tuples with length `divisor` including the remainder.
+    """
+
+    group = []
+
+    for item in stream:
+        group.append(item)
+
+        if len(group) == divisor:
+            yield_me = tuple(group[:])
+            group = []
+            yield yield_me
+
+    yield group
 
 
 def get_version_number(path_to_setup):
@@ -72,7 +88,6 @@ def whoami():
     return inspect.stack()[1][3]
 
 
-    
 def get_time():
     """
     Return system time formatted as 'YYYY:MM:DD-hh:mm:ss'.
@@ -80,14 +95,14 @@ def get_time():
     t = time.localtime()
     return time.strftime('%Y.%m.%d-%H:%M:%S',t)
         
-    
 
 def uniques(seq):
     seen = set()
     seen_add = seen.add
     return [ x for x in seq if x not in seen and not seen_add(x)]
 
-def slidingWindow(sequence,winSize,step=1):
+
+def slidingWindow(sequence, winSize, step=1):
     """Returns a generator that will iterate through
     the defined chunks of input sequence.  Input sequence
     must be iterable."""
@@ -109,6 +124,7 @@ def slidingWindow(sequence,winSize,step=1):
     # Do the work
     for i in range(0,numOfChunks*step,step):
         yield sequence[i:i+winSize]
+
 
 def fold_seq(seq, lineLen=70):
     return [seq[i:i+lineLen] for i in xrange(0, len(seq), lineLen)]
