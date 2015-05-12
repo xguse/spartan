@@ -24,7 +24,7 @@ def write_ensembl_gtf_attributes_string(attrib_dict):
     """
     attrib_string = []
     
-    for key,value in attrib_dict.iteritems():
+    for key,value in attrib_dict.items():
         attrib_string.append('''%s "%s";''' % (key,value))
     
     return ' '.join(attrib_string)

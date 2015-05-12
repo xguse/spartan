@@ -19,7 +19,7 @@ Code defining custom base error classes to provide a foundation for graceful err
 import warnings
 
 
-class SpartanError(StandardError):
+class SpartanError(Exception):
     """Base class for exceptions in the blacktie package."""
 
     def __init__(self, msg):

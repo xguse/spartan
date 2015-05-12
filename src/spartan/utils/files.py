@@ -132,13 +132,13 @@ def filter_PEfastQs(filterFunc,fwdMatePath,revMatePath,matchedPassPath1,matchedP
     while 1:
         # get next fastq Records or set mates to None
         try:
-            fwdMate = fwdMates.next()
+            fwdMate = next(fwdMates)
             counts.total += 1
         except StopIteration:
             fwdMate = None
         
         try:
-            revMate = revMates.next()
+            revMate = next(revMates)
             counts.total += 1
         except StopIteration:
             revMate = None
@@ -253,7 +253,7 @@ def tableFile2namedTuple(tablePath, sep='\t', headers=None):
 
     reader = csv.reader(open(tablePath, 'rU'), delimiter=sep)
     if not headers:
-        headers = [h.lower() for h in reader.next()]
+        headers = [h.lower() for h in next(reader)]
     Table = collections.namedtuple('Table', headers)
     # wrap Table.__getattribute__() for less typing
 
@@ -297,7 +297,7 @@ class ParseFastQ(object):
             f.seek(0)
             return f
 
-    def next(self):
+    def __next__(self):
         """Reads in next element, parses, and does minimal verification.
         Returns: tuple: (seqHeader,seqStr,qualHeader,qualStr)"""
         # ++++ Get Next Four Lines ++++
@@ -337,7 +337,7 @@ class ParseFastQ(object):
     def get_next_readSeq(self):
         """Convenience method: calls self.next and returns only the readSeq."""
         try:
-            record = self.next()
+            record = next(self)
             return record[1]
         except StopIteration:
             return None
@@ -356,7 +356,7 @@ class ParseFastQ(object):
         
         while 1:
             try:
-                qRec = self.next()
+                qRec = next(self)
                 fastqLen += 1
             except StopIteration:
                 break
@@ -404,7 +404,7 @@ def onlyInA(fileA,fileB,outFile):
     # write lines unique to fileA
     outFile = open(outFile,'w')
     rLines = 0
-    for item in lineDict.iteritems():
+    for item in lineDict.items():
         line   = item[0]
         counts = item[1]
         if counts[1] == 0:

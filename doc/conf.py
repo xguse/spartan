@@ -76,8 +76,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'spartan'
-copyright = u'2014, Gus Dunn'
+project = 'spartan'
+copyright = '2014, Gus Dunn'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -229,8 +229,8 @@ latex_elements = {
 # (source start file, target location, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'spartan.tex', u'spartan Documentation',
-   u'Gus Dunn', 'manual'),
+  ('index', 'spartan.tex', 'spartan Documentation',
+   'Gus Dunn', 'manual'),
 ]
 
 # The location of an image file (relative to this directory) to place at the top of
@@ -259,8 +259,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, location, description, authors, manual section).
 man_pages = [
-    ('index', 'spartan', u'spartan Documentation',
-     [u'Gus Dunn'], 1)
+    ('index', 'spartan', 'spartan Documentation',
+     ['Gus Dunn'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -273,8 +273,8 @@ man_pages = [
 # (source start file, target location, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'spartan', u'spartan Documentation',
-   u'Gus Dunn', 'spartan', 'One line description of project.',
+  ('index', 'spartan', 'spartan Documentation',
+   'Gus Dunn', 'spartan', 'One line description of project.',
    'Miscellaneous'),
 ]
 

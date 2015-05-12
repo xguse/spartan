@@ -19,7 +19,7 @@ def get_uniprot2gene_map(dataframe):
         
         u2g_map[uniprot].add(gene)
         
-    for u,g in u2g_map.iteritems():
+    for u,g in u2g_map.items():
         u2g_map[u] = sorted(list(g))
         
     return dict(u2g_map)
@@ -38,7 +38,7 @@ def get_gene2uniprot_map(dataframe):
         
         g2u_map[gene].add(uniprot)
         
-    for g,u in g2u_map.iteritems():
+    for g,u in g2u_map.items():
         g2u_map[g] = sorted(list(u))
         
     return dict(g2u_map)

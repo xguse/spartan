@@ -54,7 +54,7 @@ class ParseFastQ(object):
             f.seek(0)
             return f
 
-    def next(self):
+    def __next__(self):
         """Reads in next element, parses, and does minimal verification.
         Returns: tuple: (seqHeader,seqStr,qualHeader,qualStr)"""
         # ++++ Get Next Four Lines ++++
@@ -94,7 +94,7 @@ class ParseFastQ(object):
     def get_next_readSeq(self):
         """Convenience method: calls self.next and returns only the readSeq."""
         try:
-            record = self.next()
+            record = next(self)
             return record[1]
         except StopIteration:
             return None
@@ -113,7 +113,7 @@ class ParseFastQ(object):
         
         while 1:
             try:
-                qRec = self.next()
+                qRec = next(self)
                 fastqLen += 1
             except StopIteration:
                 break
@@ -156,7 +156,7 @@ def write_table(oligos, out_path):
     template = "{oligo}\t{count}\n"
     
     with open(out_path,'w') as out:
-        for oligo, count in oligos.iteritems():
+        for oligo, count in oligos.items():
             
             out.write(template.format(oligo=oligo, count=count))
 
@@ -222,16 +222,16 @@ def main():
                                               last=args.end
                                               )
         except IOError:
-            print "-!- WARNING: file ({file}) was not processed because it is not actually a gzipped file.".format(file=fastq_path)
+            print("-!- WARNING: file ({file}) was not processed because it is not actually a gzipped file.".format(file=fastq_path))
             continue
         except AssertionError:
-            print "-!- WARNING: file ({file}) was not able to be processed; it may be corrupted.".format(file=fastq_path)
+            print("-!- WARNING: file ({file}) was not able to be processed; it may be corrupted.".format(file=fastq_path))
 
         # write the outfile
         write_table(oligos=oligo_counts, out_path=out_path)
 
         # Comfort you that things are happening
-        print "Completed file: {file}".format(file=out_path)
+        print("Completed file: {file}".format(file=out_path))
 
 
 

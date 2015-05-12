@@ -31,7 +31,7 @@ def get_name_map_from_fasta_headers(fasta_path):
 
     fasta_recs = ParseFastA(fasta_path, key=lambda x: x[1:]).to_dict()
 
-    headers = fasta_recs.keys()
+    headers = list(fasta_recs.keys())
 
     for header in headers:
         if scaffold in header:

@@ -52,7 +52,7 @@ class ParseFastA(object):
     def __iter__(self):
         return self
 
-    def next(self):
+    def __next__(self):
         """Reads in next element, parses, and does minimal verification.
         Returns: tuple: (seqName,seqStr)"""
         if not self._stop:
@@ -69,7 +69,7 @@ class ParseFastA(object):
         # ++++ If not, seek one ++++
             while 1:
                 try:
-                    line = self._file.next()
+                    line = next(self._file)
                 except StopIteration:
                     self._stop = True
                     break
@@ -77,15 +77,15 @@ class ParseFastA(object):
                     recHead = line
                     break
                 elif not line:
-                    raise InvalidFileFormatError, "CheckFastaFile: Encountered EOF before any data."
+                    raise InvalidFileFormatError("CheckFastaFile: Encountered EOF before any data.")
                 elif line == '\n':
                     continue
                 else:
-                    raise InvalidFileFormatError, 'CheckFastaFile: The first line containing text does not start with ">".'
+                    raise InvalidFileFormatError('CheckFastaFile: The first line containing text does not start with ">".')
         # ++++ Collect recData ++++
         while 1:
             try:
-                line = self._file.next()
+                line = next(self._file)
             except StopIteration:
                 self._stop = True
                 break
@@ -111,14 +111,14 @@ class ParseFastA(object):
         fasDict = {}
         while 1:
             try:
-                fasRec = self.next()
+                fasRec = next(self)
             except StopIteration:
                 break
             if fasRec:
                 if not fasRec[0] in fasDict:
                     fasDict[fasRec[0]] = fasRec[1]
                 else:
-                    raise InvalidFileFormatError, "DuplicateFastaRec: %s occurs in your file more than once."
+                    raise InvalidFileFormatError("DuplicateFastaRec: %s occurs in your file more than once.")
             else:
                 break
         return fasDict
@@ -147,7 +147,7 @@ class ParseFastA(object):
 
         while 1:
             try:
-                f = self.next()
+                f = next(self)
             except StopIteration:
                 break
             fSplit  = f[0].lstrip('>').rstrip('\n').split(delim)
@@ -272,7 +272,7 @@ def fastaRec_length_indexer(fastaFiles):
                     pass
 
 
-    for rec,lengths in tmpDict.iteritems():
+    for rec,lengths in tmpDict.items():
         if not (len(set(lengths)) == 1):
             # SANITY_CHECK: make sure that any duplicate fastaRecs gave the same length, if not: complain and die
             raise SanityCheckError("Encountered fastaRec with lengths that do not agree: %s:%s" % (rec,lengths))
@@ -289,7 +289,7 @@ def count_fasta_recs_in_file(fasta_path):
 
     :param fasta_path: Path to fasta file
     """
-    return len(ParseFastA(fasta_path).to_dict().keys())
+    return len(list(ParseFastA(fasta_path).to_dict().keys()))
 
 
 def divide_fasta_file(fasta_path, divide_by=2, out_path_base=None):
@@ -317,7 +317,7 @@ def divide_fasta_file(fasta_path, divide_by=2, out_path_base=None):
     out_path_template = "{out_base}.{file_num}{ext}"
     fasta_seq_template = ">{header}\n{seq_lines}\n"
 
-    for index, (header, seq) in enumerate(ParseFastA(fasta_path).to_dict().iteritems()):
+    for index, (header, seq) in enumerate(ParseFastA(fasta_path).to_dict().items()):
 
         # create a switch after every `recs_per_file` records that opens a new file for writing
         if index % recs_per_file == 0:

@@ -40,7 +40,7 @@ class Tristate(object):
     def __ne__(self, other):
         return self.value is not other
 
-    def __nonzero__(self):  # Python 3: __bool__()
+    def __bool__(self):  # Python 3: __bool__()
         raise TypeError("Tristate value may not be used as implicit Boolean")
 
     def __str__(self):
@@ -112,7 +112,7 @@ def get_version_number(path_to_setup):
         return version_string
 
     else:
-        print("No version definition found in ", setup_path)
+        print(("No version definition found in ", setup_path))
 
 
 class Bunch(dict):
@@ -128,7 +128,7 @@ def bunchify(dict_tree):
     """
     Traverses a dictionary tree and converts all sub-dictionaries to Bunch() objects.
     """
-    for k,v in dict_tree.iteritems():
+    for k,v in dict_tree.items():
         if type(v) == type({}):
             dict_tree[k] = bunchify(dict_tree[k])
     return Bunch(dict_tree)
@@ -180,4 +180,4 @@ def slidingWindow(sequence, winSize, step=1):
 
 
 def fold_seq(seq, lineLen=70):
-    return [seq[i:i+lineLen] for i in xrange(0, len(seq), lineLen)]
+    return [seq[i:i+lineLen] for i in range(0, len(seq), lineLen)]

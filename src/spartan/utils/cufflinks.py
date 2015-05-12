@@ -68,7 +68,7 @@ def get_XLOC_to_nearest_ref_map(merged_gtf,kind='gene'):
         name_maps[nearest].add(xloc)
     
     # we dont want the final data type to be sets
-    for xloc,nearest_set in name_maps.iteritems():
+    for xloc,nearest_set in name_maps.items():
         name_maps[xloc] = ','.join(sorted(list(nearest_set)))
     
     return XLOCmapping(dict(name_maps))

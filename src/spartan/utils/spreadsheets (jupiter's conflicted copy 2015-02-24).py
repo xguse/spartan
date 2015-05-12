@@ -29,7 +29,7 @@ except ImportError:
 
 
 def sanitize_file_name(file_name):
-    return sanitize_path_fragment(file_name, additional_illegal_characters=[u' '])
+    return sanitize_path_fragment(file_name, additional_illegal_characters=[' '])
 
 
 def get_workbook(workbook_path):
@@ -83,7 +83,7 @@ def workbook_to_csv_files(workbook_path, out_dir=None):
     :param workbook_path: path to the workbook (.xls file)
     """
 
-    workbook_name = sanitize_file_name(os.path.basename(unicode(workbook_path)))
+    workbook_name = sanitize_file_name(os.path.basename(str(workbook_path)))
     workbook_dir = os.path.dirname(os.path.realpath(workbook_path))
 
     workbook = get_workbook(workbook_path)

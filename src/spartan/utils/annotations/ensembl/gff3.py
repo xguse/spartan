@@ -125,7 +125,7 @@ class GFF3(object):
             self.sources.add(feature.data.source)
 
         # add parent:child relationships to parent_graph
-        for uid, feat in self.feature_db.iteritems():
+        for uid, feat in self.feature_db.items():
             try:
                 p = self.common_to_uniq_id[feat.data.attributes.Parent]
                 self.parents_graph.add_edge(uid, p)
@@ -169,7 +169,7 @@ class SimpleFeatureGFF3(intervals.SimpleFeature):
             self.data.attributes = self.parse_attributes(fields[8])
         elif isinstance(gff3_data, dict):
             # NOTE: in this case you will need to have pre-parsed the `attributes` data if included.
-            for k, v in gff3_data.iteritems():
+            for k, v in gff3_data.items():
                 self.data.__setattr__(k, v)
 
         self.relatives = defaultdict(Bunch)
