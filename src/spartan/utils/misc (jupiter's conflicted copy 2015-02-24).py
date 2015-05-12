@@ -1,4 +1,4 @@
-#*****************************************************************************
+# *****************************************************************************
 #  misc.py (part of the spartan package)
 #
 #  (c) 2013 - Augustine Dunn
@@ -8,7 +8,7 @@
 #  wadunn83@gmail.com
 #
 #  Licensed under the GNU General Public License 3.0 license.
-#******************************************************************************
+# ******************************************************************************
 
 """
 ####################
@@ -24,7 +24,76 @@ import base64
 import time
 import re
 
-from collections import defaultdict
+
+class Tristate(object):
+    def __init__(self, value=None):
+        number_map = {True: 1, False: 0, None: None}
+        if any(value is v for v in (True, False, None)):
+            self.value = value
+            self.__value = number_map[self.value]
+        else:
+            raise ValueError("Tristate value must be True, False, or None")
+
+    def __eq__(self, other):
+        return self.value is other
+
+    def __ne__(self, other):
+        return self.value is not other
+
+    def __nonzero__(self):  # Python 3: __bool__()
+        raise TypeError("Tristate value may not be used as implicit Boolean")
+
+    def __str__(self):
+        return str(self.value)
+
+    def __repr__(self):
+        return "Tristate(%s)" % self.value
+
+    def __add__(self, other):
+        if isinstance(other, Tristate):
+            try:
+                return other.__value + self.__value
+            except TypeError as exc:
+                if "'NoneType' and 'int'" in exc.message:
+                    pass
+                elif "'int' and 'NoneType'" in exc.message:
+                    pass
+                else:
+                    raise exc
+
+                return other.__value
+        else:
+            try:
+                return other + self.__value
+            except TypeError as exc:
+                if "'NoneType' and 'int'" in exc.message:
+                    pass
+                elif "'int' and 'NoneType'" in exc.message:
+                    pass
+                else:
+                    raise exc
+
+                return other
+
+    __radd__ = __add__
+
+
+def split_stream(stream, divisor):
+    """
+    Yields stream items grouped into tuples with length `divisor` including the remainder.
+    """
+
+    group = []
+
+    for item in stream:
+        group.append(item)
+
+        if len(group) == divisor:
+            yield_me = tuple(group[:])
+            group = []
+            yield yield_me
+
+    yield group
 
 
 def get_version_number(path_to_setup):
@@ -67,12 +136,11 @@ def bunchify(dict_tree):
 
 def whoami():
     """
-    Returns the location of the currently active function.
+    Returns the name of the currently active function.
     """
     return inspect.stack()[1][3]
 
 
-    
 def get_time():
     """
     Return system time formatted as 'YYYY:MM:DD-hh:mm:ss'.
@@ -80,14 +148,14 @@ def get_time():
     t = time.localtime()
     return time.strftime('%Y.%m.%d-%H:%M:%S',t)
         
-    
 
 def uniques(seq):
     seen = set()
     seen_add = seen.add
     return [ x for x in seq if x not in seen and not seen_add(x)]
 
-def slidingWindow(sequence,winSize,step=1):
+
+def slidingWindow(sequence, winSize, step=1):
     """Returns a generator that will iterate through
     the defined chunks of input sequence.  Input sequence
     must be iterable."""
@@ -109,6 +177,7 @@ def slidingWindow(sequence,winSize,step=1):
     # Do the work
     for i in range(0,numOfChunks*step,step):
         yield sequence[i:i+winSize]
+
 
 def fold_seq(seq, lineLen=70):
     return [seq[i:i+lineLen] for i in xrange(0, len(seq), lineLen)]

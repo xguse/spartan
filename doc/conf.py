@@ -109,7 +109,7 @@ exclude_patterns = ['_build']
 # If true, '()' will be appended to :func: etc. cross-reference text.
 #add_function_parentheses = True
 
-# If true, the current module name will be prepended to all description
+# If true, the current module location will be prepended to all description
 # unit titles (such as .. function::).
 #add_module_names = True
 
@@ -117,7 +117,7 @@ exclude_patterns = ['_build']
 # output. They are ignored by default.
 #show_authors = False
 
-# The name of the Pygments (syntax highlighting) style to use.
+# The location of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
 # A list of ignored prefixes for module index sorting.
@@ -141,18 +141,18 @@ html_theme = 'sphinx_rtd_theme'
 # Add any paths that contain custom themes here, relative to this directory.
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
-# The name for this set of Sphinx documents.  If None, it defaults to
+# The location for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
 #html_title = None
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
 
-# The name of an image file (relative to this directory) to place at the top
+# The location of an image file (relative to this directory) to place at the top
 # of the sidebar.
 #html_logo = None
 
-# The name of an image file (within the static path) to use as favicon of the
+# The location of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
 #html_favicon = None
@@ -205,10 +205,10 @@ html_static_path = ['_static']
 # base URL from which the finished HTML is served.
 #html_use_opensearch = ''
 
-# This is the file name suffix for HTML files (e.g. ".xhtml").
+# This is the file location suffix for HTML files (e.g. ".xhtml").
 #html_file_suffix = None
 
-# Output file base name for HTML help builder.
+# Output file base location for HTML help builder.
 htmlhelp_basename = 'spartandoc'
 
 
@@ -226,14 +226,14 @@ latex_elements = {
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
-# (source start file, target name, title,
+# (source start file, target location, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
   ('index', 'spartan.tex', u'spartan Documentation',
    u'Gus Dunn', 'manual'),
 ]
 
-# The name of an image file (relative to this directory) to place at the top of
+# The location of an image file (relative to this directory) to place at the top of
 # the title page.
 #latex_logo = None
 
@@ -257,7 +257,7 @@ latex_documents = [
 # -- Options for manual page output ---------------------------------------
 
 # One entry per manual page. List of tuples
-# (source start file, name, description, authors, manual section).
+# (source start file, location, description, authors, manual section).
 man_pages = [
     ('index', 'spartan', u'spartan Documentation',
      [u'Gus Dunn'], 1)
@@ -270,7 +270,7 @@ man_pages = [
 # -- Options for Texinfo output -------------------------------------------
 
 # Grouping the document tree into Texinfo files. List of tuples
-# (source start file, target name, title, author,
+# (source start file, target location, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'spartan', u'spartan Documentation',

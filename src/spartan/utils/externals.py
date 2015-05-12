@@ -57,7 +57,7 @@ def run_external_app(prog_name, arg_str, ret_val='result'):
     Convenience func to handle calling and monitoring output of external programs.
     
 
-    :param prog_name: name of system program command
+    :param prog_name: location of system program command
     :param arg_str: string containing command line options for ``prog_name``
     :param ret_val: `['result', 'process']`
             `'result'`: `tuple (stdout, stderr)`

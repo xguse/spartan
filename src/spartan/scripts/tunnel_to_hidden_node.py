@@ -26,9 +26,9 @@ class Tunnel(object):
         """
         Initializes Tunnel object with needed info.
 
-        :param user: Your user name on `visible_server`.
+        :param user: Your user location on `visible_server`.
         :param visible_server: fully qualified address of the login server.
-        :param hidden_server: machine name of the hidden node.
+        :param hidden_server: machine location of the hidden node.
         :param local_port: port you will point your LOCAL browser etc to when communicating with the hidden node.
         :param remote_port: port that the hidden node will be communicating on.
         :return: initialized Tunnel Obj

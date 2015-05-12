@@ -33,13 +33,13 @@ def mv_file_obj(fileObj,newPath='',chmod=False):
     GIVEN:
     1) fileObj: file object to be moved 
     2) newPath: new path (if not abs path, current working dir is used)
-       MUST at LEAST include a location for new file.
+       MUST at LEAST include a name for new file.
     3) chmod: string to use for new file permissions (if False: no change).
     
     DO:
     1) fileObj.flush()
     2) use shutil.move(src,dest) to move file location.
-    3) change fileObj.location to the new location.
+    3) change fileObj.name to the new name.
     4) if file is tmpFile, make sure fileObj.delete == False
        (I assume that if you care enough to move the file, you want to keep it)
     5) chmod on new file to set permissions (remember to use octal: 0755 NOT 755)
@@ -247,20 +247,22 @@ def unSoftMask(inFastaPath,outFastaPath):
     outFasta.close()
     
     
-def tableFile2namedTuple(tablePath,sep='\t',headers=None):
+def tableFile2namedTuple(tablePath, sep='\t', headers=None):
     """Returns namedTuple from table file using first row fields as
     col headers or a list supplied by user."""
 
-    reader  = csv.reader(open(tablePath,'rU'), delimiter=sep)
+    reader = csv.reader(open(tablePath, 'rU'), delimiter=sep)
     if not headers:
         headers = [h.lower() for h in reader.next()]
-    Table   = collections.namedtuple('Table', headers)
+    Table = collections.namedtuple('Table', headers)
     # wrap Table.__getattribute__() for less typing
-    def get(self,colName):
+
+    def get(self, colName):
         return self.__getattribute__(colName)
     Table.get = get
     
-    data    = [Table._make(x) for x in reader if x!=[]] # reader kept feeding an empty list at the end that botched everything!  wtf?!
+    data = [Table._make(x) for x in reader if x != []]  # reader kept feeding an empty list at the end that botched
+    # everything!  wtf?!
     return data
 
 
@@ -277,7 +279,7 @@ class ParseFastQ(object):
         rec is tuple: (seqHeader,seqStr,qualHeader,qualStr)
         """
         if filePath.endswith('.gz'):
-            self._file = self._open_gzip_or_not(filePath)
+            self._file = gzip.open(filePath)
         else:
             self._file = open(filePath, 'rU')
         self._currentLineNumber = 0
@@ -285,16 +287,7 @@ class ParseFastQ(object):
         
     def __iter__(self):
         return self
-
-    def _open_gzip_or_not(filename):
-        f = open(filename,'rb')
-        if (f.read(2) == '\x1f\x8b'):
-            f.seek(0)
-            return gzip.GzipFile(fileobj=f)
-        else:
-            f.seek(0)
-            return f
-
+    
     def next(self):
         """Reads in next element, parses, and does minimal verification.
         Returns: tuple: (seqHeader,seqStr,qualHeader,qualStr)"""
