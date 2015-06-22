@@ -25,6 +25,59 @@ import time
 import re
 
 
+class Tristate(object):
+    def __init__(self, value=None):
+        number_map = {True: 1, False: 0, None: None}
+        if any(value is v for v in (True, False, None)):
+            self.value = value
+            self.__value = number_map[self.value]
+        else:
+            raise ValueError("Tristate value must be True, False, or None")
+
+    def __eq__(self, other):
+        return self.value is other
+
+    def __ne__(self, other):
+        return self.value is not other
+
+    def __nonzero__(self):  # Python 3: __bool__()
+        raise TypeError("Tristate value may not be used as implicit Boolean")
+
+    def __str__(self):
+        return str(self.value)
+
+    def __repr__(self):
+        return "Tristate(%s)" % self.value
+
+    def __add__(self, other):
+        if isinstance(other, Tristate):
+            try:
+                return other.__value + self.__value
+            except TypeError as exc:
+                if "'NoneType' and 'int'" in exc.message:
+                    pass
+                elif "'int' and 'NoneType'" in exc.message:
+                    pass
+                else:
+                    raise exc
+
+                return other.__value
+        else:
+            try:
+                return other + self.__value
+            except TypeError as exc:
+                if "'NoneType' and 'int'" in exc.message:
+                    pass
+                elif "'int' and 'NoneType'" in exc.message:
+                    pass
+                else:
+                    raise exc
+
+                return other
+
+    __radd__ = __add__
+
+
 def split_stream(stream, divisor):
     """
     Yields stream items grouped into tuples with length `divisor` including the remainder.
@@ -83,7 +136,7 @@ def bunchify(dict_tree):
 
 def whoami():
     """
-    Returns the location of the currently active function.
+    Returns the name of the currently active function.
     """
     return inspect.stack()[1][3]
 

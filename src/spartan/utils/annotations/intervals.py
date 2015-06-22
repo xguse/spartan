@@ -15,12 +15,67 @@ This code is intended to provide the "base" interval representation for `spartan
 from spartan.utils.misc import Bunch
 
 __author__ = 'Gus Dunn'
-
+import spartan.utils.errors as e
 
 
 #### Helper functions ####
 def interval_length(start, end):
     return end - start + 1
+
+def grow_interval(orig_start, orig_end, grow_by, add_to="both"):
+    """
+    Returns new interval start and end base locations after growing the interval at either
+    the ``left``, ``right``, or ``both`` ends by ``grow_by`` amount.
+
+    :param grow_by: number of bases to grow the edges of the interval
+    :param add_to: {"left", "right", "both"}
+    :return: (new_start, new_end)
+    """
+
+    assert isinstance(orig_start, int)
+    assert isinstance(orig_end, int)
+    if add_to == "both":
+        grow_left == True
+        grow_right == True
+    elif add_to == "left":
+        grow_left == True
+        grow_right == False
+    elif add_to == "right":
+        grow_left == False
+        grow_right == True
+    else:
+        raise e.InvalidOptionError(wrong_value=add_to,
+                                   option_name="add_to",
+                                   valid_values=('both', 'left', 'right'))
+
+    merge_these = [(orig_start, orig_end)]
+
+    if grow_left:
+        merge_these.append(left_window_coords(grow_by, orig_start))
+
+    if grow_right:
+        merge_these.append(right_window_coords(grow_by, orig_end))
+
+    merged = merge_intervals(merge_these)
+
+    if len(merged) == 1:
+        return merged
+    else:
+        msg = "`grow_interval` should return a single new interval. Check your input then check the code. Would " \
+              "have returned: %s" % (str(merged))
+        raise e.SanityCheckError(msg)
+
+
+def merge_intervals(intervals):
+    """
+    Returns a list of interval tuples (sorted from left to right by left bound) after overlapping intervals have been
+    combined.
+
+    :param intervals: iterable of interval tuples
+    """
+
+    pass
+
 
 def left_window_coords(win_size, original_left_bound):
     """
@@ -44,6 +99,7 @@ def left_window_coords(win_size, original_left_bound):
     new_coords = (new_start, new_end)
 
     return new_coords
+
 
 def right_window_coords(win_size, original_right_bound):
     """
@@ -99,14 +155,13 @@ class SimpleFeature(object):
         :param start: left most coordinate.
         :param end: right most coordinate.
         """
+        assert start <= end
+
         self.data = Bunch()
 
         try:
-            start = int(start)
-            end = int(end)
-
-            self.data.start = min([start, end])
-            self.data.end = max([start, end])
+            self.data.start = start
+            self.data.end = end
         except TypeError:
             pass
 

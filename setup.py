@@ -16,6 +16,7 @@ install_requires = [
     'pyfasta',
     'xlrd',
     'docopt',
+    'arrow',
 ]
 
 dependency_links = [
