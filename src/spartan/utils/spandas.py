@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-pd.DataFrame
+
 
 def stddf(df,axis=0,center='a'):
     """
@@ -43,3 +43,10 @@ def get_ranked_corrs_against_item(item_name,correlation_matrix):
     item_corrs.sort(ascending=False)
     
     return item_corrs
+
+def gather(df, key, value, cols):
+    id_vars = [col for col in df.columns if col not in cols]
+    id_values = cols
+    var_name = key
+    value_name = value
+    return pd.melt(df, id_vars, id_values, var_name, value_name)
