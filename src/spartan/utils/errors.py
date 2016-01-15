@@ -70,7 +70,8 @@ class MissingArgumentError(SpartanError):
 
 class InvalidOptionError(SpartanError):
     """
-    Raised when a constrained settable option fails its validity test.
+    Raised when a constrained settable option fails its validity test due to
+    containing values that are not allowed.
     """
     def __init__(self, wrong_value, option_name, valid_values=None):
         """
