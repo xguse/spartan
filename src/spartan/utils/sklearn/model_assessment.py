@@ -1,12 +1,12 @@
 import collections
 
-import pandas as pdb
-
+import pandas as pd
 import numpy as np
 
-from matplotlib import pyplot as plt
+import seaborn as sns
 
-from spartan import errors as e
+from spartan.utils import errors as e
+
 
 def confusion_matrix_to_pandas(cm, labels):
     """Returns a pandas dataframe.
@@ -16,15 +16,17 @@ def confusion_matrix_to_pandas(cm, labels):
     """
     return pd.DataFrame(data=cm, index=labels, columns=labels)
 
+
 def normalize_confusion_matrix(cm):
 
     try:
         return cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
     except ValueError as exc:
         if "Shape of passed values is" in exc:
-            raise e.InvalidOptionError(wrong_value=,
-            option_name=,
-            valid_values=None)
+            raise e.SpartanError()
+
+    return cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+
 
 def plot_confusion_matrix(cm, labels=None, cmap='Blues', title=None, norm=False, context=None, annot=True):
 
@@ -35,7 +37,7 @@ def plot_confusion_matrix(cm, labels=None, cmap='Blues', title=None, norm=False,
         labels = [label.title() for label in labels]
 
     if norm:
-        cm = normalize_cm(cm)
+        cm = normalize_confusion_matrix(cm)
 
     if title is None:
         if norm:
